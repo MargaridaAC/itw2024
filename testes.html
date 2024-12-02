@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barra de Pesquisa</title>
+    <style>
+        /* Estilo básico da barra de pesquisa */
+        .search-bar {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 20px auto;
+            max-width: 600px;
+        }
+
+            .search-bar input {
+                width: 100%;
+                padding: 10px;
+                border: 1px solid #ccc;
+                border-radius: 4px 0 0 4px;
+                outline: none;
+            }
+
+            .search-bar button {
+                padding: 10px;
+                border: none;
+                background-color: #ff0000;
+                color: #fff;
+                border-radius: 0 4px 4px 0;
+                cursor: pointer;
+            }
+
+                .search-bar button:hover {
+                    background-color: #cc0000;
+                }
+    </style>
+</head>
+<body>
+
+    <!-- Barra de Pesquisa -->
+    <form class="search-bar" action="/search" method="GET">
+        <input type="text" name="query" placeholder="O que estás à procura?" required>
+        <button type="submit">Pesquisar</button>
+    </form>
+
+</body>
+</html>
