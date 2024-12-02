@@ -1,48 +1,187 @@
 ﻿<!DOCTYPE html>
-<html lang="pt">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Barra de Pesquisa</title>
+    <title>Franklin Navbar</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        /* Estilo básico da barra de pesquisa */
-        .search-bar {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 20px auto;
-            max-width: 600px;
+        /* Custom styling */
+        .navbar-custom {
+            background-color: white;
+            border-bottom: 1px solid #ddd;
         }
 
-            .search-bar input {
+        .navbar-nav .nav-link {
+            font-size: 14px;
+            text-transform: uppercase;
+            margin-right: 15px;
+            color: black;
+        }
+
+            .navbar-nav .nav-link:hover {
+                color: red;
+            }
+
+        .dropdown-menu {
+            width: 800px;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            background-color: white;
+            border: 1px solid #ddd;
+        }
+
+        .dropdown-item {
+            font-size: 14px;
+            color: black;
+        }
+
+            .dropdown-item:hover {
+                color: red;
+            }
+
+        .trending-products {
+            width: 200px;
+            border-left: 1px solid #ddd;
+            padding-left: 20px;
+        }
+
+            .trending-products img {
                 width: 100%;
-                padding: 10px;
-                border: 1px solid #ccc;
-                border-radius: 4px 0 0 4px;
-                outline: none;
+                height: auto;
+                margin-bottom: 10px;
             }
-
-            .search-bar button {
-                padding: 10px;
-                border: none;
-                background-color: #ff0000;
-                color: #fff;
-                border-radius: 0 4px 4px 0;
-                cursor: pointer;
-            }
-
-                .search-bar button:hover {
-                    background-color: #cc0000;
-                }
     </style>
 </head>
 <body>
+    <nav class="navbar navbar-expand-lg navbar-light navbar-custom">
+        <div class="container">
+            <!-- Logo -->
+            <a class="navbar-brand" href="#">
+                <img src="projeto/images/Paris2024.png" alt="Franklin Logo" width="150">
+            </a>
 
-    <!-- Barra de Pesquisa -->
-    <form class="search-bar" action="/search" method="GET">
-        <input type="text" name="query" placeholder="O que estás à procura?" required>
-        <button type="submit">Pesquisar</button>
-    </form>
+            <!-- Toggle button for mobile -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
+            <!-- Navbar items -->
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item dropdown">
+                        <div class="nav-item">
+                            <a class="nav-link" id="sports-link">Sports</a>
+                            <!-- Dropdown menu -->
+                            <div class="dropdown-menu" id="sports-dropdown">
+                                <!-- Coluna 1 -->
+                                <div class="dropdown-column">
+                                    <h6>Baseball</h6>
+                                    <a class="dropdown-item" href="#">MLB® Batting Gloves</a>
+                                    <a class="dropdown-item" href="#">Fielding Gloves</a>
+                                    <a class="dropdown-item" href="#">Training</a>
+                                </div>
+                                <!-- Coluna 2 -->
+                                <div class="dropdown-column">
+                                    <h6>Soccer</h6>
+                                    <a class="dropdown-item" href="#">Balls</a>
+                                    <a class="dropdown-item" href="#">Goals/Rebounders</a>
+                                    <a class="dropdown-item" href="#">Training</a>
+                                </div>
+                                <!-- Coluna 3 -->
+                                <div class="dropdown-column">
+                                    <h6>Football</h6>
+                                    <a class="dropdown-item" href="#">Balls</a>
+                                    <a class="dropdown-item" href="#">Gloves</a>
+                                    <a class="dropdown-item" href="#">Flag Football</a>
+                                </div>
+                            </div>
+                        </div>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Family Games</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Fan Shop</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Sale</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Gift Cards</a>
+                    </li>
+                </ul>
+                <!-- Search and Cart -->
+                <form class="d-flex">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-dark" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Carrossel -->
+    <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="projeto/images/banner1.png" class="d-block w-100" alt="Slide 1">
+            </div>
+            <div class="carousel-item">
+                <img src="projeto/images/banner2.png" class="d-block w-100" alt="Slide 2">
+            </div>
+            <div class="carousel-item">
+                <img src="projeto/images/banner3.png" class="d-block w-100" alt="Slide 3">
+            </div>
+            <div class="carousel-item">
+                <img src="projeto/images/banner4.png" class="d-block w-100" alt="Slide 3">
+            </div>
+        </div>
+        <!-- Controles do Carrossel (opcionais) -->
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+
+    <!-- Scripts do Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Configurar o intervalo do carrossel para 8 segundos
+        var myCarousel = document.getElementById('carouselExample');
+        var carousel = new bootstrap.Carousel(myCarousel, {
+            interval: 8000,  // 8 segundos
+            ride: 'carousel'
+        });
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Referências aos elementos
+        const sportsLink = document.getElementById('sports-link');
+        const sportsDropdown = document.getElementById('sports-dropdown');
+
+        sportsDropdown.style.display = 'none';
+
+        // Evento de clique no link "Sports"
+        sportsLink.addEventListener('click', function (e) {
+            e.preventDefault(); // Evita comportamento padrão
+            // Alterna a visibilidade do dropdown
+            const isVisible = sportsDropdown.style.display === 'flex';
+            sportsDropdown.style.display = isVisible ? 'none' : 'flex';
+        });
+
+        // Fecha o dropdown ao clicar fora
+        document.addEventListener('click', function (e) {
+            if (!sportsDropdown.contains(e.target) && e.target !== sportsLink) {
+                sportsDropdown.style.display = 'none';
+            }
+        });
+    </script>
 </body>
 </html>
+
