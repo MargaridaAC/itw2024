@@ -110,3 +110,24 @@ nav ul:hover li a{
     color: black;
     
 }
+
+
+.bottom-bar {
+    background-color: black; /* Fundo preto */
+    color: white; /* Texto branco */
+    padding: 10px 0; /* Espaçamento interno */ /* Fixa no fundo da página */
+    bottom: 0;
+    width: 100%;
+    z-index: 1000;
+    padding: 30px;
+}
+
+    .bottom-bar .link {
+        color: white; /* Links em branco */
+        text-decoration: none; /* Remove o sublinhado padrão */
+    }
+
+        .bottom-bar .link:hover {
+            color: #f0f0f0; /* Cor mais clara no hover */
+            text-decoration: underline; /* Adiciona sublinhado no hover */
+        }
