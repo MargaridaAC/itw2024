@@ -43,13 +43,13 @@ li.page-item a {
 
 nav ul:hover li a{
     opacity:0.5;
-    filter:blur(1.5px);
+    filter:none;
   }
   
   nav ul li a:hover{
     transform: scale(1.1);
     opacity:1;
-    filter:blur(0);
+    filter:none;
     text-decoration:none;
   }
   
