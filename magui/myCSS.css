@@ -68,6 +68,10 @@ nav ul:hover li a{
   nav ul li{
     list-style:none;
   }
+    
+  #down-bar{
+      color: black;
+  }
 
 .iconcountry{
     height: 70px;
