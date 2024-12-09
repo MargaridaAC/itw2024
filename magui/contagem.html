@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contagem Regressiva</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .countdown {
+            font-size: 2em;
+            font-weight: bold;
+            color: #333;
+            background-color: #f8f8f8;
+            padding: 20px;
+            border-radius: 10px;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Contagem Regressiva até 14 de Julho de 2028</h1>
+    <div class="countdown" id="countdown"></div>
+
+    <script>
+        // Define a data final (14 de Julho de 2028)
+        var countDownDate = new Date("Jul 14, 2028 00:00:00").getTime();
+
+        // Atualiza a contagem a cada 1 segundo
+        var x = setInterval(function() {
+
+            // Obtém a data e hora atuais
+            var now = new Date().getTime();
+
+            // Calcula a diferença entre a data final e a data atual
+            var distance = countDownDate - now;
+
+            // Calcula os dias, horas, minutos e segundos restantes
+            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            // Exibe a contagem regressiva na tela
+            document.getElementById("countdown").innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
+
+            // Se a contagem terminar, exibe uma mensagem
+            if (distance < 0) {
+                clearInterval(x);
+                document.getElementById("countdown").innerHTML = "A contagem regressiva acabou!";
+            }
+        }, 1000);
+    </script>
+
+</body>
+</html>
