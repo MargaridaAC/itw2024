@@ -1,44 +1,57 @@
-﻿<!doctype html>
-<html lang="en">
+﻿<!DOCTYPE html>
+<html>
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>ITW 2024/25 - Paris 2024 Athletes</title>
+    <title>Paris 2024</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link href="../../lib/font-awesome/dist/css/font-awesome.min.css" rel="stylesheet" />
-    <link href="StyleSheet.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin="" />
+    <link rel="stylesheet" href="myCSS.css" />
+    <meta charset="utf-8" />
+    <title></title>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg fixed-top bg-body-tertiary border-bottom">
-        <div class="container-lg">
-            <a class="navbar-brand" href="index.html" title="Paris 2024"><img src="./images/Paris2024.png" height="25" /></a>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html" tabindex="Olympics"><img src="images/Paris2024.png" height="24" /></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="athletes.html"><i class="fa fa-user-o text-danger"></i> Athletes</a></li>
-                    <li class="nav-item"><a class="nav-link" aria-current="page" href="xxx.html"><i class="fa fa-user-o text-primary"></i> Coaches</a></li>
-                    <li class="nav-item"><a class="nav-link" aria-current="page" href="xxx.html"><i class="fa fa-flag-o text-danger"></i> Teams</a></li>
-                    <li class="nav-item"><a class="nav-link" aria-current="page" href="torch.html"><i class="fa fa-map-marker text-success"></i> Torch Route</a></li>
-                    <li class="nav-item"><a class="nav-link" aria-current="page" href="xxx.html"><i class="fa fa-magic" title="The party continues..."></i> &middot;&middot;&middot;</a></li>
+                    <li class="nav-item"><a class="nav-link " aria-current="page" href="athletes.html"><i class="fa fa-user-o text-warning"></i> Athletes</a></li>
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="competitions.html"><i class="fa fa-trophy"></i> Competitions</a></li>
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="countries.html"><i class=" fa fa-flag-o text-danger"></i> Countries</a></li>
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="games.html"><i class="fa fa-map-marker text-success"></i> Games</a></li>
+                    <li class="nav-item"><a class="nav-link " aria-current="page" href="modalities.html"><i class="fa fa-soccer-ball-o text-primary"></i> Modalities</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fa fa-folder-o" aria-hidden="true"></i> More
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-dark">
+                            <a class="dropdown-item" href="news.html"> Olympic Games News </a>
+                            <a class="dropdown-item" href="loja.html"> Loja </a>
+                            <a class="dropdown-item" href="countdown.html">Paris 2024</a>
+                        </ul>
+                    </li>
+
                 </ul>
-                <ul class="navbar-nav justify-content-end" id="bd-theme">
-                    <li class="nav-item"><div class="nav-link" type="button" data-bs-theme-value="light" aria-pressed="false"><i class="theme-icon fa fa-sun-o" title="Modo claro"></i></div></li>
-                    <li class="navbar-text hstack"><div class="vr"></div></li>
-                    <li class="nav-item"><div class="nav-link" type="button" data-bs-theme-value="dark" aria-pressed="false"><i class="theme-icon fa fa-moon-o" title="Modo escuro"></i></div></li>
+                <ul class="navbar-nav mb-2 mb-lg-0 right-side">
+                    <li class="nav-item"> <a class="nav-link" aria-current="page" href="favoritos.html"> <i class="fa fa-heart text-danger"></i></a></li>
+                    <li class=" nav-item "> <a class="nav-link" aria-current="page" href="about.html"> <i class="fa fa-info-circle"></i> About us </a></li>
                 </ul>
             </div>
+
         </div>
     </nav>
     <div class="banner text-center">
         <img src="../magui/images/Diapositivo1.JPG" alt="Banner Paris 2024" class="img-fluid w-100">
     </div>
 
-    <!-- Working Area -->
     <div class="container">
         <div class="border-bottom py-2 mb-2">
             <h2 data-bind="text:displayName"></h2>
@@ -114,10 +127,10 @@
         </div>
     </div>
     <!-- End of Working Area -->
-    <nav class="navbar fixed-bottom bg-body-tertiary border-top">
+    <nav class="navbar navbar-light bg-light fixed-bottom">
         <div class="container small">
-            <div class="navbar-text">&copy;  Introdução as Tecnologias Web - 2024/25</div>
-            <div class="navbar-text">Made with <i class="fa fa-heart-o text-danger"></i> for U by <a href="mailto:jsp@ua.pt" class="text-decoration-none text-muted">jsp@ua.pt</a>.</div>
+            <div class="navbar-text">&copy;  ITW - 2024/25</div>
+            <div class="navbar-text">Made by Margarida Cardoso and Tiago Costa</div>
             <div class="navbar-nav">
                 <div class="nav-item text-end"><a href="https://www.ua.pt" class="nav-link">Universidade de Aveiro</a></div>
             </div>
