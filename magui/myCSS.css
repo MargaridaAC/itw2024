@@ -118,7 +118,7 @@ nav ul:hover li a{
 .bottom-bar {
     background-color: black; /* Fundo preto */
     color: white; /* Texto branco */
-    padding: 10px 0; /* Espaçamento interno */ /* Fixa no fundo da página */
+    padding: 10px 0;  /*Espaçamento interno */ /* Fixa no fundo da página */
     bottom: 0;
     width: 100%;
     z-index: 1000;
