@@ -41,6 +41,30 @@
             border-radius: 10px;
             display: inline-block;
         }
+        .bottom-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            background-color: black; /* Fundo preto */
+            color: white; /* Texto branco */
+            padding: 10px 0; /* Espaçamento interno */ /* Fixa no fundo da página */
+            bottom: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 30px;
+        }
+
+            .bottom-bar .link {
+                color: white; /* Links em branco */
+                text-decoration: none; /* Remove o sublinhado padrão */
+            }
+
+                .bottom-bar .link:hover {
+                    color: #f0f0f0; /* Cor mais clara no hover */
+                    text-decoration: underline; /* Adiciona sublinhado no hover */
+                }
+
+
     </style>
 </head>
 <body>
@@ -82,17 +106,17 @@
 
     <h1>Contagem Regressiva até 14 de Julho de 2028</h1>
     <div class="countdown" id="countdown"></div>
-
-    <nav class="navbar navbar-light bg-light bottom">
+    <div class="bottom-bar">
         <div class="container small">
-            <div class="navbar-text">&copy; ITW - 2024/25</div>
-            <div class="navbar-text">Made by Margarida Cardoso and Tiago Costa</div>
-            <div class="navbar-nav">
-                <div class="nav-item text-end"><a href="https://www.ua.pt" class="nav-link">Universidade de Aveiro</a></div>
+            <div class="row">
+                <div class="col text-start"><a href="https://www.ua.pt/pt/uc/12289" class="link">&copy; ITW - 2024/25</a></div>
+                <div class="col text-center">Made by Margarida Cardoso and Tiago Costa</div>
+                <div class="col text-end">
+                    <a href="https://www.ua.pt" class="link">Universidade de Aveiro</a>
+                </div>
             </div>
         </div>
-    </nav>
-
+    </div>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             var countDownDate = new Date("Jul 14, 2028 00:00:00").getTime();
