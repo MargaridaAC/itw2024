@@ -6,8 +6,7 @@
 }
 
 
-/* button default
----------------------------- */
+/* button default */
 .btn-default {
     color: #333;
     background-color: #f8f9fa;
@@ -27,8 +26,7 @@
         border-color: #adadad;
     }
 
-/* button-xs
----------------------------- */
+/* button-xs */
 .btn-group-xs > .btn, .btn-xs {
     padding: 1px 5px;
     font-size: 12px;
@@ -39,66 +37,68 @@
 li.page-item a {
     font-size: 0.85rem;
 }
+
 .navbar .navbar-nav .nav-link {
     color: #000000;
     font-size: 1em;
 }
 
-nav ul:hover li a{
-    opacity:0.5;
-    filter:none;
-  }
-  
-  nav ul li a:hover{
-    transform: scale(1.1);
-    opacity:1;
-    filter:none;
-    text-decoration:none;
-  }
-  
-  nav ul li a:before{
-    content:'';
-    position:absolute;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
-    transition:0.5s;
-    transform-origin:right;
-    transform:scaleX(0);
-    z-index:-1;
-  }
-  nav ul li{
-    list-style:none;
-  }
-    
-  #down-bar{
-      color: black;
-  }
+nav ul:hover li a {
+    opacity: 0.5;
+    filter: none;
+}
 
-.iconcountry{
+nav ul li a:hover {
+    transform: scale(1.1);
+    opacity: 1;
+    filter: none;
+    text-decoration: none;
+}
+
+nav ul li a:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transition: 0.5s;
+    transform-origin: right;
+    transform: scaleX(0);
+    z-index: -1;
+}
+
+nav ul li {
+    list-style: none;
+}
+
+#down-bar {
+    color: black;
+}
+
+.iconcountry {
     height: 70px;
     width: 100px;
 }
-.iconcompetition{
+
+.iconcompetition {
     height: 150px;
     width: 250px;
-
 }
 
 
 .dropdown-item {
-    transform:scale(1) !important;
-    opacity:1 !important;
-    filter:blur(0) !important;
+    transform: scale(1) !important;
+    opacity: 1 !important;
+    filter: blur(0) !important;
 }
 
-.dropdown-item:hover {
-    color: black;
-    background-color: white;
-}
+    .dropdown-item:hover {
+        color: black;
+        background-color: white;
+    }
 
-.page-link{
+.page-link {
     color: white;
     background-color: gray;
 }
@@ -109,9 +109,8 @@ nav ul:hover li a{
     border-color: #000000;
 }
 
-.pagination :hover{
+.pagination :hover {
     color: black;
-    
 }
 
 /*Bottom-bar*/
@@ -119,8 +118,8 @@ nav ul:hover li a{
 
 .bottom-bar {
     background-color: black;
-    color: white; 
-    padding: 10px 0; 
+    color: white;
+    padding: 10px 0;
     bottom: 0;
     width: 100%;
     z-index: 1000;
@@ -128,11 +127,50 @@ nav ul:hover li a{
 }
 
     .bottom-bar .link {
-        color: white; /* Links em branco */
-        text-decoration: none; /* Remove o sublinhado padrão */
+        color: white;
+        text-decoration: none;
     }
 
         .bottom-bar .link:hover {
-            color: #f0f0f0; /* Cor mais clara no hover */
-            text-decoration: underline; /* Adiciona sublinhado no hover */
+            color: #f0f0f0;
+            text-decoration: underline;
         }
+
+
+
+
+body.dark-mode {
+    background-color: #121212;
+    color: #ffffff;
+}
+
+.navbar-dark-mode {
+    background-color: #343a40 !important;
+}
+
+.navbar-light-mode {
+    background-color: #f8f9fa !important;
+}
+
+
+
+
+
+
+#themeToggle {
+    transition: background-color 0.3s, color 0.3s;
+}
+
+    #themeToggle i {
+        transition: color 0.3s;
+    }
+
+    #themeToggle:hover {
+        background-color: #000;
+        color: #fff;
+    }
+
+body.dark-mode #themeToggle:hover {
+    background-color: #fff;
+    color: #f39c12;
+}

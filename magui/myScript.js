@@ -30,21 +30,21 @@ var vm = function () {
             Photo: ko.observable(''),
             Lat: ko.observable(''),
             Lon: ko.observable(''),
-          },
+        },
     ])
 
-    var map= L.map('map',{zoomSnap: 0.5}).on("click", function(e){var coord= e.latlng;console.log(coord)}).setView([15,12],2);
+    var map = L.map('map', { zoomSnap: 0.5 }).on("click", function (e) { var coord = e.latlng; console.log(coord) }).setView([15, 12], 2);
     var bounds = L.latLngBounds([[81.5, 192], [-75.5, -170.5]]);
     map.setMaxBounds(bounds);
     // Set up the OSM layer
     L.tileLayer(
-        'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { 
-            attribution: 'Data © <a href="http://osm.org/copyright">OpenStreetMap</a>',
-            maxZoom:18,
-            minZoom:2,
-            bounds:bounds,
-        }).addTo(map);
-    
+        'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: 'Data © <a href="http://osm.org/copyright">OpenStreetMap</a>',
+        maxZoom: 18,
+        minZoom: 2,
+        bounds: bounds,
+    }).addTo(map);
+
     self.markers = ko.observableArray([]);
 
     self.activate = function (id) {
@@ -57,7 +57,7 @@ var vm = function () {
             self.currentPage(data.CurrentPage);
             self.pagesize(data.PageSize)
             self.totalRecords(data.TotalRecords);
-    
+
             self.markers().forEach(function (marker) {
                 map.removeLayer(marker);
             });
@@ -71,9 +71,9 @@ var vm = function () {
                 popupAnchor: [1, -34],
                 shadowSize: [41, 41]
             });
-    
+
             self.records().forEach(function (game) {
-                var marker = L.marker([game.Lat, game.Lon],{icon:myIcon}).addTo(map);
+                var marker = L.marker([game.Lat, game.Lon], { icon: myIcon }).addTo(map);
                 marker.bindTooltip(game.Name + " (" + game.CityName + ")");
                 self.markers.push(marker);
             });
@@ -104,7 +104,7 @@ var vm = function () {
 
     };
 
-    
+
 
     self.records.subscribe(function (newValue) {
 
@@ -121,14 +121,15 @@ var vm = function () {
             popupAnchor: [1, -34],
             shadowSize: [41, 41]
         });
-    
-        newValue.forEach(function (game) {
-            var marker = L.marker([game.Lat, game.Lon],{icon:myIcon}).addTo(map);
-            marker.bindPopup(game.Name + " (" + game.Year + ")");
-            self.markers.push(marker)});
-        });
 
-    
+        newValue.forEach(function (game) {
+            var marker = L.marker([game.Lat, game.Lon], { icon: myIcon }).addTo(map);
+            marker.bindPopup(game.Name + " (" + game.Year + ")");
+            self.markers.push(marker)
+        });
+    });
+
+
 
     //--- Internal functions
     function ajaxHelper(uri, method, data) {
@@ -179,7 +180,7 @@ var vm = function () {
             }
         }
     };
-    
+
 
     //--- start ....
     showLoading();
@@ -205,3 +206,24 @@ $(document).ready(function () {
 $(document).ajaxComplete(function (event, xhr, options) {
     $("#myModal").modal('hide');
 })
+
+
+
+
+
+const themeToggle = document.getElementById('themeToggle');
+const body = document.body;
+const navbar = document.querySelector('.navbar');
+
+themeToggle.addEventListener('click', () => {
+    body.classList.toggle('dark-mode');
+    if (body.classList.contains('dark-mode')) {
+        navbar.classList.remove('navbar-light-mode');
+        navbar.classList.add('navbar-dark-mode');
+        themeToggle.innerHTML = '<i class="fa fa-sun-o" aria-hidden="true"></i>';
+    } else {
+        navbar.classList.remove('navbar-dark-mode');
+        navbar.classList.add('navbar-light-mode');
+        themeToggle.innerHTML = '<i class="fa fa-moon-o" aria-hidden="true"></i>';
+    }
+});
