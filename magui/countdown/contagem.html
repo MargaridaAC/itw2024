@@ -15,8 +15,8 @@
         body {
             font-family: Arial, sans-serif;
             text-align: center;
-            padding-top: 80px; /* Espaço para a navbar fixa */
             margin: 0;
+            height: 100vh; /* Garante que o body ocupe toda a altura da tela */
         }
 
         .background {
@@ -25,11 +25,18 @@
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: -1; /* Coloca a imagem atrás do conteúdo */
-            background-image: url("../1images/la2028.jpg"); /* Caminho da imagem */
+            z-index: -1;
+            background-image: url("../1images/la2028.jpg");
             background-size: cover;
             background-position: center;
-            opacity: 0.5; /* Ajusta a opacidade */
+            opacity: 0.5;
+        }
+
+        .content {
+            display: flex;
+            justify-content: center; /* Alinha horizontalmente no centro */
+            align-items: center; /* Alinha verticalmente no centro */
+            height: 100%; /* Garante que o conteúdo ocupe toda a altura da tela */
         }
 
         .countdown {
@@ -41,79 +48,101 @@
             border-radius: 10px;
             display: inline-block;
         }
+
         .bottom-bar {
             position: fixed;
             bottom: 0;
             left: 0;
-            background-color: black; /* Fundo preto */
-            color: white; /* Texto branco */
-            padding: 10px 0; /* Espaçamento interno */ /* Fixa no fundo da página */
-            bottom: 0;
+            background-color: black;
+            color: white;
+            padding: 10px 0;
             width: 100%;
             z-index: 1000;
             padding: 30px;
         }
 
             .bottom-bar .link {
-                color: white; /* Links em branco */
-                text-decoration: none; /* Remove o sublinhado padrão */
+                color: white;
+                text-decoration: none;
             }
 
                 .bottom-bar .link:hover {
-                    color: #f0f0f0; /* Cor mais clara no hover */
-                    text-decoration: underline; /* Adiciona sublinhado no hover */
+                    color: #f0f0f0;
+                    text-decoration: underline;
                 }
-
-
     </style>
 </head>
 <body>
-    <!-- Camada para a imagem de fundo -->
     <div class="background"></div>
+     <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+     <div class="container">
+         <a class="navbar-brand" href="../homepage/index.html" tabindex="Olympics"><img src="../1images/Paris2024.png" height="60" /></a>
+         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+             <span class="navbar-toggler-icon"></span>
+         </button>
+         <div class="collapse navbar-collapse" id="navbarSupportedContent">
+             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                 <li class="nav-item dropdown">
+                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                         <i class="fa fa-calendar text-warning"></i> Events
+                     </a>
+                     <ul class="dropdown-menu dropdown-menu-dark">
+                         <li><a class="dropdown-item" href="../competitions/competitions.html">Competitions</a></li>
+                         <li><a class="dropdown-item" href="../sports/sports.html">Sports</a></li>
+                         <li><a class="dropdown-item" href="../venues/venues.html">Venues</a></li>
+                         <li><a class="dropdown-item" href="../torch-route/torch-route.html">Torch Route</a></li>
+                     </ul>
+                 </li>
+                 <li class="nav-item dropdown">
+                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                         <i class="fa fa-users"></i> Participants
+                     </a>
+                     <ul class="dropdown-menu dropdown-menu-dark">
+                         <li><a class="dropdown-item" href="../athletes/athletes.html">Athletes</a></li>
+                         <li><a class="dropdown-item" href="../teams/teams.html">Teams</a></li>
+                         <li><a class="dropdown-item" href="../coaches/coaches.html">Coaches</a></li>
+                         <li><a class="dropdown-item" href="../officials/technical-officials.html">Technical Officials</a></li>
+                         <li><a class="dropdown-item" href="../nocs/nocs.html">NOCs</a></li>
+                     </ul>
+                 </li>
+                 <li class="nav-item"><a class="nav-link" aria-current="page" href="games.html"><i class="fa fa-trophy text-danger"></i> Medals</a></li>
+                 <li class="nav-item dropdown">
+                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                         <i class="fa fa-soccer-ball-o text-primary"></i> Modalities
+                     </a>
+                     <ul class="dropdown-menu dropdown-menu-dark">
+                         <li><a class="dropdown-item" href="../modalities/basketball.html">Basketball</a></li>
+                         <li><a class="dropdown-item" href="#">Canoe Sprints</a></li>
+                         <li><a class="dropdown-item" href="#">Cycling Tracks</a></li>
+                         <li><a class="dropdown-item" href="#">Football</a></li>
+                         <li><a class="dropdown-item" href="#">Swimming</a></li>
+                         <li><a class="dropdown-item" href="#">Athletics</a></li>
+                     </ul>
+                 </li>
+                 <li class="nav-item"><a class="nav-link " aria-current="page" href="../countdown/contagem.html"><i class="fa fa-hourglass-half" aria-hidden="true"></i> LA2028</a></li>
+             </ul>
+             <ul class="navbar-nav mb-2 mb-lg-0 right-side">
+                 <li class="nav-item"> <a class="nav-link" href="https://olympics.com/pt/paris-2024" target="_blank"> <i class="fa fa-external-link text-primary"></i> Official Site</a></li>
+                 <li class="nav-item"> <a class="nav-link" aria-current="page" href="favoritos.html"> <i class="fa fa-heart text-danger"></i></a></li>
+             </ul>
+             <ul class="navbar-nav mb-2 mb-lg-0 right-side">
+                 <li class="nav-item">
+                     <button id="themeToggle" class="btn btn-outline-secondary">
+                         <i class="fa fa-moon-o" aria-hidden="true"></i>
+                     </button>
+                 </li>
+             </ul>
+         </div>
+     </div>
+ </nav>
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-        <div class="container">
-            <a class="navbar-brand" href="../homepage/index.html" tabindex="Olympics"><img src="../1images/Paris2024.png" height="60" /></a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item"><a class="nav-link " aria-current="page" href="../athletes/athletes.html"><i class="fa fa-user-o text-warning"></i> Athletes</a></li>
-                    <li class="nav-item"><a class="nav-link" aria-current="page" href="../athletes/athletes.html"><i class="fa fa-trophy"></i> Competitions</a></li>
-                    <li class="nav-item"><a class="nav-link" aria-current="page" href="coaches.html"><i class=" fa fa-flag-o text-danger"></i> Coaches</a></li>
-                    <li class="nav-item"><a class="nav-link" aria-current="page" href="games.html"><i class="fa fa-map-marker text-success"></i> Games</a></li>
-                    <li class="nav-item"><a class="nav-link " aria-current="page" href="modalities.html"><i class="fa fa-soccer-ball-o text-primary"></i> Modalities</a></li>
-                    <li class="nav-item"><a class="nav-link " aria-current="page" href="../countdown/contagem.html"><i class="fa fa-hourglass-half" aria-hidden="true"></i> LA2028</a></li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="fa fa-folder-o" aria-hidden="true"></i> More
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-dark">
-                            <a class="dropdown-item" href="news.html"> Olympic Games News </a>
-                            <a class="dropdown-item" href="loja.html"> Loja </a>
-                            <a class="dropdown-item" href="countdown.html">Paris 2024</a>
-                        </ul>
-                    </li>
-
-                </ul>
-                <ul class="navbar-nav mb-2 mb-lg-0 right-side">
-                    <li class="nav-item"> <a class="nav-link" aria-current="page" href="favoritos.html"> <i class="fa fa-heart text-danger"></i></a></li>
-                </ul>
-                <ul class="navbar-nav mb-2 mb-lg-0 right-side">
-                    <li class="nav-item">
-                        <button id="themeToggle" class="btn btn-outline-secondary">
-                            <i class="fa fa-moon-o" aria-hidden="true"></i>
-                        </button>
-                    </li>
-                </ul>
-            </div>
-
+    <div class="content">
+        <div>
+            <h1>Contagem Regressiva até 14 de Julho de 2028</h1>
+            <div class="countdown" id="countdown"></div>
         </div>
-    </nav>
+    </div>
 
-    <h1>Contagem Regressiva até 14 de Julho de 2028</h1>
-    <div class="countdown" id="countdown"></div>
     <div class="bottom-bar">
         <div class="container small">
             <div class="row">
@@ -125,6 +154,7 @@
             </div>
         </div>
     </div>
+
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             var countDownDate = new Date("Jul 14, 2028 00:00:00").getTime();
