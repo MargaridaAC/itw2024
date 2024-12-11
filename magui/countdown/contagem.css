@@ -127,7 +127,6 @@ nav ul li {
     bottom: 0;
     width: 100%;
     z-index: 1000;
-    padding: 30px;
 }
 
     .bottom-bar .link {
@@ -155,6 +154,7 @@ body.dark-mode {
 .navbar-light-mode {
     background-color: #f8f9fa !important;
 }
+
 
 
 

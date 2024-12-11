@@ -127,7 +127,7 @@ nav ul li {
     bottom: 0;
     width: 100%;
     z-index: 1000;
-    padding: 30px;
+    padding: 0px;
 }
 
     .bottom-bar .link {
@@ -178,4 +178,59 @@ body.dark-mode {
 body.dark-mode #themeToggle:hover {
     background-color: #fff;
     color: #f39c12;
+}
+
+
+
+
+
+
+
+
+/* Para quando o modo escuro estiver ativo */
+body.dark-mode table,
+body.dark-mode th,
+body.dark-mode td {
+    color: white; /* Texto branco */
+}
+
+body.dark-mode table {
+    background-color: #121212; /* Cor de fundo da tabela escura */
+}
+
+/* Alteração do fundo das linhas (zebrado) */
+body.dark-mode tr:nth-child(odd) {
+    background-color: #333333; /* Fundo preto para linhas ímpares */
+}
+
+body.dark-mode tr:nth-child(even) {
+    background-color: #222222; /* Fundo cinza escuro para linhas pares */
+}
+
+/* Estilo do cabeçalho da tabela */
+body.dark-mode th {
+    background-color: #1a1a1a; /* Fundo mais escuro para o cabeçalho */
+    color: white;
+}
+
+/* Ícones e links */
+body.dark-mode .btn-default,
+body.dark-mode .btn-group-xs > .btn,
+body.dark-mode .page-link {
+    color: white; /* Cor branca para botões e links */
+    background-color: #444444; /* Fundo cinza escuro para botões */
+    border-color: #666666; /* Cor de borda mais clara para os botões */
+}
+
+    /* Alteração dos links e botões ao passar o mouse */
+    body.dark-mode .btn-default:hover,
+    body.dark-mode .page-link:hover {
+        background-color: #555555; /* Cor de fundo mais clara ao passar o mouse */
+        color: white;
+    }
+
+body.dark-mode .pagination .active a {
+    color: black;
+    background-color: white;
+    border-color: #000;
 }
