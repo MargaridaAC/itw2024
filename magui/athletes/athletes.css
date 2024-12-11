@@ -43,6 +43,10 @@ li.page-item a {
     font-size: 1em;
 }
 
+body.dark-mode .navbar .navbar-nav .nav-link {
+    color: #ffffff;
+}
+
 nav ul:hover li a {
     opacity: 0.5;
     filter: none;
