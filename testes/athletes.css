@@ -191,59 +191,14 @@ body.dark-mode #themeToggle:hover {
 body.dark-mode table,
 body.dark-mode th,
 body.dark-mode td {
-    color: white; /* Texto branco */
-}
-
-body.dark-mode table {
-    background-color: #121212; /* Cor de fundo da tabela escura */
-}
-
-/* Alteração do fundo das linhas (zebrado) */
-body.dark-mode tr:nth-child(odd) {
-    background-color: #333333; /* Fundo preto para linhas ímpares */
-}
-
-body.dark-mode tr:nth-child(even) {
-    background-color: #222222; /* Fundo cinza escuro para linhas pares */
-}
-
-/* Estilo do cabeçalho da tabela */
-body.dark-mode th {
-    background-color: #1a1a1a; /* Fundo mais escuro para o cabeçalho */
-    color: white;
-}
-
-/* Ícones e links */
-body.dark-mode .btn-default,
-body.dark-mode .btn-group-xs > .btn,
-body.dark-mode .page-link {
-    color: white; /* Cor branca para botões e links */
-    background-color: #444444; /* Fundo cinza escuro para botões */
-    border-color: #666666; /* Cor de borda mais clara para os botões */
-}
-
-    /* Alteração dos links e botões ao passar o mouse */
-    body.dark-mode .btn-default:hover,
-    body.dark-mode .page-link:hover {
-        background-color: #555555; /* Cor de fundo mais clara ao passar o mouse */
-        color: white;
-    }
-
-body.dark-mode .pagination .active a {
-    color: black;
-    background-color: white;
-    border-color: #000;
+    color: white; /* Texto bra
 }
 
 
-/* Estilo padrão para o modo claro */
-.tabela-dados {
-    color: black; /* Texto preto */
-    background-color: white; /* Fundo branco */
-}
 
-/* Estilo para o modo escuro */
-body.dark-mode .tabela-dados {
-    color: white; /* Texto branco */
-    background-color: #333; /* Fundo escuro */
-}
+
+
+
+
+
+
