@@ -127,7 +127,7 @@ nav ul li {
     bottom: 0;
     width: 100%;
     z-index: 1000;
-    padding: 30px;
+    padding: 0px;
 }
 
     .bottom-bar .link {
