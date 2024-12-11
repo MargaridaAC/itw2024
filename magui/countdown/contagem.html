@@ -15,11 +15,61 @@
         body {
             font-family: Arial, sans-serif;
             margin: 0;
-            height: 100vh;
+            height: 100%;
             display: flex;
             justify-content: center;
             align-items: center;
             flex-direction: column;
+            text-align: center;
+            padding-top: 120px; /* Aumente o valor de padding-top para mais espaço */
+        }
+
+        .weather-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px; /* Espaço entre o carrossel e a previsão do tempo */
+            padding: 20px;
+        }
+
+        .weather-box {
+            background-color: #ffe4b2;
+            border: 1px solid #ffa500;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            width: 45%; /* Dá 45% de largura para a caixa de meteorologia */
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .text-box {
+            width: 45%; /* Dá 45% de largura para o texto */
+            font-family: 'Arial', sans-serif;
+        }
+
+        .weather-box img {
+            max-width: 100px;
+            margin-bottom: 15px;
+        }
+
+        .weather-box .temperature {
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+
+        .weather-box .description {
+            font-size: 1.2em;
+            text-transform: capitalize;
+        }
+
+        .text-box h2 {
+            font-size: 1.8em;
+            color: #333;
+        }
+
+        .text-box p {
+            font-size: 1.2em;
+            color: #555;
         }
 
         .background {
@@ -33,16 +83,18 @@
             background-size: 75%;
             background-position: center;
             background-repeat: no-repeat;
-            opacity: 0.5;
+            opacity: 0;
             background-color: white;
         }
 
         .content {
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             height: 100%;
             width: 100%;
+            text-align: center;
         }
 
         .countdown {
@@ -52,6 +104,7 @@
             background-color: #f8f8f8;
             padding: 20px;
             border-radius: 10px;
+            margin-bottom: 30px; /* Espaço entre a contagem e a previsão do tempo */
             display: inline-block;
         }
 
@@ -63,7 +116,12 @@
             text-align: center;
             max-width: 300px;
             font-family: 'Roboto', sans-serif;
+            margin-right: 20px;
+            margin-bottom: 30px;
+            /* Ajuste do margin-left para afastar da margem da página */
+            margin-left: 200px; /* Aumente ou diminua este valor conforme necessário */
         }
+
 
             .weather-box img {
                 max-width: 100px;
@@ -81,7 +139,7 @@
             }
 
         .bottom-bar {
-            position: fixed;
+            position: relative;
             bottom: 0;
             left: 0;
             background-color: black;
@@ -101,6 +159,41 @@
                     color: #f0f0f0;
                     text-decoration: underline;
                 }
+
+        .carousel {
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .carousel-item {
+            z-index: -100;
+            height: 600px;
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+            .carousel-item:nth-child(1) {
+                background-image: url('../1images/la1.jpg');
+            }
+
+            .carousel-item:nth-child(2) {
+                background-image: url('../1images/la2.jpg');
+            }
+
+            .carousel-item:nth-child(3) {
+                background-image: url('../1images/la3.jpg')
+            }
+
+            .carousel-item:nth-child(4) {
+                background-image: url('../1images/la4.jpg');
+            }
+
+        .carousel-item {
+            height: 500px;
+            background-size: cover;
+            background-position: center;
+        }
     </style>
 </head>
 <body>
@@ -168,22 +261,67 @@
     </nav>
 
     <div class="content">
-        <div class="row w-100">
-            <div class="col-md-6">
-                <h1>Countdown until July 14, 2028</h1>
-                <div class="countdown" id="countdown"></div>
+        <div class="countdown">
+            <h1>Countdown until July 14, 2028</h1>
+            <div id="countdown"></div>
+        </div>
+        <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="slide 1"></button>
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 4"></button>
             </div>
-            <div class="col-md-6">
-                <div class="weather-box d-none" id="weatherBox">
-                    <img id="weatherIcon" alt="Weather Icon">
-                    <div class="description" id="weather"></div>
-                    <div class="temperature" id="temp"></div>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <div class="carousel-caption d-none d-md-block"></div>
+                </div>
+                <div class="carousel-item">
+                    <div class="carousel-caption d-none d-md-block">
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="carousel-caption d-none d-md-block">
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="carousel-caption d-none d-md-block">
+                    </div>
                 </div>
             </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+        <div class="weather-container">
+            <div class="weather-box d-none" id="weatherBox">
+                <img id="weatherIcon" alt="Weather Icon">
+                <div class="description" id="weather"></div>
+                <div class="temperature" id="temp"></div>
+            </div>
+
+            <div class="text-box">
+                <p>
+                    The 2028 Summer Olympics will take place in Los Angeles, marking the third time the city hosts the event. Known for its iconic landmarks and diverse culture, LA promises to deliver a modern and sustainable Olympic Games. The city will feature both historic venues like the LA Memorial Coliseum and new facilities designed to leave a lasting legacy for the community.
+
+                    The LA 2028 Games will showcase a full range of Olympic sports, including athletics, swimming, and gymnastics, alongside emerging sports like surfing and skateboarding. With a focus on inclusivity and innovation, the Games aim to engage global audiences and inspire athletes to push the boundaries of excellence while promoting the Olympic values of friendship and respect.
+                </p>
+            </div>
+        </div>
+
+        <div class="weather-box d-none" id="weatherBox">
+            <img id="weatherIcon" alt="Weather Icon">
+            <div class="description" id="weather"></div>
+            <div class="temperature" id="temp"></div>
         </div>
     </div>
 
-    <div class="bottom-bar" style="padding:0px">
+    <div class="bottom-bar">
         <div class="container small">
             <div class="row align-items-center">
                 <div class="col text-start">
@@ -194,6 +332,7 @@
                 </div>
                 <div class="col text-end">
                     <a href="https://www.ua.pt" class="link"><img src="../1images/ua.png" style="height:125px;" alt="Universidade de Aveiro" /></a>
+
                 </div>
             </div>
         </div>
@@ -218,43 +357,39 @@
                         );
 
                         // Add weather icon
-                        const iconCode = data.weather[0].icon;
-                        const iconUrl = `https://openweathermap.org/img/wn/${iconCode}@2x.png`;
-                        $("#weatherIcon").attr("src", iconUrl);
-                    } else {
-                        alert('City not found!');
+                        var weatherIcon = 'https://openweathermap.org/img/wn/' + data.weather[0].icon + '.png';
+                        $("#weatherIcon").attr("src", weatherIcon);
                     }
-                },
-                error: function () {
-                    alert('Error fetching weather data!');
                 }
             });
-        });
 
-        document.addEventListener("DOMContentLoaded", function () {
-            var countDownDate = new Date("Jul 14, 2028 00:00:00").getTime();
+            // Set up countdown
+            function updateCountdown() {
+                const targetDate = new Date("July 14, 2028 00:00:00").getTime();
+                const now = new Date().getTime();
+                const distance = targetDate - now;
 
-            var x = setInterval(function () {
-                var now = new Date().getTime();
-                var distance = countDownDate - now;
-
-                var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-                var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-                var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-                document.getElementById("countdown").innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
-
-                if (distance < 0) {
-                    clearInterval(x);
-                    document.getElementById("countdown").innerHTML = "A contagem regressiva acabou!";
+                if (distance <= 0) {
+                    document.getElementById("countdown").innerHTML = "The games have begun!";
+                    return;
                 }
-            }, 1000);
+
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                document.getElementById("countdown").innerHTML =
+                    days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
+            }
+
+            setInterval(updateCountdown, 1000); // Update every second
         });
     </script>
-    <script src="../../../lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="../../../lib/knockout/dist/knockout-latest.min.js"></script>
-    <script src="../../../lib/jquery/dist/jquery.min.js"></script>
-    <script src="../countdown/contagem.js"></script>
+    <!-- Inclua o jQuery antes do Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Inclua o JS do Bootstrap (ou seja, necessário para o funcionamento do carousel) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
 </html>
