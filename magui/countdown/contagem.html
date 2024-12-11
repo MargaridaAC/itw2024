@@ -14,31 +14,35 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            text-align: center;
             margin: 0;
-            height: 100vh; /* Garante que o body ocupe toda a altura da tela */
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
         }
 
         .background {
             position: fixed;
-            top: -30px;
+            top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             z-index: -1;
             background-image: url("../1images/countdown.jpg");
-            background-size: 75%; /* Diminua o tamanho da imagem para fazer zoom out */
+            background-size: 75%;
             background-position: center;
-            background-repeat: no-repeat; /* Garante que a imagem não se repita */
+            background-repeat: no-repeat;
             opacity: 0.5;
-            background-color: white
+            background-color: white;
         }
 
         .content {
             display: flex;
-            justify-content: center; /* Alinha horizontalmente no centro */
-            align-items: center; /* Alinha verticalmente no centro */
-            height: 100%; /* Garante que o conteúdo ocupe toda a altura da tela */
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            width: 100%;
         }
 
         .countdown {
@@ -50,6 +54,31 @@
             border-radius: 10px;
             display: inline-block;
         }
+
+        .weather-box {
+            background-color: #ffe4b2;
+            border: 1px solid #ffa500;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            max-width: 300px;
+            font-family: 'Roboto', sans-serif;
+        }
+
+            .weather-box img {
+                max-width: 100px;
+                margin-bottom: 15px;
+            }
+
+            .weather-box .temperature {
+                font-size: 1.5em;
+                font-weight: bold;
+            }
+
+            .weather-box .description {
+                font-size: 1.2em;
+                text-transform: capitalize;
+            }
 
         .bottom-bar {
             position: fixed;
@@ -139,13 +168,21 @@
     </nav>
 
     <div class="content">
-        <div>
-            <h1>Contagem Regressiva até 14 de Julho de 2028</h1>
-            <div class="countdown" id="countdown"></div>
+        <div class="row w-100">
+            <div class="col-md-6">
+                <h1>Countdown until July 14, 2028</h1>
+                <div class="countdown" id="countdown"></div>
+            </div>
+            <div class="col-md-6">
+                <div class="weather-box d-none" id="weatherBox">
+                    <img id="weatherIcon" alt="Weather Icon">
+                    <div class="description" id="weather"></div>
+                    <div class="temperature" id="temp"></div>
+                </div>
+            </div>
         </div>
     </div>
 
-    <!-- End of Working Area -->
     <div class="bottom-bar" style="padding:0px">
         <div class="container small">
             <div class="row align-items-center">
@@ -157,13 +194,43 @@
                 </div>
                 <div class="col text-end">
                     <a href="https://www.ua.pt" class="link"><img src="../1images/ua.png" style="height:125px;" alt="Universidade de Aveiro" /></a>
-
                 </div>
             </div>
         </div>
     </div>
 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
+        $(document).ready(function () {
+            // Fetch weather data for Los Angeles on page load
+            $.ajax({
+                url: "https://api.openweathermap.org/data/2.5/weather",
+                data: {
+                    q: "Los Angeles, US",
+                    APPID: 'b2b1df463182c3cca5276e9d3267cc95'
+                },
+                success: function (data) {
+                    if (data.name) {
+                        $("#weatherBox").removeClass("d-none");
+                        $("#weather").html(data.weather[0].description);
+                        $("#temp").html(
+                            (data.main.temp - 273.15).toFixed(2) + ' °C'
+                        );
+
+                        // Add weather icon
+                        const iconCode = data.weather[0].icon;
+                        const iconUrl = `https://openweathermap.org/img/wn/${iconCode}@2x.png`;
+                        $("#weatherIcon").attr("src", iconUrl);
+                    } else {
+                        alert('City not found!');
+                    }
+                },
+                error: function () {
+                    alert('Error fetching weather data!');
+                }
+            });
+        });
+
         document.addEventListener("DOMContentLoaded", function () {
             var countDownDate = new Date("Jul 14, 2028 00:00:00").getTime();
 
