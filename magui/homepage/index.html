@@ -64,12 +64,30 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item"><a class="nav-link " aria-current="page" href="../athletes/athletes.html"><i class="fa fa-user-o text-warning"></i> Athletes</a></li>
-                    <li class="nav-item"><a class="nav-link" aria-current="page" href="../athletes/athletes.html"><i class="fa fa-trophy"></i> Competitions</a></li>
-                    <li class="nav-item"><a class="nav-link" aria-current="page" href="coaches.html"><i class=" fa fa-flag-o text-danger"></i> Coaches</a></li>
-                    <li class="nav-item"><a class="nav-link" aria-current="page" href="games.html"><i class="fa fa-map-marker text-success"></i> Games</a></li>
-
-                    <!-- Modalities Dropdown -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fa fa-calendar text-warning"></i> Events
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-dark">
+                            <li><a class="dropdown-item" href="../competitions/competitions.html">Competitions</a></li>
+                            <li><a class="dropdown-item" href="../sports/sports.html">Sports</a></li>
+                            <li><a class="dropdown-item" href="../venues/venues.html">Venues</a></li>
+                            <li><a class="dropdown-item" href="../torch-route/torch-route.html">Torch Route</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fa fa-users"></i> Participants
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-dark">
+                            <li><a class="dropdown-item" href="../athletes/athletes.html">Athletes</a></li>
+                            <li><a class="dropdown-item" href="../teams/teams.html">Teams</a></li>
+                            <li><a class="dropdown-item" href="../coaches/coaches.html">Coaches</a></li>
+                            <li><a class="dropdown-item" href="../officials/technical-officials.html">Technical Officials</a></li>
+                            <li><a class="dropdown-item" href="../nocs/nocs.html">NOCs</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="games.html"><i class="fa fa-trophy text-danger"></i> Medals</a></li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="fa fa-soccer-ball-o text-primary"></i> Modalities
@@ -83,20 +101,10 @@
                             <li><a class="dropdown-item" href="#">Athletics</a></li>
                         </ul>
                     </li>
-
                     <li class="nav-item"><a class="nav-link " aria-current="page" href="../countdown/contagem.html"><i class="fa fa-hourglass-half" aria-hidden="true"></i> LA2028</a></li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="fa fa-folder-o" aria-hidden="true"></i> More
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-dark">
-                            <a class="dropdown-item" href="news.html"> Olympic Games News </a>
-                            <a class="dropdown-item" href="loja.html"> Loja </a>
-                            <a class="dropdown-item" href="countdown.html">Paris 2024</a>
-                        </ul>
-                    </li>
                 </ul>
                 <ul class="navbar-nav mb-2 mb-lg-0 right-side">
+                    <li class="nav-item"> <a class="nav-link" href="https://olympics.com/pt/paris-2024" target="_blank"> <i class="fa fa-external-link text-primary"></i> Official Site</a></li>
                     <li class="nav-item"> <a class="nav-link" aria-current="page" href="favoritos.html"> <i class="fa fa-heart text-danger"></i></a></li>
                 </ul>
                 <ul class="navbar-nav mb-2 mb-lg-0 right-side">
@@ -107,8 +115,8 @@
                     </li>
                 </ul>
             </div>
-
-</nav>
+        </div>
+    </nav>
     <!-- Working Area -->
     <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
         <div class="carousel-indicators">
@@ -171,7 +179,7 @@
                 </div>
                 <div class="col text-end">
                     <a href="https://www.ua.pt" class="link"><img src="../1images/ua.png" style="height:125px;" alt="Universidade de Aveiro" /></a>
-                    
+
                 </div>
             </div>
         </div>
