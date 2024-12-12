@@ -35,6 +35,15 @@
                 text-decoration: underline; /* Adiciona sublinhado no hover */
             }
 
+    body {
+        padding-top: 80px; /* Ajuste conforme a altura real da navbar */
+    }
+
+    @media (max-width: 576px) { /* Para telas pequenas */
+        body {
+            padding-top: 50px; /* Altura menor para dispositivos móveis */
+        }
+    }
 </style>
 </head>
 <body>
@@ -183,6 +192,7 @@
             </div>
         </div>
     </div>
+
     <!-- End of Working Area -->
     <div class="bottom-bar">
         <div class="container small">
@@ -195,13 +205,15 @@
             </div>
         </div>
     </div>
-    <script src="../../lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="../../lib/knockout/dist/knockout-latest.min.js"></script>
-    <script src="../../lib/jquery/dist/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.3/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.5.1/knockout-latest.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
+            integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
+            crossorigin=""></script>
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
     <script src="competitions.js"></script>
-    <script src="../theme.js"></script>
     <script>
         $(document).ready(function () {
             const api_url = "http://192.168.160.58/Paris2024/api/Competitions/Search";
