@@ -6,7 +6,7 @@
     // Check if the ID exists
     if (athleteId) {
         $.ajax({
-            url: 'http://192.168.160.58/Paris2024/API/athletes/' + athleteId, // Replace with your API URL
+            url: 'http://192.168.160.58/Paris2024/api/Technical_officials/%7Bid%7D' + athleteId, // Replace with your API URL
             type: 'GET',
             dataType: 'json',
             success: function (data) {
