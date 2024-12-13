@@ -213,27 +213,6 @@ html, body {
     font-family: 'Open Sans', sans-serif;
 }
 
-/* Bottom bar */
-.bottom-bar {
-    background-color: black;
-    color: white;
-    padding: 10px 0;
-    bottom: 0;
-    width: 100%;
-    z-index: 1000;
-    padding: 0px;
-}
-
-    .bottom-bar .link {
-        color: white;
-        text-decoration: none;
-    }
-
-        .bottom-bar .link:hover {
-            color: #f0f0f0;
-            text-decoration: underline;
-        }
-
 body.dark-mode {
     background-color: #121212;
     color: #ffffff;
@@ -366,7 +345,7 @@ nav ul li {
     width: 100%;
     z-index: 1000;
     padding: 0px;
-    position:fixed;
+    margin-top: 40px;  /*Ajuste conforme necessário */
 }
 
     .bottom-bar .link {

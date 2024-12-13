@@ -6,14 +6,14 @@
     // Check if the ID exists
     if (teamId) {
         $.ajax({
-            url: 'http://192.168.160.58/Paris2024/api/Teams/%7Bid%7D' + teamId, // Replace with your API URL
+            url: `http://192.168.160.58/Paris2024/api/Teams/${teamId}`, // Corrected API URL
             type: 'GET',
             dataType: 'json',
             success: function (data) {
-                const team = data[0]; // Assuming the data is an array and we are working with the first team
+                const team = data; // Assuming API returns a single object
+                const medalTypes = { 1: 'Gold', 2: 'Silver', 3: 'Bronze' };
                 const teamDetailsHtml = `
                     <div class="team-info">
-                        <!-- Team Information -->
                         <div class="info-column">
                             <h3>${team.Name}</h3>
                             <p><strong>Sex:</strong> ${team.Sex}</p>
@@ -23,18 +23,18 @@
                             <p><strong>Sport:</strong> ${team.Sport.Name}</p>
                         </div>
                     </div>
-
-                    <!-- Athletes -->
                     <div class="section-title">Athletes</div>
                     <div class="section-content">
                         <ul class="athletes-list">
                             ${team.Athletes.map(athlete => `
-                                <li><strong>${athlete.Name}</strong> (ID: ${athlete.Id})</li>
+                                <li>
+                                    <a href="../athletes/athleteDetails.html?id=${athlete.Id}">
+                                        <strong>${athlete.Name}</strong>
+                                    </a> (ID: ${athlete.Id})
+                                </li>
                             `).join('')}
                         </ul>
                     </div>
-
-                    <!-- Coaches -->
                     <div class="section-title">Coaches</div>
                     <div class="section-content">
                         <ul class="coaches-list">
@@ -43,20 +43,25 @@
                             `).join('')}
                         </ul>
                     </div>
-
-                    <!-- Medals -->
                     <div class="section-title">Medals</div>
                     <div class="section-content">
                         <ul class="medals-list">
                             ${team.Medals.map(medal => `
-                                <li><i class="fa fa-trophy"></i><strong>Type:</strong> ${medal.Medal_Type}, <strong>Sport:</strong> ${medal.Sport_name}, <strong>Competition:</strong> ${medal.Competition_name}, <strong>Team:</strong> ${medal.Team_name}</li>
+                                <li>
+                                    <i class="fa fa-trophy"></i>
+                                    <strong>Type:</strong> ${medalTypes[medal.Medal_Type]}, 
+                                    <strong>Sport:</strong> ${medal.Sport_name}, 
+                                    <strong>Competition:</strong> ${medal.Competition_name}, 
+                                    <strong>Team:</strong> ${medal.Team_name}
+                                </li>
                             `).join('')}
                         </ul>
                     </div>
                 `;
                 $('#teamDetails').html(teamDetailsHtml);
             },
-            error: function () {
+            error: function (xhr, status, error) {
+                console.error('API error:', error);
                 $('#teamDetails').html('<p>Could not fetch team details.</p>');
             }
         });
@@ -64,6 +69,7 @@
         $('#teamDetails').html('<p>No team ID provided.</p>');
     }
 });
+
 
 
 // dark mode
