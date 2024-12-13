@@ -90,3 +90,8 @@ function clean() {
     inputPrecoTotal.innerText = "0.00";
     inputQtdTotal.innerText = 0;
 }
+document.addEventListener("DOMContentLoaded", function () {
+    const navbar = document.querySelector('.navbar');
+    const body = document.body;
+    body.style.paddingTop = navbar.offsetHeight + 'px';
+});
