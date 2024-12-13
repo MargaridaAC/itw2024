@@ -1,0 +1,98 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sport Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .sport-image {
+            width: 100%;
+            max-width: 300px;
+            height: auto;
+            margin-bottom: 20px;
+        }
+
+        .info-section {
+            margin-bottom: 20px;
+        }
+
+            .info-section h2 {
+                margin-bottom: 10px;
+            }
+
+        ul {
+            padding-left: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Sport Details</h1>
+        <img id="sport-image" class="sport-image" src="" alt="Sport Image">
+        <div class="info-section" id="sport-info">
+            <!-- Dynamic content will be added here -->
+        </div>
+    </div>
+
+    <script>const apiUrl = 'http://192.168.160.58/Paris2024/api/Sports/%7Bid%7D';
+        const sportId = 'sample string 1'; // Replace with the desired sport ID
+
+        fetch(`${apiUrl}/${sportId}`)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Error fetching sport details');
+                }
+                return response.json();
+            })
+            .then(sport => {
+                const {
+                    Name, Pictogram, Sport_url, Athletes, Coaches, Competitions, Teams, Technical_officials, Venues
+                } = sport;
+
+                // Update image
+                const sportImage = document.getElementById('sport-image');
+                sportImage.src = Pictogram || 'placeholder.png';
+                sportImage.alt = Name || 'Sport Image';
+
+                // Update info section
+                const sportInfo = document.getElementById('sport-info');
+                sportInfo.innerHTML = `
+                    <h2>${Name}</h2>
+                    <p><strong>More Info:</strong> <a href="${Sport_url}" target="_blank">Official site</a></p>
+                    <h3>Athletes</h3>
+                    <ul>${Athletes.map(athlete => `<li>${athlete.Name}</li>`).join('')}</ul>
+                    <h3>Coaches</h3>
+                    <ul>${Coaches.map(coach => `<li>${coach.Name}</li>`).join('')}</ul>
+                    <h3>Competitions</h3>
+                    <ul>${Competitions.map(comp => `<li>${comp.Name} (${comp.Tag})</li>`).join('')}</ul>
+                    <h3>Teams</h3>
+                    <ul>${Teams.map(team => `<li>${team.Name}</li>`).join('')}</ul>
+                    <h3>Technical Officials</h3>
+                    <ul>${Technical_officials.map(official => `<li>${official.Name}</li>`).join('')}</ul>
+                    <h3>Venues</h3>
+                    <ul>${Venues.map(venue => `<li>${venue.Name}</li>`).join('')}</ul>
+                `;
+            })
+            .catch(error => {
+                console.error('Error loading sport details:', error);
+                alert('Failed to load sport details.');
+            });</script>
+</body>
+</html>
