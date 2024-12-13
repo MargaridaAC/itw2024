@@ -12,17 +12,7 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin="" />
     <link rel="stylesheet" href="contagem.css" />
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            height: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            text-align: center;
-            padding-top: 120px; /* Aumente o valor de padding-top para mais espaço */
-        }
+
 
         .weather-container {
             display: flex;
@@ -38,19 +28,22 @@
             border-radius: 8px;
             padding: 20px;
             text-align: center;
-            width: 45%; /* Dá 45% de largura para a caixa de meteorologia */
+            max-width: 300px;
             font-family: 'Roboto', sans-serif;
+            margin-right: 20px;
+            margin-bottom: 30px;
+            /* Ajuste do margin-left para afastar da margem da página */
+            margin-left: 200px; /* Aumente ou diminua este valor conforme necessário */
+            width: 45%;
         }
+
 
         .text-box {
             width: 45%; /* Dá 45% de largura para o texto */
             font-family: 'Arial', sans-serif;
         }
 
-        .weather-box img {
-            max-width: 100px;
-            margin-bottom: 15px;
-        }
+        
 
         .weather-box .temperature {
             font-size: 1.5em;
@@ -70,31 +63,11 @@
         .text-box p {
             font-size: 1.2em;
             color: #555;
+            text-align: justify;
         }
 
-        .background {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            background-image: url("../1images/countdown.jpg");
-            background-size: 75%;
-            background-position: center;
-            background-repeat: no-repeat;
-            opacity: 0;
-            background-color: white;
-        }
-
-        .content {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 100%;
-            width: 100%;
-            text-align: center;
+        .dark-mode .text-box p {
+            color: #fff; /* Texto branco no modo escuro */
         }
 
         .countdown {
@@ -108,19 +81,6 @@
             display: inline-block;
         }
 
-        .weather-box {
-            background-color: #ffe4b2;
-            border: 1px solid #ffa500;
-            border-radius: 8px;
-            padding: 20px;
-            text-align: center;
-            max-width: 300px;
-            font-family: 'Roboto', sans-serif;
-            margin-right: 20px;
-            margin-bottom: 30px;
-            /* Ajuste do margin-left para afastar da margem da página */
-            margin-left: 200px; /* Aumente ou diminua este valor conforme necessário */
-        }
 
 
             .weather-box img {
@@ -138,17 +98,6 @@
                 text-transform: capitalize;
             }
 
-        .bottom-bar {
-            position: relative;
-            bottom: 0;
-            left: 0;
-            background-color: black;
-            color: white;
-            padding: 10px 0;
-            width: 100%;
-            z-index: 1000;
-            padding: 30px;
-        }
 
             .bottom-bar .link {
                 color: white;
@@ -167,7 +116,7 @@
 
         .carousel-item {
             z-index: -100;
-            height: 600px;
+            height: 500px;
             background-position: center center;
             background-repeat: no-repeat;
             background-size: cover;
@@ -189,11 +138,7 @@
                 background-image: url('../1images/la4.jpg');
             }
 
-        .carousel-item {
-            height: 500px;
-            background-size: cover;
-            background-position: center;
-        }
+
     </style>
 </head>
 <body>
@@ -390,6 +335,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <!-- Inclua o JS do Bootstrap (ou seja, necessário para o funcionamento do carousel) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="contagem.js"></script>
 
 </body>
 </html>
