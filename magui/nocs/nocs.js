@@ -3,13 +3,13 @@
 
     //---Variáveis locais
     var self = this;
-    self.baseUri = ko.observable('http://192.168.160.58/Paris2024/api/NOCs'); // Atualize a URL conforme necessário
-    self.displayName = 'NOCs List';
+    self.baseUri = ko.observable('http://192.168.160.58/Paris2024/api/Technical_officials'); // Atualize a URL conforme necessário
+    self.displayName = 'Technical Officials List';
     self.error = ko.observable('');
     self.passingMessage = ko.observable('');
-    self.nocs = ko.observableArray([]);
+    self.officials = ko.observableArray([]);
     self.currentPage = ko.observable(1);
-    self.pagesize = ko.observable(50);  // Alterar para 50 NOCs por página
+    self.pagesize = ko.observable(15);  // Alterar conforme necessário
     self.totalRecords = ko.observable(0);
     self.hasPrevious = ko.observable(false);
     self.hasNext = ko.observable(false);
@@ -44,18 +44,18 @@
 
     //--- Page Events
     self.activate = function (id) {
-        console.log('CALL: getNOCs...');
+        console.log('CALL: getTechnicalOfficials...');
         var composedUri = self.baseUri() + "?page=" + id + "&pageSize=" + self.pagesize();
         ajaxHelper(composedUri, 'GET').done(function (data) {
             console.log(data);
             hideLoading();
-            self.nocs(data.NOCs);
+            self.officials(data.Technical_officials);
             self.currentPage(data.CurrentPage);
             self.hasNext(data.HasNext);
             self.hasPrevious(data.HasPrevious);
             self.pagesize(data.PageSize);
             self.totalPages(data.TotalPages);
-            self.totalRecords(data.TotalNOCs);
+            self.totalRecords(data.TotalOfficials);
         });
     };
 
@@ -122,58 +122,4 @@ $(document).ready(function () {
 
 $(document).ajaxComplete(function (event, xhr, options) {
     $("#myModal").modal('hide');
-});
-
-
-
-
-//   Darkmode  / /
-
-    $(document).ready(function () {
-        console.log("ready!");
-        ko.applyBindings(new vm());
-    });
-
-$(document).ajaxComplete(function (event, xhr, options) {
-    $("#myModal").modal('hide');
 })
-
-
-
-
-
-const themeToggle = document.getElementById('themeToggle');
-const body = document.body;
-const navbar = document.querySelector('.navbar');
-
-// Ao carregar a página, verificar o tema salvo no localStorage
-window.addEventListener('DOMContentLoaded', () => {
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme === 'dark') {
-        body.classList.add('dark-mode');
-        navbar.classList.remove('navbar-light-mode');
-        navbar.classList.add('navbar-dark-mode');
-        themeToggle.innerHTML = '<i class="fa fa-sun-o" aria-hidden="true"></i>';
-    } else {
-        body.classList.remove('dark-mode');
-        navbar.classList.remove('navbar-dark-mode');
-        navbar.classList.add('navbar-light-mode');
-        themeToggle.innerHTML = '<i class="fa fa-moon-o" aria-hidden="true"></i>';
-    }
-});
-
-// Salvar o tema ao alterná-lo
-themeToggle.addEventListener('click', () => {
-    body.classList.toggle('dark-mode');
-    if (body.classList.contains('dark-mode')) {
-        localStorage.setItem('theme', 'dark'); // Salvar tema escuro
-        navbar.classList.remove('navbar-light-mode');
-        navbar.classList.add('navbar-dark-mode');
-        themeToggle.innerHTML = '<i class="fa fa-sun-o" aria-hidden="true"></i>';
-    } else {
-        localStorage.setItem('theme', 'light'); // Salvar tema claro
-        navbar.classList.remove('navbar-dark-mode');
-        navbar.classList.add('navbar-light-mode');
-        themeToggle.innerHTML = '<i class="fa fa-moon-o" aria-hidden="true"></i>';
-    }
-});
