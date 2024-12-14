@@ -3,11 +3,11 @@
 
     //---Variáveis locais
     var self = this;
-    self.baseUri = ko.observable('http://192.168.160.58/Paris2024/api/Technical_officials'); // Atualize a URL conforme necessário
+    self.baseUri = ko.observable('http://192.168.160.58/Paris2024/api/NOCs'); // Atualize a URL conforme necessário
     self.displayName = 'Technical Officials List';
     self.error = ko.observable('');
     self.passingMessage = ko.observable('');
-    self.officials = ko.observableArray([]);
+    self.nocs = ko.observableArray([]);  // Alterado de officials para nocs
     self.currentPage = ko.observable(1);
     self.pagesize = ko.observable(15);  // Alterar conforme necessário
     self.totalRecords = ko.observable(0);
@@ -44,18 +44,18 @@
 
     //--- Page Events
     self.activate = function (id) {
-        console.log('CALL: getTechnicalOfficials...');
+        console.log('CALL: getNOCs...');
         var composedUri = self.baseUri() + "?page=" + id + "&pageSize=" + self.pagesize();
         ajaxHelper(composedUri, 'GET').done(function (data) {
             console.log(data);
             hideLoading();
-            self.officials(data.Technical_officials);
+            self.nocs(data.NOCs);  // Alterado de officials para nocs
             self.currentPage(data.CurrentPage);
             self.hasNext(data.HasNext);
             self.hasPrevious(data.HasPrevious);
             self.pagesize(data.PageSize);
             self.totalPages(data.TotalPages);
-            self.totalRecords(data.TotalOfficials);
+            self.totalRecords(data.TotalNOCs);
         });
     };
 
@@ -82,6 +82,7 @@
             keyboard: false
         });
     }
+
     function hideLoading() {
         $('#myModal').on('shown.bs.modal', function (e) {
             $("#myModal").modal('hide');
@@ -103,7 +104,7 @@
         }
     };
 
-    //--- start ....
+    //--- start .... 
     showLoading();
     var pg = getUrlParameter('page');
     console.log(pg);

@@ -1,20 +1,114 @@
 ﻿<!DOCTYPE html>
-<html lang="pt">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NOCs List</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="https://cdn.knockoutjs.com/releases/knockout-3.5.1.js"></script>
-    <link rel="stylesheet" href="styles.css">
+    <meta charset="utf-8" />
+    <title>Technical Officials List</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin="" />
+    <link rel="stylesheet" href="nocs.css" />
 </head>
 <body>
-    <div class="container">
-        <h1 class="my-4" data-bind="text: displayName"></h1>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="../homepage/index.html" tabindex="Olympics"><img src="../1images/Paris2024.png" height="60" /></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fa fa-calendar text-warning"></i> Events
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-dark">
+                            <li><a class="dropdown-item" href="../competitions/competitions.html">Competitions</a></li>
+                            <li><a class="dropdown-item" href="../sports/sports.html">Sports</a></li>
+                            <li><a class="dropdown-item" href="../venues/venues.html">Venues</a></li>
+                            <li><a class="dropdown-item" href="../torch-route/torch-route.html">Torch Route</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fa fa-users"></i> Participants
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-dark">
+                            <li><a class="dropdown-item" href="../athletes/athletes.html">Athletes</a></li>
+                            <li><a class="dropdown-item" href="../teams/teams.html">Teams</a></li>
+                            <li><a class="dropdown-item" href="../coaches/coaches.html">Coaches</a></li>
+                            <li><a class="dropdown-item" href="../officials/technical-officials.html">Technical Officials</a></li>
+                            <li><a class="dropdown-item" href="../nocs/nocs.html">NOCs</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="games.html"><i class="fa fa-trophy text-danger"></i> Medals</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fa fa-soccer-ball-o text-primary"></i> Modalities
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-dark">
+                            <li><a class="dropdown-item" href="../modalities/basketball.html">Basketball</a></li>
+                            <li><a class="dropdown-item" href="#">Canoe Sprints</a></li>
+                            <li><a class="dropdown-item" href="#">Cycling Tracks</a></li>
+                            <li><a class="dropdown-item" href="#">Football</a></li>
+                            <li><a class="dropdown-item" href="#">Swimming</a></li>
+                            <li><a class="dropdown-item" href="#">Athletics</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link " aria-current="page" href="../countdown/contagem.html"><i class="fa fa-hourglass-half" aria-hidden="true"></i> LA2028</a></li>
+                </ul>
+                <ul class="navbar-nav mb-2 mb-lg-0 right-side">
+                    <li class="nav-item"> <a class="nav-link" href="https://olympics.com/pt/paris-2024" target="_blank"> <i class="fa fa-external-link text-primary"></i> Official Site</a></li>
+                    <li class="nav-item"> <a class="nav-link" aria-current="page" href="favoritos.html"> <i class="fa fa-heart text-danger"></i></a></li>
+                </ul>
+                <ul class="navbar-nav mb-2 mb-lg-0 right-side">
+                    <li class="nav-item">
+                        <button id="themeToggle" class="btn btn-outline-secondary">
+                            <i class="fa fa-moon-o" aria-hidden="true"></i>
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
-        <!-- Tabela de NOCs -->
-        <table class="table table-striped tabela-dados">
+    <!-- Working Area -->
+    <div class="container">
+        <div class="border-bottom py-2 mb-2">
+            <h2 data-bind="text:displayName">Technical Officials List</h2>
+        </div>
+        <!-- ko if: officials().length > 0 -->
+        <div class="row small">
+            <p class="col-4 mr-auto pt-2">
+                <span data-bind="html: 'Page: ' + currentPage() + ' of ' + totalPages()"></span><br />
+                <span data-bind="html: 'Officials: ' + fromRecord() + '-' + toRecord() + ' of ' + totalRecords()"></span>
+            </p>
+            <div class="col-8 my-0 pt-3">
+                <ul class="pagination float-end">
+                    <!-- ko if: currentPage() > 5 && totalPages() > 10 -->
+                    <li class="page-item"><a class="page-link" title="First Page" data-bind="attr: { href: './technical-officials.html?page=1', rel:'prev'}">⇤</a></li>
+                    <li class="page-item"><a class="page-link" title="Previous Page" data-bind="attr: { href: './technical-officials.html?page=' + previousPage(), rel:'prev'}">←</a></li>
+                    <!-- /ko -->
+                    <!-- ko foreach: pageArray()-->
+                    <!-- ko if:$data == $parent.currentPage() -->
+                    <li class="active page-item"><a class="page-link" data-bind="attr: { title:'Current Page ' + $data }, text: $data"></a></li>
+                    <!-- /ko -->
+                    <!-- ko if:$data != $parent.currentPage() -->
+                    <li class="page-item"><a class="page-link" data-bind="attr: { href: './technical-officials.html?page=' + $data, title:'Goto Page ' + $data }, text:$data"></a></li>
+                    <!-- /ko -->
+                    <!-- /ko -->
+                    <!-- ko if: currentPage() < totalPages() - 4 && totalPages() > 9 -->
+                    <li class="page-item"><a class="page-link" title="Next Page" data-bind="attr: { href: './technical-officials.html?page=' + nextPage(), rel:'next' }">→</a></li>
+                    <li class="page-item"><a class="page-link" title="Last Page" data-bind="attr: { href: './technical-officials.html?page=' + totalPages() }">⇥</a></li>
+                    <!-- /ko -->
+                </ul>
+            </div>
+        </div>
+        <!-- /ko -->
+
+        <table class="table table-bordered table-hover">
             <thead>
                 <tr>
                     <th>Country</th>
@@ -22,175 +116,63 @@
                     <th>Coaches</th>
                     <th>Medals</th>
                     <th>Teams</th>
-                    <th>Photo</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
-            <tbody data-bind="foreach: NOCs">
+            <tbody data-bind="foreach: nocs">
                 <tr>
-                    <td data-bind="text: Country"></td>
-                    <td data-bind="text: Athletes"></td>
-                    <td data-bind="text: Coaches"></td>
-                    <td data-bind="text: Medals"></td>
-                    <td data-bind="text: Teams"></td>
-                    <td><img data-bind="attr: {src: Photo}" alt="Photo" class="img-thumbnail" width="50"></td>
+                    <td class="align-middle" data-bind="text: Country"></td>
+                    <td class="align-middle" data-bind="text: Athletes"></td>
+                    <td class="align-middle" data-bind="text: Coaches"></td>
+                    <td class="align-middle" data-bind="text: Medals"></td>
+                    <td class="align-middle" data-bind="text: Teams"></td>
+                    <td class="text-center">
+                        <a class="btn btn-default btn-light btn-xs" data-bind="attr: { href:'./officialDetails.html?id=' + Id }"><i class="fa fa-eye" title="Show details"></i></a>
+                        <button class="btn btn-default btn-xs" data-bind="attr : { 'id': 'favourite_' + Id }"><i class="fa fa-heart-o" title="Add to favorites"></i></button>
+                    </td>
                 </tr>
             </tbody>
         </table>
-
-        <!-- Paginação -->
-        <div class="pagination">
-            <ul class="pagination">
-                <!-- Botão Anterior -->
-                <li class="page-item" data-bind="css: { disabled: !hasPrevious() }">
-                    <a href="#" class="page-link" data-bind="click: function() { changePage(previousPage()) }">Previous</a>
-                </li>
-
-                <!-- Paginação numérica -->
-                <!-- Loop para mostrar os números das páginas -->
-                <li class="page-item" data-bind="foreach: pageArray">
-                    <a href="#" class="page-link" data-bind="text: $data, click: function() { changePage($data) }, css: { active: $data === $parent.currentPage() }"></a>
-                </li>
-
-                <!-- Botão Próximo -->
-                <li class="page-item" data-bind="css: { disabled: !hasNext() }">
-                    <a href="#" class="page-link" data-bind="click: function() { changePage(nextPage()) }">Next</a>
-                </li>
-            </ul>
-        </div>
-
-        <!-- Error message -->
-        <div class="alert alert-danger" data-bind="visible: error">
-            <strong>Error:</strong> <span data-bind="text: error"></span>
-        </div>
-
-        <!-- Loading Spinner -->
-        <div id="myModal" class="modal" tabindex="-1" role="dialog" style="display: none;">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-body">
-                        <p>Loading...</p>
-                    </div>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">
+                        <img src="../images/Paris2024.png" height="30" /> Loading data...
+                    </h5>
+                </div>
+                <div class="modal-body text-center">
+                    <i class="fa fa-spin fa-3x fa-refresh"></i>
                 </div>
             </div>
         </div>
     </div>
 
-    <script>
-        var vm = function () {
-            var self = this;
-            self.baseUri = ko.observable('https://api.example.com/NOCs'); // Altere para a URL da sua API
-            self.displayName = 'NOCs List';
-            self.error = ko.observable('');
-            self.NOCs = ko.observableArray([]);
-            self.currentPage = ko.observable(1);
-            self.pageSize = ko.observable(4); // Alterado para 4 conforme o exemplo da API
-            self.totalRecords = ko.observable(0);
-            self.totalPages = ko.observable(0);
-            self.hasPrevious = ko.observable(false);
-            self.hasNext = ko.observable(false);
+    <!-- Footer -->
+    <div class="bottom-bar">
+        <div class="container small">
+            <div class="row align-items-center">
+                <div class="col text-start">
+                    <a href="https://www.ua.pt/pt/uc/12289" class="link">&copy; ITW - 2024/25</a>
+                </div>
+                <div class="col text-center">
+                    Made by Margarida Cardoso and Tiago Costa
+                </div>
+                <div class="col text-end">
+                    <a href="https://www.ua.pt" class="link"><img src="../1images/ua.png" style="height:125px;" alt="Universidade de Aveiro" /></a>
+                </div>
+            </div>
+        </div>
+    </div>
 
-            self.previousPage = ko.computed(function () {
-                return self.currentPage() - 1;
-            }, self);
-            self.nextPage = ko.computed(function () {
-                return self.currentPage() + 1;
-            }, self);
+    <!-- Scripts -->
 
-            // Função para obter as páginas que serão mostradas na paginação
-            self.pageArray = function () {
-                var list = [];
-                var size = Math.min(self.totalPages(), 9); // Limita o número de páginas visíveis
-                var step;
-
-                // Calcula qual página iniciar (garante que estamos no centro da lista de páginas)
-                if (self.totalPages() <= 9 || self.currentPage() === 1) {
-                    step = 0;
-                } else if (self.currentPage() >= self.totalPages() - 4) {
-                    step = self.totalPages() - 9;
-                } else {
-                    step = Math.max(self.currentPage() - 5, 0);
-                }
-
-                // Preenche a lista de páginas
-                for (var i = 1; i <= size; i++) {
-                    list.push(i + step);
-                }
-                return list;
-            };
-
-            self.activate = function (page) {
-                showLoading();
-                var uri = self.baseUri() + "?page=" + page + "&pageSize=" + self.pageSize();
-                ajaxHelper(uri, 'GET').done(function (data) {
-                    hideLoading();
-                    self.NOCs(data.NOCs);
-                    self.currentPage(data.CurrentPage);
-                    self.hasNext(data.HasNext);
-                    self.hasPrevious(data.HasPrevious);
-                    self.totalPages(data.TotalPages);
-                    self.totalRecords(data.TotalNOCs);
-                }).fail(function (jqXHR, textStatus, errorThrown) {
-                    hideLoading();
-                    self.error(errorThrown);
-                });
-            };
-
-            self.changePage = function (page) {
-                if (page >= 1 && page <= self.totalPages()) {
-                    self.activate(page);
-                }
-            };
-
-            function ajaxHelper(uri, method) {
-                self.error(''); // Clear error message
-                return $.ajax({
-                    type: method,
-                    url: uri,
-                    dataType: 'json',
-                    contentType: 'application/json',
-                    error: function (jqXHR, textStatus, errorThrown) {
-                        console.log("AJAX Call[" + uri + "] Fail...");
-                        hideLoading();
-                        self.error(errorThrown);
-                    }
-                });
-            }
-
-            function showLoading() {
-                $("#myModal").modal('show', {
-                    backdrop: 'static',
-                    keyboard: false
-                });
-            }
-
-            function hideLoading() {
-                $("#myModal").modal('hide');
-            }
-
-            var pg = getUrlParameter('page');
-            if (pg === undefined) {
-                self.activate(1);
-            } else {
-                self.activate(pg);
-            }
-
-            function getUrlParameter(sParam) {
-                var sPageURL = window.location.search.substring(1),
-                    sURLVariables = sPageURL.split('&'),
-                    sParameterName,
-                    i;
-                for (i = 0; i < sURLVariables.length; i++) {
-                    sParameterName = sURLVariables[i].split('=');
-                    if (sParameterName[0] === sParam) {
-                        return sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
-                    }
-                }
-            };
-        };
-
-        $(document).ready(function () {
-            ko.applyBindings(new vm());
-        });
-    </script>
+    <script src="../../../lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../../../lib/knockout/dist/knockout-latest.min.js"></script>
+    <script src="../../../lib/jquery/dist/jquery.js"></script>
+    <script src="../../../stor/theme.js"></script>
+    <script src="nocs.js"></script>
 </body>
 </html>
