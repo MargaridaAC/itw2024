@@ -1,1 +1,120 @@
-﻿
+﻿<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Paris 2024 Canoe Sprint</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#" tabindex="Olympics">
+                <img src="../1images/Paris2024.png" height="60" alt="Paris 2024">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#events">Events</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://olympics.com/pt/paris-2024" target="_blank">
+                            <i class="fa fa-external-link text-primary"></i> Official Site
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container mt-5 pt-4">
+        <h2 class="text-center my-4">Canoe Sprint Events</h2>
+
+        <div id="events" class="accordion" role="tablist">
+            <!-- Dynamic content will be inserted here -->
+        </div>
+    </div>
+
+    <footer class="bg-light py-4">
+        <div class="container text-center small">
+            <p>&copy; ITW - 2024/25 | Made by Margarida Cardoso and Tiago Costa</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+    <script>
+        // Sample API Data
+        const apiData = [
+            {
+                "EventId": "CSPMC2-500M",
+                "EventName": "Men's Canoe Double 500m",
+                "Stages": [
+                    { "StageId": "CSPMC2-500M-----------HEAT000100--", "StageName": "Heat 1" },
+                    { "StageId": "CSPMC2-500M-----------HEAT000200--", "StageName": "Heat 2" },
+                    { "StageId": "CSPMC2-500M-----------QFNL000100--", "StageName": "Quarterfinal 1" },
+                    { "StageId": "CSPMC2-500M-----------FNL-000100--", "StageName": "Final A" }
+                ]
+            },
+            {
+                "EventId": "CSPMK4-500M",
+                "EventName": "Men's Kayak Four 500m",
+                "Stages": [
+                    { "StageId": "CSPMK4-500M-----------HEAT000100--", "StageName": "Heat 1" },
+                    { "StageId": "CSPMK4-500M-----------SFNL000200--", "StageName": "Semifinal 2" },
+                    { "StageId": "CSPMK4-500M-----------FNL-000100--", "StageName": "Final A" }
+                ]
+            }
+        ];
+
+        // Render events dynamically
+        const renderEvents = (data) => {
+            const eventsContainer = document.getElementById('events');
+            data.forEach((event, index) => {
+                const eventCard = document.createElement('div');
+                eventCard.className = 'accordion-item';
+
+                eventCard.innerHTML = `
+                    <h2 class="accordion-header" id="heading${index}">
+                        <button class="accordion-button ${index !== 0 ? 'collapsed' : ''}" type="button" data-bs-toggle="collapse" data-bs-target="#collapse${index}" aria-expanded="${index === 0}" aria-controls="collapse${index}">
+                            ${event.EventName}
+                        </button>
+                    </h2>
+                    <div id="collapse${index}" class="accordion-collapse collapse ${index === 0 ? 'show' : ''}" aria-labelledby="heading${index}" data-bs-parent="#events">
+                        <div class="accordion-body">
+                            <ul class="list-group">
+                                ${event.Stages.map(stage => `
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        ${stage.StageName}
+                                        <a href="details.html?eventId=${event.EventId}&stageId=${stage.StageId}" class="btn btn-sm btn-primary">
+                                            View Details
+                                        </a>
+                                    </li>
+                                `).join('')}
+                            </ul>
+                        </div>
+                    </div>
+                `;
+
+                eventsContainer.appendChild(eventCard);
+            });
+        };
+
+        // Initialize
+        renderEvents(apiData);
+    </script>
+</body>
+</html>
