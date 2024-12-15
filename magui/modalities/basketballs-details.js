@@ -1,4 +1,4 @@
-﻿const apiBaseURL = "http://192.168.160.58/Paris2024/api/Basketballs";
+﻿const apiBaseURL = "http://192.168.160.58/Paris2024/api/Basketballs/%7Bid%7D";
 
 $(document).ready(function () {
     const urlParams = new URLSearchParams(window.location.search);
