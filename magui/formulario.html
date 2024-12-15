@@ -77,7 +77,7 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
         <div class="container">
-            <a class="navbar-brand" href="../homepage/index.html" tabindex="Olympics"><img src="1images/Paris2024.png" height="60" /></a>
+            <a class="navbar-brand" href="../homepage/index.html" tabindex="Olympics"><img src="../1images/Paris2024.png" height="60" /></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -106,18 +106,35 @@
                             <li><a class="dropdown-item" href="../nocs/nocs.html">NOCs</a></li>
                         </ul>
                     </li>
-                    <li class="nav-item"><a class="nav-link" aria-current="page" href="games.html"><i class="fa fa-trophy text-danger"></i> Medals</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fa fa-trophy text-danger"></i> Medals
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-dark">
+                            <li><a class="dropdown-item" href="../medals/games.html">Country Medals</a></li>
+                            <li><a class="dropdown-item" href="../medals/medals.html">Medals</a></li>
+                        </ul>
+                    </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="fa fa-soccer-ball-o text-primary"></i> Modalities
                         </a>
                         <ul class="dropdown-menu dropdown-menu-dark">
                             <li><a class="dropdown-item" href="../modalities/basketball.html">Basketball</a></li>
-                            <li><a class="dropdown-item" href="#">Canoe Sprints</a></li>
-                            <li><a class="dropdown-item" href="#">Cycling Tracks</a></li>
-                            <li><a class="dropdown-item" href="#">Football</a></li>
-                            <li><a class="dropdown-item" href="#">Swimming</a></li>
-                            <li><a class="dropdown-item" href="#">Athletics</a></li>
+                            <li><a class="dropdown-item" href="./modalities/canoesprints.html">Canoe Sprints</a></li>
+                            <li><a class="dropdown-item" href="../modalities/cyclingtracks.html">Cycling Tracks</a></li>
+                            <li><a class="dropdown-item" href="../modalities/football.html">Football</a></li>
+                            <li><a class="dropdown-item" href="../modalities/swimming.html">Swimming</a></li>
+                            <li><a class="dropdown-item" href="../modalities/athletics.html">Athletics</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fa fa-chevron-circle-down" "></i> More
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-dark">
+                            <li><a class="dropdown-item" href="../store/store.html">Store</a></li>
+                            <li><a class="dropdown-item" href="../formulario.html">Quizz</a></li>
                         </ul>
                     </li>
                     <li class="nav-item"><a class="nav-link " aria-current="page" href="../countdown/contagem.html"><i class="fa fa-hourglass-half" aria-hidden="true"></i> LA2028</a></li>

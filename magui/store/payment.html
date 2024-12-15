@@ -45,18 +45,35 @@
                             <li><a class="dropdown-item" href="../nocs/nocs.html">NOCs</a></li>
                         </ul>
                     </li>
-                    <li class="nav-item"><a class="nav-link" aria-current="page" href="games.html"><i class="fa fa-trophy text-danger"></i> Medals</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fa fa-trophy text-danger"></i> Medals
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-dark">
+                            <li><a class="dropdown-item" href="../medals/games.html">Country Medals</a></li>
+                            <li><a class="dropdown-item" href="../medals/medals.html">Medals</a></li>
+                        </ul>
+                    </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="fa fa-soccer-ball-o text-primary"></i> Modalities
                         </a>
                         <ul class="dropdown-menu dropdown-menu-dark">
                             <li><a class="dropdown-item" href="../modalities/basketball.html">Basketball</a></li>
-                            <li><a class="dropdown-item" href="#">Canoe Sprints</a></li>
-                            <li><a class="dropdown-item" href="#">Cycling Tracks</a></li>
-                            <li><a class="dropdown-item" href="#">Football</a></li>
-                            <li><a class="dropdown-item" href="#">Swimming</a></li>
-                            <li><a class="dropdown-item" href="#">Athletics</a></li>
+                            <li><a class="dropdown-item" href="./modalities/canoesprints.html">Canoe Sprints</a></li>
+                            <li><a class="dropdown-item" href="../modalities/cyclingtracks.html">Cycling Tracks</a></li>
+                            <li><a class="dropdown-item" href="../modalities/football.html">Football</a></li>
+                            <li><a class="dropdown-item" href="../modalities/swimming.html">Swimming</a></li>
+                            <li><a class="dropdown-item" href="../modalities/athletics.html">Athletics</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fa fa-chevron-circle-down" "></i> More
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-dark">
+                            <li><a class="dropdown-item" href="../store/store.html">Store</a></li>
+                            <li><a class="dropdown-item" href="../formulario.html">Quizz</a></li>
                         </ul>
                     </li>
                     <li class="nav-item"><a class="nav-link " aria-current="page" href="../countdown/contagem.html"><i class="fa fa-hourglass-half" aria-hidden="true"></i> LA2028</a></li>
@@ -155,7 +172,7 @@
                             </div>
                         </div>
 
-                         <div class="col-12 col-sm-6">
+                        <div class="col-12 col-sm-6">
                             <h3>Payment</h3>
                             <label for="fname">Select Payment Method</label>
                             <div class="row" style="margin-bottom: 20px;">
@@ -185,59 +202,59 @@
                                 </div>
                             </div>
 
-                        <div class="row">
-                            <div class="col-8">
-                                <label for="cname">Card Name</label>
-                                <input type="text" id="cname" name="cardname">
+                            <div class="row">
+                                <div class="col-8">
+                                    <label for="cname">Card Name</label>
+                                    <input type="text" id="cname" name="cardname">
+                                </div>
+                                <div class="col-4"></div>
                             </div>
-                            <div class="col-4"></div>
-                        </div>
-                        <div class="row">
-                            <div class="col-8">
-                                <label for="ccnum">Card Number</label>
-                                <input type="text" id="ccnum" name="cardnumber">
+                            <div class="row">
+                                <div class="col-8">
+                                    <label for="ccnum">Card Number</label>
+                                    <input type="text" id="ccnum" name="cardnumber">
+                                </div>
+                                <div class="col-4"></div>
                             </div>
-                            <div class="col-4"></div>
-                        </div>
-                        <div class="row">
-                            <div class="col-8">
-                                <div class="row">
-                                    <div class="col-6">
-                                        <label for="exp">Expire date</label>
-                                        <input type="text" id="exp" name="exp">
-                                    </div>
-                                    <div class="col-6">
-                                        <label for="cvv">CVV</label>
-                                        <input type="text" id="cvv" name="cvv">
+                            <div class="row">
+                                <div class="col-8">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <label for="exp">Expire date</label>
+                                            <input type="text" id="exp" name="exp">
+                                        </div>
+                                        <div class="col-6">
+                                            <label for="cvv">CVV</label>
+                                            <input type="text" id="cvv" name="cvv">
+                                        </div>
                                     </div>
                                 </div>
+                                <div class="col-4"></div>
                             </div>
-                            <div class="col-4"></div>
-                        </div>
-                        <div class="col-12">
-                            <div class="container">
-                                <h4>
-                                    Cart
-                                    <span class="price" style="color:black">
-                                        <i class="fa fa-shopping-cart"></i>
-                                        <b>0</b>
-                                    </span>
-                                </h4>
-                                <p>Product 1 <span class="price">0.00€</span></p>
-                                <p>Product 2 <span class="price">0.00€</span></p>
-                                <p>Product 3 <span class="price">0.00€</span></p>
-                                <p>Product 4 <span class="price">0.00€</span></p>
-                                <hr>
-                                <p>Total <span class="form-control" id="total" title="Preço total da compra">0.00</span></p>
+                            <div class="col-12">
+                                <div class="container">
+                                    <h4>
+                                        Cart
+                                        <span class="price" style="color:black">
+                                            <i class="fa fa-shopping-cart"></i>
+                                            <b>0</b>
+                                        </span>
+                                    </h4>
+                                    <p>Product 1 <span class="price">0.00€</span></p>
+                                    <p>Product 2 <span class="price">0.00€</span></p>
+                                    <p>Product 3 <span class="price">0.00€</span></p>
+                                    <p>Product 4 <span class="price">0.00€</span></p>
+                                    <hr>
+                                    <p>Total <span class="form-control" id="total" title="Preço total da compra">0.00</span></p>
+                                </div>
                             </div>
+                            <a href="store.html" class="btn btn-primary col-12">Finish</a>
                         </div>
-                        <a href="store.html" class="btn btn-primary col-12">Finish</a>
-                    </div>
                     </div>
                 </form>
             </div>
         </div>
-        
+
     </div>
     <div class="bottom-bar">
         <div class="container small">

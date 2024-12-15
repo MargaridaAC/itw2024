@@ -1,4 +1,4 @@
-﻿/* Athlete Details */
+﻿
 .athlete-photo {
     max-width: 400px;
     border-radius: 8px;
@@ -84,7 +84,6 @@
     text-align: center;
 }
 
-/* Dark mode adjustments */
 body.dark-mode .athlete-info {
     background-color: #333;
     color: #fff;
@@ -107,7 +106,7 @@ body.dark-mode .competitions-list li {
         color: #FFD700;
     }
 
-/* Small boxes for "Medals", "Sports", "Competitions" */
+
 body.dark-mode .section-content {
     background-color: #444;
     color: #fff;
@@ -127,7 +126,7 @@ body.dark-mode .info-row {
             color: #FFD700;
         }
 
-/* navbar styles */
+
 .navbar-dark-mode {
     background-color: #343a40 !important;
 }
@@ -144,7 +143,7 @@ body.dark-mode .navbar-dark-mode .navbar-toggler-icon {
     background-color: #fff;
 }
 
-/* Bottom bar */
+
 body.dark-mode .bottom-bar {
     background-color: #121212;
 }
@@ -156,8 +155,6 @@ body.dark-mode .bottom-bar {
         body.dark-mode .bottom-bar .link:hover {
             color: #f0f0f0;
         }
-
-/* Buttons */
 body.dark-mode .btn-back {
     background-color: #333;
     color: white;
@@ -177,7 +174,6 @@ body.dark-mode .btn-default {
         color: #fff;
     }
 
-/* Theme toggle button */
 body.dark-mode #themeToggle {
     background-color: #fff;
     color: #f39c12;
@@ -205,7 +201,7 @@ body.dark-mode .navbar .navbar-nav .nav-link {
     color: #fff;
 }
 
-/* Default styling for all pages */
+
 html, body {
     margin: 0;
     padding: 0;
@@ -213,7 +209,7 @@ html, body {
     font-family: 'Open Sans', sans-serif;
 }
 
-/* Bottom bar */
+
 .bottom-bar {
     background-color: black;
     color: white;
@@ -251,7 +247,6 @@ body.dark-mode .navbar-light-mode {
     background-color: #f8f9fa !important;
 }
 
-/* Button default */
 .btn-default {
     color: #333;
     background-color: #f8f9fa;
@@ -276,7 +271,7 @@ body.dark-mode .navbar-light-mode {
     font-size: 1em;
 }
 
-/* Button-xs */
+
 .btn-group-xs > .btn, .btn-xs {
     padding: 1px 5px;
     font-size: 12px;
@@ -357,7 +352,6 @@ nav ul li {
     color: black;
 }
 
-/*Bottom-bar*/
 .bottom-bar {
     background-color: black;
     color: white;

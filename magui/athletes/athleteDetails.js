@@ -1,5 +1,5 @@
 ﻿$(document).ready(function () {
-    // Get athlete ID from URL
+
     const urlParams = new URLSearchParams(window.location.search);
     const athleteId = urlParams.get('id');
 
