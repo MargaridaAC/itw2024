@@ -109,20 +109,26 @@
         <form class="mb-4">
             <h1 class="border-bottom my-3 py-3">Olympic Shop</h1>
             <div class="row mb-4 mt-4 align-items-center">
-                <div class="col-md-1 offset-6 text-right">
-                    <label for="quantidades">Quantity</label> <!-- Rótulo acima -->
+                <div class="col-md-2 text-start">
+                    <!-- Quantity alinhado à esquerda -->
+                    <label for="quantidades" class="form-label">Quantity</label>
                     <span class="form-control" id="quantidades" title="Quantidade total de produtos">0</span>
                 </div>
-                <div class="col-md-2 text-right">
-                    <label for="total">Price</label> <!-- Rótulo acima -->
+                <div class="col-md-2 text-start">
+                    <!-- Price alinhado à esquerda -->
+                    <label for="total" class="form-label">Price(€)</label>
                     <span class="form-control" id="total" title="Preço total da compra">0.00</span>
                 </div>
-                <div class="col-md-2 d-flex justify-content-end align-items-center">
-                    <a href="payment.html" onclick="return valid()" class="btn btn-primary me-2">Buy</a>
-                    <button type="button" onclick="clean()" class="btn btn-secondary" title="Limpar carrinho">
-                        <i class="fa fa-trash-o"></i>
+                <!-- Coluna vazia para criar um espaço entre os campos e os botões -->
+                <div class="col-md-4"></div>
+
+                <div class="col-md-2 d-flex justify-content-end align-items-center ms-auto">
+                    <a href="payment.html" onclick="return valid()" class="btn btn-dark btn-lg me-2">Buy</a>
+                    <button type="button" onclick="clean()" class="btn btn-danger btn-lg" title="Limpar carrinho">
+                        Cancel
                     </button>
                 </div>
+
             </div>
 
 
@@ -136,7 +142,7 @@
                         <input type="hidden" id="price1" name="price1" value="20.00"
                                class="text-danger text-right border-0" readonly> 20.00€
                     </div>
-                    <button type="button" class="btn btn-primary btn-block" onclick="this.blur(); addProduct(1)"> Add to cart<i class="fa fa-shopping-cart" aria-hidden="true"></i></button>
+                    <button type="button" class="btn btn-dark btn-block" onclick="this.blur(); addProduct(1)"> Add to cart<i class="fa fa-shopping-cart" aria-hidden="true"></i></button>
                 </div>
                 <div class="col-12 col-sm-4">
                     <div class="d-flex justify-content-center"><img src="../1images/sweat.jpg" style="object-fit: contain; width: 100%; max-height: 300px;" /></div>
@@ -146,7 +152,7 @@
                         <input type="hidden" id="price2" name="price2" value="45.00"
                                class="text-danger text-right border-0" readonly> 45.00€
                     </div>
-                    <button type="button" class="btn btn-primary btn-block" onclick="this.blur(); addProduct(2)"> Add to cart<i class="fa fa-shopping-cart" aria-hidden="true"></i></button>
+                    <button type="button" class="btn btn-dark btn-block" onclick="this.blur(); addProduct(2)"> Add to cart<i class="fa fa-shopping-cart" aria-hidden="true"></i></button>
                 </div>
                 <div class="col-12 col-sm-4">
                     <div class="d-flex justify-content-center"><img src="../1images/tshirt.jpg" style="object-fit: contain; width: 100%; max-height: 300px;" /></div>
@@ -156,7 +162,7 @@
                         <input type="hidden" id="price3" name="price3" value="48.00"
                                class="text-danger text-right border-0" readonly> 48.00€
                     </div>
-                    <button type="button" class="btn btn-primary btn-block" onclick="this.blur(); addProduct(3)"> Add to cart<i class="fa fa-shopping-cart" aria-hidden="true"></i></button>
+                    <button type="button" class="btn btn-dark btn-block" onclick="this.blur(); addProduct(3)"> Add to cart<i class="fa fa-shopping-cart" aria-hidden="true"></i></button>
                 </div>
 
             </div>
@@ -170,7 +176,7 @@
                         <input type="hidden" id="price4" name="price4" value="82.00"
                                class="text-danger text-right border-0" readonly> 82.00€
                     </div>
-                    <button type="button" class="btn btn-primary btn-block" onclick="this.blur(); addProduct(4)"> Add to cart<i class="fa fa-shopping-cart" aria-hidden="true"></i></button>
+                    <button type="button" class="btn btn-dark btn-block" onclick="this.blur(); addProduct(4)"> Add to cart<i class="fa fa-shopping-cart" aria-hidden="true"></i></button>
                 </div>
                 <div class="col-12 col-sm-4">
                     <div class="d-flex justify-content-center"><img src="../1images/the-olympic-collection-beanie_ss4_p-13330457+u-1fb6yjgiyuk90n9ccqrk+v-10b1a63b868f4f21a49fb3d259d0a572.webp" style="object-fit: contain; width: 100%; max-height: 300px;" /></div>
@@ -180,7 +186,7 @@
                         <input type="hidden" id="price5" name="price5" value="30.00"
                                class="text-danger text-right border-0" readonly> 30.00€
                     </div>
-                    <button type="button" class="btn btn-primary btn-block" onclick="this.blur(); addProduct(5)"> Add to cart<i class="fa fa-shopping-cart" aria-hidden="true"></i></button>
+                    <button type="button" class="btn btn-dark btn-block" onclick="this.blur(); addProduct(5)"> Add to cart<i class="fa fa-shopping-cart" aria-hidden="true"></i></button>
                 </div>
                 <div class="col-12 col-sm-4">
                     <div class="d-flex justify-content-center"><img src="../1images/bakcpack.jpg" style="object-fit: contain; width: 100%; max-height: 300px;" /></div>
@@ -190,7 +196,7 @@
                         <input type="hidden" id="price6" name="price6" value="60.00"
                                class="text-danger text-right border-0" readonly> 60.00€
                     </div>
-                    <button type="button" class="btn btn-primary btn-block" onclick="this.blur(); addProduct(6)"> Add to cart<i class="fa fa-shopping-cart" aria-hidden="true"></i></button>
+                    <button type="button" class="btn btn-dark btn-block" onclick="this.blur(); addProduct(6)"> Add to cart<i class="fa fa-shopping-cart" aria-hidden="true"></i></button>
 
                 </div>
             </div>

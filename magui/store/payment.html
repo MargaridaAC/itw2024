@@ -129,32 +129,7 @@
                                     <input type="text" id="sname" name="surname">
                                 </div>
                             </div>
-                            <div class="col-12">
-                                <label>
-                                    <input type="checkbox" checked="checked" name="sameadr"> Shipping address is the same of the card
-                                </label>
-                            </div>
-                            <div class="col-12">
-                                <label for="adr"> Address</label>
-                                <input type="text" id="adr" name="address">
-                            </div>
-                            <div class="row">
-                                <div class="col-6">
-                                    <label for="dist">District</label>
-                                    <input type="text" id="dist" name="distrito">
-                                </div>
-                                <div class="col-6">
-                                    <label for="cid"> City</label>
-                                    <input type="text" id="cid" name="cidade">
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-6">
-                                    <label for="cod"> Zip code</label>
-                                    <input type="text" id="cod" name="código postal">
-                                </div>
-                                <div class="col-6"></div>
-                            </div>
+                            
                             <div class="row">
                                 <div class="col-6">
                                     <label for="tlm"> Phone Number</label>
@@ -166,41 +141,22 @@
                                 <label for="email">Email</label>
                                 <input type="text" id="email" name="email">
                             </div>
-                            <div class="col-12">
-                                <label for="coment">More Info</label>
-                                <input type="text" id="coment" name="comment" style="height: 150px;">
-                            </div>
+                            
                         </div>
 
                         <div class="col-12 col-sm-6">
-                            <h3>Payment</h3>
-                            <label for="fname">Select Payment Method</label>
-                            <div class="row" style="margin-bottom: 20px;">
-                                <div class="col-3">
-                                    <label>
-                                        <input type="radio" name="test" value="small" checked>
-                                        <img src="../1images/mastercardlogo.webp" alt="Option 1">
-                                    </label>
-                                </div>
-                                <div class="col-3">
-                                    <label>
-                                        <input type="radio" name="test" value="small" checked>
-                                        <img src="../1images/visalogo.webp" alt="Option 1">
-                                    </label>
-                                </div>
-                                <div class="col-3">
-                                    <label>
-                                        <input type="radio" name="test" value="small" checked>
-                                        <img src="../1images/mbwaylogo.png" alt="Option 1">
-                                    </label>
-                                </div>
-                                <div class="col-3">
-                                    <label>
-                                        <input type="radio" name="test" value="small" checked>
-                                        <img src="../1images/paypallogo.png" alt="Option 1">
-                                    </label>
+                            <h3>Select Payment Method</h3>
+                            <div class="row">
+                                <div class="col-12">
+                                    <select id="payment-method" name="payment-method" class="form-control">
+                                        <option value="mastercard">MasterCard</option>
+                                        <option value="visa">Visa</option>
+                                        <option value="mbway">MB Way</option>
+                                        <option value="paypal">PayPal</option>
+                                    </select>
                                 </div>
                             </div>
+
 
                             <div class="row">
                                 <div class="col-8">
@@ -218,34 +174,14 @@
                             </div>
                             <div class="row">
                                 <div class="col-8">
-                                    <div class="row">
-                                        <div class="col-6">
-                                            <label for="exp">Expire date</label>
-                                            <input type="text" id="exp" name="exp">
-                                        </div>
-                                        <div class="col-6">
-                                            <label for="cvv">CVV</label>
-                                            <input type="text" id="cvv" name="cvv">
-                                        </div>
-                                    </div>
+                              
                                 </div>
                                 <div class="col-4"></div>
                             </div>
                             <div class="col-12">
                                 <div class="container">
-                                    <h4>
-                                        Cart
-                                        <span class="price" style="color:black">
-                                            <i class="fa fa-shopping-cart"></i>
-                                            <b>0</b>
-                                        </span>
-                                    </h4>
-                                    <p>Product 1 <span class="price">0.00€</span></p>
-                                    <p>Product 2 <span class="price">0.00€</span></p>
-                                    <p>Product 3 <span class="price">0.00€</span></p>
-                                    <p>Product 4 <span class="price">0.00€</span></p>
                                     <hr>
-                                    <p>Total <span class="form-control" id="total" title="Preço total da compra">0.00</span></p>
+ 
                                 </div>
                             </div>
                             <a href="store.html" class="btn btn-primary col-12">Finish</a>
