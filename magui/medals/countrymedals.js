@@ -1,15 +1,12 @@
-﻿// ViewModel KnockOut
-var vm = function () {
+﻿var vm = function () {
     console.log('ViewModel initiated...');
     var self = this;
 
-    // Observáveis
     self.baseUri = ko.observable('http://192.168.160.58/Paris2024/api/CountryMedals');
     self.displayName = 'Paris2024 CountryMedals List';
     self.error = ko.observable('');
     self.countrymedal = ko.observableArray('');
 
-    // Função para ativar a página
     self.activate = function () {
         console.log('CALL: getMedals...');
         const composedUri = self.baseUri();
@@ -21,7 +18,6 @@ var vm = function () {
         });
     };
 
-    // Função AJAX
     function ajaxHelper(uri, method, data) {
         self.error('');
         return $.ajax({
@@ -38,7 +34,6 @@ var vm = function () {
         });
     }
 
-    // Funções para mostrar e esconder o loading
     function showLoading() {
         $("#myModal").modal('show', { backdrop: 'static', keyboard: false });
     }
@@ -49,13 +44,11 @@ var vm = function () {
         })
     }
 
-    // Função para obter parâmetros da URL
     function getUrlParameter(sParam) {
         const params = new URLSearchParams(window.location.search);
         return params.get(sParam);
     }
 
-    // Inicialização
     showLoading();
     self.activate();
     console.log("VM initialized!");
@@ -71,7 +64,6 @@ $(document).ready(function () {
 
 
 document.addEventListener("DOMContentLoaded", function () {
-    // Exemplo de dados (pode ser carregado dinamicamente via API)
     const countries = [
         { CountryName: "USA", GoldMedals: 39, SilverMedals: 41, BronzeMedals: 33 },
         { CountryName: "China", GoldMedals: 38, SilverMedals: 32, BronzeMedals: 18 },

@@ -18,7 +18,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-top: 20px; /* Espaço entre o carrossel e a previsão do tempo */
+            margin-top: 20px;
             padding: 20px;
         }
 
@@ -32,14 +32,13 @@
             font-family: 'Roboto', sans-serif;
             margin-right: 20px;
             margin-bottom: 30px;
-            /* Ajuste do margin-left para afastar da margem da página */
-            margin-left: 200px; /* Aumente ou diminua este valor conforme necessário */
+            margin-left: 200px; 
             width: 45%;
         }
 
 
         .text-box {
-            width: 45%; /* Dá 45% de largura para o texto */
+            width: 45%;
             font-family: 'Arial', sans-serif;
         }
 
@@ -67,7 +66,7 @@
         }
 
         .dark-mode .text-box p {
-            color: #fff; /* Texto branco no modo escuro */
+            color: #fff;
         }
 
         .countdown {
@@ -77,7 +76,7 @@
             background-color: #f8f8f8;
             padding: 20px;
             border-radius: 10px;
-            margin-bottom: 30px; /* Espaço entre a contagem e a previsão do tempo */
+            margin-bottom: 30px; 
             display: inline-block;
         }
 
@@ -303,7 +302,6 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         $(document).ready(function () {
-            // Fetch weather data for Los Angeles on page load
             $.ajax({
                 url: "https://api.openweathermap.org/data/2.5/weather",
                 data: {
@@ -318,14 +316,13 @@
                             (data.main.temp - 273.15).toFixed(2) + ' °C'
                         );
 
-                        // Add weather icon
                         var weatherIcon = 'https://openweathermap.org/img/wn/' + data.weather[0].icon + '.png';
                         $("#weatherIcon").attr("src", weatherIcon);
                     }
                 }
             });
 
-            // Set up countdown
+            // contador
             function updateCountdown() {
                 const targetDate = new Date("July 14, 2028 00:00:00").getTime();
                 const now = new Date().getTime();
@@ -345,12 +342,10 @@
                     days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
             }
 
-            setInterval(updateCountdown, 1000); // Update every second
+            setInterval(updateCountdown, 1000);
         });
     </script>
-    <!-- Inclua o jQuery antes do Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <!-- Inclua o JS do Bootstrap (ou seja, necessário para o funcionamento do carousel) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="contagem.js"></script>
 

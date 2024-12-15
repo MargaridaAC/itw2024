@@ -1,4 +1,5 @@
-﻿﻿<!doctype html>
+﻿﻿
+<!doctype html>
 <html lang="en">
 <head>
     <!-- Required meta tags -->
@@ -12,39 +13,39 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin="" />
     <link rel="stylesheet" href="competitions.js" />
-<style>
-    .bottom-bar {
-        bottom: 0;
-        left: 0;
-        background-color: black; /* Fundo preto */
-        color: white; /* Texto branco */
-        padding: 10px 0; /* Espaçamento interno */ /* Fixa no fundo da página */
-        bottom: 0;
-        width: 100%;
-        z-index: 1000;
-        padding: 30px;
-    }
-
-        .bottom-bar .link {
-            color: white; /* Links em branco */
-            text-decoration: none; /* Remove o sublinhado padrão */
+    <style>
+        .bottom-bar {
+            bottom: 0;
+            left: 0;
+            background-color: black;
+            color: white;
+            padding: 10px 0; 
+            bottom: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 30px;
         }
 
-            .bottom-bar .link:hover {
-                color: #f0f0f0; /* Cor mais clara no hover */
-                text-decoration: underline; /* Adiciona sublinhado no hover */
+            .bottom-bar .link {
+                color: white;
+                text-decoration: none; 
             }
 
-    body {
-        padding-top: 80px; /* Ajuste conforme a altura real da navbar */
-    }
+                .bottom-bar .link:hover {
+                    color: #f0f0f0;
+                    text-decoration: underline;
+                }
 
-    @media (max-width: 576px) { /* Para telas pequenas */
         body {
-            padding-top: 50px; /* Altura menor para dispositivos móveis */
+            padding-top: 80px; 
         }
-    }
-</style>
+
+        @media (max-width: 576px) { 
+            body {
+                padding-top: 50px;
+            }
+        }
+    </style>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
@@ -179,11 +180,9 @@
                     style="cursor: pointer;">
                     <td class="align-middle" data-bind="text: Tag"></td>
                     <td class="align-middle" data-bind="text: Name"></td>
-                    <!-- Verifica se BirthDate não é nulo -->
                     <td class="align-middle" data-bind="text: SportId"></td>
                     «
                     <td class="align-middle text-center">
-                        <!-- Optional eye icon -->
                         <a data-bind="attr: { href: 'competitions-detail.html?id=' + SportId }" class="text-decoration-none">
                             <i class="fa fa-eye text-primary" title="View Details"></i>
                         </a>
@@ -242,7 +241,7 @@
                         type: "GET",
                         url: api_url,
                         data: {
-                            q: request.term.toLowerCase()  // Usando o termo do autocomplete
+                            q: request.term.toLowerCase()  
                         },
                         success: function (data) {
                             if (!data.length) {
@@ -253,8 +252,8 @@
                             } else {
                                 const results = $.map(data.slice(0, 10), function (person) {
                                     return {
-                                        label: person.Name,  // Nome do atleta
-                                        value: person.Tag     // ID para redirecionamento
+                                        label: person.Name,  
+                                        value: person.Tag     
                                     };
                                 });
                                 response(results);

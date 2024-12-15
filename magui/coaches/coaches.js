@@ -6,7 +6,7 @@
     self.baseUri = ko.observable('http://192.168.160.58/Paris2024/API/coaches');
     self.displayName = 'Paris2024 Coaches List';
     self.error = ko.observable('');
-    self.coaches = ko.observableArray([]); // Correção aqui, de athletes para coaches
+    self.coaches = ko.observableArray([]);
     self.currentPage = ko.observable(1);
     self.pagesize = ko.observable(20);
     self.totalRecords = ko.observable(50);
@@ -27,24 +27,22 @@
         return Array.from({ length: size }, (_, i) => i + 1 + step);
     };
 
-    // Função para ativar a página
     self.activate = function (id) {
         console.log('CALL: getCoaches...');
         const composedUri = `${self.baseUri()}?page=${id}&pageSize=${self.pagesize()}`;
         showLoading();
         ajaxHelper(composedUri, 'GET').done(function (data) {
             hideLoading();
-            self.coaches(data.Coaches); // Populando lista de coaches
+            self.coaches(data.Coaches);
             self.currentPage(data.CurrentPage);
             self.hasNext(data.HasNext);
             self.hasPrevious(data.HasPrevious);
             self.pagesize(data.PageSize);
             self.totalPages(data.TotalPages);
-            self.totalRecords(data.TotalCoaches); // Corrigido de TotalAthletes para TotalCoaches
+            self.totalRecords(data.TotalCoaches);
         });
     };
 
-    // Função AJAX
     function ajaxHelper(uri, method, data) {
         self.error('');
         return $.ajax({
@@ -61,7 +59,6 @@
         });
     }
 
-    // Funções para mostrar e esconder o loading
     function showLoading() {
         $("#myModal").modal('show', { backdrop: 'static', keyboard: false });
     }
@@ -72,7 +69,6 @@
         })
     }
 
-    // Função para obter parâmetros da URL
     function getUrlParameter(sParam) {
         const params = new URLSearchParams(window.location.search);
         return params.get(sParam);
