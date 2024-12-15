@@ -1,4 +1,5 @@
-﻿var vm = function () {
+﻿// ViewModel KnockOut
+var vm = function () {
     console.log('ViewModel initiated...');
     //---Variáveis locais
     var self = this;
@@ -40,11 +41,51 @@
             list.push(i + step);
         return list;
     };
+    self.favorites = ko.observableArray(JSON.parse(localStorage.getItem('favorites')) || []);
+    self.filterOption = ko.observable('all');
 
+    self.filteredAthletes = ko.computed(function () {
+        if (self.filterOption() === 'favorites') {
+            return self.athletes().filter(function (athlete) {
+                return self.isFavorite(athlete);
+            });
+        }
+        return self.athletes();
+    });
+    self.isFavorite = function (athlete) {
+        return self.favorites().some(function (fav) {
+            return fav.Id === athlete.Id;
+        });
+    };
+    self.toggleFavorite = function (athlete) {
+        var favorites = self.favorites();
+        var athleteIndex = favorites.findIndex(function (fav) {
+            return fav.Id === athlete.Id;
+        });
+
+        if (athleteIndex === -1) {
+            favorites.push(athlete);
+        } else {
+            favorites.splice(athleteIndex, 1);
+        }
+
+        self.favorites(favorites);
+        localStorage.setItem('favorites', JSON.stringify(favorites));
+    };
     //--- Page Events
-    self.activate = function (id) {
+    self.activate = function (id, search, order) {
         console.log('CALL: getAthletes...');
-        var composedUri = self.baseUri() + "?page=" + id + "&pageSize=" + self.pagesize();
+        var composedUri = self.baseUri();
+
+        if (search == undefined) {
+            search = ""
+        }
+        if (order == undefined) {
+            order = 1
+        }
+        composedUri = self.baseUri() + "?page=" + id + "&pageSize=" + self.pagesize() + "&order=" + order + "&search=" + search;
+        console.log(composedUri);
+
         ajaxHelper(composedUri, 'GET').done(function (data) {
             console.log(data);
             hideLoading();
@@ -111,11 +152,13 @@
     //--- start ....
     showLoading();
     var pg = getUrlParameter('page');
+    var search = getUrlParameter('search');
+    var order = getUrlParameter('order');
     console.log(pg);
     if (pg == undefined)
-        self.activate(1);
+        self.activate(1, search, order);
     else {
-        self.activate(pg);
+        self.activate(pg, search, order);
     }
     console.log("VM initialized!");
 };
@@ -128,6 +171,7 @@ $(document).ready(function () {
 $(document).ajaxComplete(function (event, xhr, options) {
     $("#myModal").modal('hide');
 })
+
 
 
 //   Darkmode  // 
@@ -163,7 +207,22 @@ window.addEventListener('DOMContentLoaded', () => {
         navbar.classList.add('navbar-light-mode');
         themeToggle.innerHTML = '<i class="fa fa-moon-o" aria-hidden="true"></i>';
     }
+
+    // Aplica o estilo do modo escuro para a tabela ao carregar
+    updateTableStyle();
 });
+
+// Função para atualizar o estilo das tabelas dependendo do modo
+function updateTableStyle() {
+    const tables = document.querySelectorAll('table');
+    tables.forEach(table => {
+        if (body.classList.contains('dark-mode')) {
+            table.classList.add('tabela-dados');  // Certifica-se de que a tabela tenha a classe "tabela-dados" no modo escuro
+        } else {
+            table.classList.remove('tabela-dados');  // Remove a classe para voltar ao tema claro
+        }
+    });
+}
 
 // Salvar o tema ao alterná-lo
 themeToggle.addEventListener('click', () => {
@@ -179,50 +238,7 @@ themeToggle.addEventListener('click', () => {
         navbar.classList.add('navbar-light-mode');
         themeToggle.innerHTML = '<i class="fa fa-moon-o" aria-hidden="true"></i>';
     }
+
+    // Atualiza o estilo da tabela ao alternar o tema
+    updateTableStyle();
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-self.favorites = ko.observableArray(JSON.parse(localStorage.getItem('favorites')) || []);
-self.isFavorite = function (athlete) {
-    return self.favorites().some(function (fav) {
-        return fav.Id === athlete.Id;
-    });
-};
-self.toggleFavorite = function (athlete) {
-    var favorites = self.favorites();
-    var athleteIndex = favorites.findIndex(function (fav) {
-        return fav.Id === athlete.Id;
-    });
-
-    if (athleteIndex === -1) {
-        favorites.push(athlete); // Adiciona se não estiver na lista
-    } else {
-        favorites.splice(athleteIndex, 1); // Remove se já estiver na lista
-    }
-
-    self.favorites(favorites); // Atualiza o observableArray
-    localStorage.setItem('favorites', JSON.stringify(favorites)); // Salva no localStorage
-};
-self.filterOption = ko.observable('all');
-
-self.filteredAthletes = ko.computed(function () {
-    if (self.filterOption() === 'favorites') {
-        return self.athletes().filter(function (athlete) {
-            return self.isFavorite(athlete);
-        });
-    }
-    return self.athletes();
-});
-
