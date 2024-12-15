@@ -1,9 +1,9 @@
 ﻿<!DOCTYPE html>
-<html lang="pt">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quiz - Jogos Olímpicos de Paris 2024</title>
+    <title>Quiz - Paris 2024 Olympic Games</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap">
@@ -17,67 +17,92 @@
             margin: 0;
             padding: 0;
             display: flex;
-            justify-content: center;
-            align-items: flex-start; /* Alinhado no topo */
-            min-height: 100vh; /* Usa altura mínima ao invés de fixa */
-            overflow: auto; /* Permite rolagem */
+            justify-content: flex-start; /* Aligned items at the top */
+            flex-direction: column; /* Stacked elements */
+            min-height: 100vh; /* Minimum height */
+            overflow: auto; /* Allow scrolling */
         }
+
+        .bottom-bar {
+            background-color: black;
+            color: white;
+            padding: 10px 0;
+            bottom: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 0px;
+        }
+
+            .bottom-bar .link {
+                color: white;
+                text-decoration: none;
+            }
+
+                .bottom-bar .link:hover {
+                    color: #f0f0f0;
+                    text-decoration: underline;
+                }
+
 
         .quiz-container {
             background: #fff;
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            max-width: 400px;
-            width: 100%;
+            max-width: 500px; /* Ajuste o valor conforme o tamanho desejado */
+            width: 100%; /* Garante que o conteúdo não ultrapasse 100% da largura disponível */
+            margin: 0 auto; /* Isso vai centralizar o quiz */
+            padding-top: 150px; /* Mantém o espaço acima para não colar no topo */
         }
 
-            .quiz-container h1 {
-                text-align: center;
-                color: #333;
-                margin-bottom: 20px;
+       
+
+        .quiz-container h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .quiz-container .question {
+            margin-bottom: 15px;
+            color: #555;
+        }
+
+        .quiz-container input[type="radio"] {
+            margin-right: 10px;
+        }
+
+        .quiz-container button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+            .quiz-container button:hover {
+                background-color: #0056b3;
             }
 
-            .quiz-container .question {
-                margin-bottom: 15px;
-                color: #555;
-            }
-
-            .quiz-container input[type="radio"] {
-                margin-right: 10px;
-            }
-
-            .quiz-container button {
-                width: 100%;
-                padding: 10px;
-                background-color: #007BFF;
-                color: white;
-                border: none;
-                border-radius: 5px;
-                font-size: 16px;
-                cursor: pointer;
-                transition: background-color 0.3s;
-            }
-
-                .quiz-container button:hover {
-                    background-color: #0056b3;
-                }
-
-            .quiz-container .result {
-                margin-top: 20px;
-                padding: 10px;
-                background: #e9f6ff;
-                border: 1px solid #b6e3ff;
-                border-radius: 5px;
-                color: #007BFF;
-                display: none;
-            }
+        .quiz-container .result {
+            margin-top: 20px;
+            padding: 10px;
+            background: #e9f6ff;
+            border: 1px solid #b6e3ff;
+            border-radius: 5px;
+            color: #007BFF;
+            display: none;
+        }
     </style>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
         <div class="container">
-            <a class="navbar-brand" href="../homepage/index.html" tabindex="Olympics"><img src="../1images/Paris2024.png" height="60" /></a>
+            <a class="navbar-brand" href="../magui/homepage/index.html" tabindex="Olympics"><img src="../magui/1images/Paris2024.png" height="60" /></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -88,10 +113,10 @@
                             <i class="fa fa-calendar text-warning"></i> Events
                         </a>
                         <ul class="dropdown-menu dropdown-menu-dark">
-                            <li><a class="dropdown-item" href="../competitions/competitions.html">Competitions</a></li>
-                            <li><a class="dropdown-item" href="../sports/sports.html">Sports</a></li>
-                            <li><a class="dropdown-item" href="../venues/venues.html">Venues</a></li>
-                            <li><a class="dropdown-item" href="../torch-route/torch-route.html">Torch Route</a></li>
+                            <li><a class="dropdown-item" href="../magui/competitions/competitions.html">Competitions</a></li>
+                            <li><a class="dropdown-item" href="../magui/sports/sports.html">Sports</a></li>
+                            <li><a class="dropdown-item" href="../magui/venues/venues.html">Venues</a></li>
+                            <li><a class="dropdown-item" href="../magui/torch-route/torch-route.html">Torch Route</a></li>
                         </ul>
                     </li>
                     <li class="nav-item dropdown">
@@ -99,11 +124,11 @@
                             <i class="fa fa-users"></i> Participants
                         </a>
                         <ul class="dropdown-menu dropdown-menu-dark">
-                            <li><a class="dropdown-item" href="../athletes/athletes.html">Athletes</a></li>
-                            <li><a class="dropdown-item" href="../teams/teams.html">Teams</a></li>
-                            <li><a class="dropdown-item" href="../coaches/coaches.html">Coaches</a></li>
-                            <li><a class="dropdown-item" href="../officials/technical-officials.html">Technical Officials</a></li>
-                            <li><a class="dropdown-item" href="../nocs/nocs.html">NOCs</a></li>
+                            <li><a class="dropdown-item" href="../magui/athletes/athletes.html">Athletes</a></li>
+                            <li><a class="dropdown-item" href="../magui/teams/teams.html">Teams</a></li>
+                            <li><a class="dropdown-item" href="../magui/coaches/coaches.html">Coaches</a></li>
+                            <li><a class="dropdown-item" href="../magui/officials/technical-officials.html">Technical Officials</a></li>
+                            <li><a class="dropdown-item" href="../magui/nocs/nocs.html">NOCs</a></li>
                         </ul>
                     </li>
                     <li class="nav-item dropdown">
@@ -111,8 +136,8 @@
                             <i class="fa fa-trophy text-danger"></i> Medals
                         </a>
                         <ul class="dropdown-menu dropdown-menu-dark">
-                            <li><a class="dropdown-item" href="../medals/games.html">Country Medals</a></li>
-                            <li><a class="dropdown-item" href="../medals/medals.html">Medals</a></li>
+                            <li><a class="dropdown-item" href="../magui/medals/games.html">Country Medals</a></li>
+                            <li><a class="dropdown-item" href="../magui/medals/medals.html">Medals</a></li>
                         </ul>
                     </li>
                     <li class="nav-item dropdown">
@@ -120,12 +145,12 @@
                             <i class="fa fa-soccer-ball-o text-primary"></i> Modalities
                         </a>
                         <ul class="dropdown-menu dropdown-menu-dark">
-                            <li><a class="dropdown-item" href="../modalities/basketball.html">Basketball</a></li>
-                            <li><a class="dropdown-item" href="./modalities/canoesprints.html">Canoe Sprints</a></li>
-                            <li><a class="dropdown-item" href="../modalities/cyclingtracks.html">Cycling Tracks</a></li>
-                            <li><a class="dropdown-item" href="../modalities/football.html">Football</a></li>
-                            <li><a class="dropdown-item" href="../modalities/swimming.html">Swimming</a></li>
-                            <li><a class="dropdown-item" href="../modalities/athletics.html">Athletics</a></li>
+                            <li><a class="dropdown-item" href="../magui/modalities/basketball.html">Basketball</a></li>
+                            <li><a class="dropdown-item" href="./magui/modalities/canoesprints.html">Canoe Sprints</a></li>
+                            <li><a class="dropdown-item" href="../magui/modalities/cyclingtracks.html">Cycling Tracks</a></li>
+                            <li><a class="dropdown-item" href="../magui/modalities/football.html">Football</a></li>
+                            <li><a class="dropdown-item" href="../magui/modalities/swimming.html">Swimming</a></li>
+                            <li><a class="dropdown-item" href="../magui/modalities/athletics.html">Athletics</a></li>
                         </ul>
                     </li>
                     <li class="nav-item dropdown">
@@ -133,11 +158,11 @@
                             <i class="fa fa-chevron-circle-down" "></i> More
                         </a>
                         <ul class="dropdown-menu dropdown-menu-dark">
-                            <li><a class="dropdown-item" href="../store/store.html">Store</a></li>
-                            <li><a class="dropdown-item" href="../formulario.html">Quizz</a></li>
+                            <li><a class="dropdown-item" href="../magui/store/store.html">Store</a></li>
+                            <li><a class="dropdown-item" href="../magui/formulario.html">Quiz</a></li>
                         </ul>
                     </li>
-                    <li class="nav-item"><a class="nav-link " aria-current="page" href="../countdown/contagem.html"><i class="fa fa-hourglass-half" aria-hidden="true"></i> LA2028</a></li>
+                    <li class="nav-item"><a class="nav-link " aria-current="page" href="../magui/countdown/contagem.html"><i class="fa fa-hourglass-half" aria-hidden="true"></i> LA2028</a></li>
                 </ul>
                 <ul class="navbar-nav mb-2 mb-lg-0 right-side">
                     <li class="nav-item"> <a class="nav-link" href="https://olympics.com/pt/paris-2024" target="_blank"> <i class="fa fa-external-link text-primary"></i> Official Site</a></li>
@@ -154,69 +179,69 @@
         </div>
     </nav>
     <div class="quiz-container">
-        <h1>Quiz - Paris 2024</h1>
+        <h1>Quiz</h1>
         <form id="quizForm">
             <div class="question">
-                <p>1. Em que ano os Jogos Olímpicos modernos começaram?</p>
+                <p>1. In what year did the modern Olympic Games begin?</p>
                 <label><input type="radio" name="q1" value="1896"> 1896</label><br>
                 <label><input type="radio" name="q1" value="1900"> 1900</label><br>
                 <label><input type="radio" name="q1" value="1924"> 1924</label>
             </div>
             <div class="question">
-                <p>2. Qual é o símbolo dos Jogos Olímpicos?</p>
-                <label><input type="radio" name="q2" value="cinco anéis"> Cinco anéis</label><br>
-                <label><input type="radio" name="q2" value="tocha olímpica"> Tocha olímpica</label><br>
-                <label><input type="radio" name="q2" value="medalhas"> Medalhas</label>
+                <p>2. What is the symbol of the Olympic Games?</p>
+                <label><input type="radio" name="q2" value="five rings"> Five rings</label><br>
+                <label><input type="radio" name="q2" value="Olympic torch"> Olympic torch</label><br>
+                <label><input type="radio" name="q2" value="medals"> Medals</label>
             </div>
             <div class="question">
-                <p>3. Onde serão realizados os Jogos Olímpicos de Paris 2024?</p>
-                <label><input type="radio" name="q3" value="França"> França</label><br>
-                <label><input type="radio" name="q3" value="Espanha"> Espanha</label><br>
-                <label><input type="radio" name="q3" value="Itália"> Itália</label>
+                <p>3. Where will the Paris 2024 Olympic Games be held?</p>
+                <label><input type="radio" name="q3" value="France"> France</label><br>
+                <label><input type="radio" name="q3" value="Spain"> Spain</label><br>
+                <label><input type="radio" name="q3" value="Italy"> Italy</label>
             </div>
             <div class="question">
-                <p>4. Qual é a novidade nos esportes olímpicos de 2024?</p>
+                <p>4. What is the new sport for the 2024 Olympics?</p>
                 <label><input type="radio" name="q4" value="Breakdance"> Breakdance</label><br>
-                <label><input type="radio" name="q4" value="Karatê"> Karatê</label><br>
-                <label><input type="radio" name="q4" value="Polo aquático"> Polo aquático</label>
+                <label><input type="radio" name="q4" value="Karate"> Karate</label><br>
+                <label><input type="radio" name="q4" value="Baseball"> Baseball</label>
             </div>
             <div class="question">
-                <p>5. Quantos países participam dos Jogos Olímpicos?</p>
-                <label><input type="radio" name="q5" value="206"> 206</label><br>
-                <label><input type="radio" name="q5" value="150"> 150</label><br>
-                <label><input type="radio" name="q5" value="195"> 195</label>
+                <p>5. Who is the official mascot of the Paris 2024 Olympic Games?</p>
+                <label><input type="radio" name="q5" value="Phryge"> Phryge</label><br>
+                <label><input type="radio" name="q5" value="Rings"> The Olympic Rings</label><br>
+                <label><input type="radio" name="q5" value="Flame"> The Flame</label>
             </div>
             <div class="question">
-                <p>6. Qual é o lema olímpico atualizado?</p>
-                <label><input type="radio" name="q6" value="Mais rápido, mais alto, mais forte - juntos"> Mais rápido, mais alto, mais forte - juntos</label><br>
-                <label><input type="radio" name="q6" value="Unidade e força"> Unidade e força</label><br>
-                <label><input type="radio" name="q6" value="Juntos somos melhores"> Juntos somos melhores</label>
+                <p>6. What iconic landmark will host the Paris 2024 marathon finish line?</p>
+                <label><input type="radio" name="q6" value="Eiffel Tower"> Eiffel Tower</label><br>
+                <label><input type="radio" name="q6" value="Louvre"> Louvre Museum</label><br>
+                <label><input type="radio" name="q6" value="Notre Dame"> Notre Dame</label>
             </div>
             <div class="question">
-                <p>7. Quem é a mascote oficial de Paris 2024?</p>
-                <label><input type="radio" name="q7" value="O Phryge"> O Phryge</label><br>
-                <label><input type="radio" name="q7" value="Vinicius"> Vinicius</label><br>
-                <label><input type="radio" name="q7" value="Miraitowa"> Miraitowa</label>
+                <p>7. In which month will the Paris 2024 Olympics officially begin?</p>
+                <label><input type="radio" name="q7" value="July"> July</label><br>
+                <label><input type="radio" name="q7" value="August"> August</label><br>
+                <label><input type="radio" name="q7" value="June"> June</label>
             </div>
             <div class="question">
-                <p>8. Quantas medalhas de ouro estão em disputa em 2024?</p>
-                <label><input type="radio" name="q8" value="329"> 329</label><br>
-                <label><input type="radio" name="q8" value="339"> 339</label><br>
-                <label><input type="radio" name="q8" value="350"> 350</label>
+                <p>8. Which country is the most successful in Olympic history?</p>
+                <label><input type="radio" name="q8" value="USA"> USA</label><br>
+                <label><input type="radio" name="q8" value="Russia"> Russia</label><br>
+                <label><input type="radio" name="q8" value="Germany"> Germany</label>
             </div>
             <div class="question">
-                <p>9. Qual cidade sediou os Jogos Olímpicos antes de Paris 2024?</p>
-                <label><input type="radio" name="q9" value="Tóquio"> Tóquio</label><br>
-                <label><input type="radio" name="q9" value="Rio de Janeiro"> Rio de Janeiro</label><br>
-                <label><input type="radio" name="q9" value="Londres"> Londres</label>
+                <p>9. What was the venue of the 2020 Summer Olympics?</p>
+                <label><input type="radio" name="q9" value="Tokyo"> Tokyo</label><br>
+                <label><input type="radio" name="q9" value="London"> London</label><br>
+                <label><input type="radio" name="q9" value="Beijing"> Beijing</label>
             </div>
             <div class="question">
-                <p>10. Qual será a data de abertura dos Jogos Olímpicos de Paris 2024?</p>
-                <label><input type="radio" name="q10" value="26 de julho"> 26 de julho</label><br>
-                <label><input type="radio" name="q10" value="1 de agosto"> 1 de agosto</label><br>
-                <label><input type="radio" name="q10" value="15 de julho"> 15 de julho</label>
+                <p>10. Who won the most gold medals in the 2020 Olympics?</p>
+                <label><input type="radio" name="q10" value="Caeleb Dressel"> Caeleb Dressel</label><br>
+                <label><input type="radio" name="q10" value="Simone Biles"> Simone Biles</label><br>
+                <label><input type="radio" name="q10" value="Michael Phelps"> Michael Phelps</label>
             </div>
-            <button type="submit">Enviar Respostas</button>
+            <button type="submit">Submit</button>
         </form>
         <div class="result" id="result"></div>
     </div>
@@ -236,43 +261,43 @@
             </div>
         </div>
     </div>
-
     <script>
-        document.getElementById('quizForm').addEventListener('submit', function (event) {
+        const quizForm = document.getElementById('quizForm');
+        const result = document.getElementById('result');
+
+        quizForm.addEventListener('submit', function (event) {
             event.preventDefault();
 
-            const answers = {
-                q1: '1896',
-                q2: 'cinco anéis',
-                q3: 'França',
-                q4: 'Breakdance',
-                q5: '206',
-                q6: 'Mais rápido, mais alto, mais forte - juntos',
-                q7: 'O Phryge',
-                q8: '329',
-                q9: 'Tóquio',
-                q10: '26 de julho'
-            };
-
             let score = 0;
-            const formData = new FormData(event.target);
 
-            for (const [question, answer] of Object.entries(answers)) {
-                if (formData.get(question) === answer) {
-                    score++;
-                }
-            }
+            const q1 = document.querySelector('input[name="q1"]:checked');
+            const q2 = document.querySelector('input[name="q2"]:checked');
+            const q3 = document.querySelector('input[name="q3"]:checked');
+            const q4 = document.querySelector('input[name="q4"]:checked');
+            const q5 = document.querySelector('input[name="q5"]:checked');
+            const q6 = document.querySelector('input[name="q6"]:checked');
+            const q7 = document.querySelector('input[name="q7"]:checked');
+            const q8 = document.querySelector('input[name="q8"]:checked');
+            const q9 = document.querySelector('input[name="q9"]:checked');
+            const q10 = document.querySelector('input[name="q10"]:checked');
 
-            const resultDiv = document.getElementById('result');
-            resultDiv.textContent = `Você acertou ${score} de 10 questões.`;
-            resultDiv.style.display = 'block';
+            if (q1 && q1.value === '1896') score++;
+            if (q2 && q2.value === 'five rings') score++;
+            if (q3 && q3.value === 'France') score++;
+            if (q4 && q4.value === 'Breakdance') score++;
+            if (q5 && q5.value === 'Phryge') score++;
+            if (q6 && q6.value === 'Eiffel Tower') score++;
+            if (q7 && q7.value === 'July') score++;
+            if (q8 && q8.value === 'USA') score++;
+            if (q9 && q9.value === 'Tokyo') score++;
+            if (q10 && q10.value === 'Caeleb Dressel') score++;
+
+            result.textContent = `You scored ${score} out of 10.`;
+            result.style.display = 'block';
         });
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.3/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.5.1/knockout-latest.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
-            integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
-            crossorigin=""></script>
 </body>
 </html>
