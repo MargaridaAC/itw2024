@@ -249,3 +249,7 @@ body.dark-mode .tabela-dados {
     color: white; /* Texto branco */
     background-color: #333; /* Fundo escuro */
 }
+
+.text-danger {
+    color: red !important;
+}
