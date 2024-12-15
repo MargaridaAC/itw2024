@@ -1,97 +1,87 @@
 ﻿
-const translations = {
-    en: {
-        name: "Name",
-        sport_id: "Sport Id",
-    },
-    pt: {
-        name: "Nome",
-        sport_id: "Id do desporto",
-    }
-};
+const apiURL = "http://192.168.160.58/Paris2024/api/Basketballs/Events"; // Insira aqui o link da sua API
 
-// ViewModel KnockOut
-var vm = function () {
-    console.log('ViewModel initiated...');
-    var self = this;
+$(document).ready(function () {
+    const $dropdown = $('#eventDropdown');
+    const $tableBody = $('#stagesTableBody');
+    const $selectedEventName = $('#selectedEventName');
 
-    // Observáveis
-    self.baseUri = ko.observable('http://192.168.160.58/Paris2024/api/Basketballs/Events');
-    self.displayName = 'Paris2024 Basketballs List';
-    self.currentLanguage = ko.observable('en');
-    self.error = ko.observable('');
-    self.basketballs = ko.observableArray([]);
-    self.pyramidData = ko.observableArray([]);
-
-
-    // Trocar linguagem
-    self.getTranslation = function (key) {
-        const lang = self.currentLanguage();
-        return translations[lang][key] || key;
-    };
-
-    self.changeLanguage = function (lang) {
-        if (translations[lang]) {
-            self.currentLanguage(lang);
-        }
-    };
-
-    // Ativar e carregar dados
-    self.activate = function () {
-        console.log('CALL: getEvents...');
-        const composedUri = `${self.baseUri()}`;
-        ajaxHelper(composedUri, 'GET').done(function (data) {
-            hideLoading();
-            self.basketballs(data[0].Stages);
-
-        });
-    };
-
-    // AJAX Helper
-    function ajaxHelper(uri, method, data) {
-        self.error('');
-        return $.ajax({
-            type: method,
-            url: uri,
-            dataType: 'json',
-            contentType: 'application/json',
-            data: data ? JSON.stringify(data) : null,
-            error: function (jqXHR, textStatus, errorThrown) {
-                console.error(`AJAX Call [${uri}] Fail:`, errorThrown);
-                hideLoading();
-                self.error(errorThrown);
+    // Carregar eventos da API
+    function loadEvents() {
+        $.ajax({
+            url: apiURL,
+            method: "GET",
+            dataType: "json",
+            success: function (data) {
+                populateDropdown(data);
+                if (data.length > 0) {
+                    // Carregar os stages do primeiro evento por padrão
+                    $dropdown.val(data[0].EventId);
+                    loadStages(data[0].EventId, data);
+                }
+            },
+            error: function () {
+                alert("Erro ao carregar os dados da API.");
+                $dropdown.html('<option value="">Failed to load events</option>');
             }
         });
     }
 
-
-    // Funções para mostrar e esconder o loading
-    function showLoading() {
-        $("#myModal").modal('show', { backdrop: 'static', keyboard: false });
+    // Preencher o dropdown com eventos
+    function populateDropdown(events) {
+        $dropdown.empty(); // Limpar dropdown
+        events.forEach(event => {
+            $dropdown.append(`<option value="${event.EventId}">${event.EventName}</option>`);
+        });
     }
 
-    function hideLoading() {
-        $('#myModal').on('shown.bs.modal', function (e) {
-            $("#myModal").modal('hide');
-        })
+    // Carregar estágios na tabela
+    function loadStages(eventId, allEvents) {
+        $tableBody.empty(); // Limpar tabela
+
+        const selectedEvent = allEvents.find(event => event.EventId === eventId);
+        if (!selectedEvent) return;
+
+        $selectedEventName.text(selectedEvent.EventName);
+
+        selectedEvent.Stages.forEach(stage => {
+            const row = `
+                        <tr>
+                            <td class="align-middle">${stage.StageId}</td>
+                            <td class="align-middle">${stage.StageName}</td>
+                            <td class="text-end">
+                                <a class="btn btn-light btn-xs" href="basketballs-details.html?EventId=${eventId}&StageId=${stage.StageId}">
+                                    <i class="fa fa-eye text-primary" title="View Details"></i>
+                                </a>
+
+                                <button class="btn btn-light btn-xs">
+                                    <i class="fa fa-heart-o" id="favourite_${stage.StageId}" title="Add to favorites"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    `;
+            $tableBody.append(row);
+        });
     }
 
-    // Função para obter parâmetros da URL
-    function getUrlParameter(sParam) {
-        const params = new URLSearchParams(window.location.search);
-        return params.get(sParam);
-    }
+    // Evento para mudança de dropdown
+    $dropdown.on('change', function () {
+        const selectedEventId = $(this).val();
+        $.ajax({
+            url: apiURL,
+            method: "GET",
+            dataType: "json",
+            success: function (data) {
+                loadStages(selectedEventId, data);
+            },
+            error: function () {
+                alert("Erro ao carregar os stages.");
+            }
+        });
+    });
 
-    // Inicialização
-    showLoading();
-    const pg = getUrlParameter('page') || 1;
-    self.activate(pg);
-    console.log("VM initialized!");
-};
-
-$(document).ready(function () {
-    console.log("Document ready!");
-    ko.applyBindings(new vm());
+    // Inicializar
+    loadEvents();
 });
 
 

@@ -94,28 +94,27 @@
     </nav>
     <!-- Working Area -->
     <div class="container mt-4">
-        <h2 class="col-6" data-bind="text:displayName"></h2>
+        <!-- Dropdown to select Event -->
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h2 id="selectedEventName">Select Event</h2>
+            <div>
+                <select class="form-select" id="eventDropdown">
+                    <option value="">Loading events...</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Table to display Stages -->
         <table class="table table-sm small">
             <thead class="table-secondary">
                 <tr>
                     <th scope="col">Tag</th>
-                    <th scope="col" data-bind="text: getTranslation('name')"></th>
+                    <th scope="col">Stage Name</th>
                     <th scope="col" class="text-right"></th>
                 </tr>
             </thead>
-            <tbody data-bind="foreach: basketballs">
-                <tr>
-                    <td class="align-middle" data-bind="text: StageId"></td>
-                    <td class="align-middle" data-bind="text: StageName"></td>
-                    <td class="text-end">
-                        <a class="btn btn-default btn-light btn-xs" data-bind="attr: { href: 'basketballs-details.html?EventId=' + StageId.split('-')[0] + '&StageId=' + StageId }">
-                            <i class="fa fa-eye text-primary" title="View Details"></i>
-                        </a>
-                        <button class="btn btn-default btn-xs">
-                            <i class="fa fa-heart-o" data-bind="attr: { 'id': 'favourite_' + StageId }" title="Add to favorites"></i>
-                        </button>
-                    </td>
-                </tr>
+            <tbody id="stagesTableBody">
+                <!-- Rows will be dynamically generated -->
             </tbody>
         </table>
     </div>
