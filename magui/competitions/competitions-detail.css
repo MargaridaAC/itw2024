@@ -3,6 +3,7 @@
     padding: 0;
     min-height: 100%;
     font-family: 'Open Sans', sans-serif;
+    padding-top:30px;
 }
 
 
@@ -128,6 +129,7 @@ nav ul li {
     width: 100%;
     z-index: 1000;
     padding: 0px;
+    position: fixed;
 }
 
     .bottom-bar .link {
