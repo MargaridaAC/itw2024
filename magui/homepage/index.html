@@ -170,46 +170,82 @@
             <span class="visually-hidden">Next</span>
         </button>
     </div>
-    <div id="videoContainer" class="container mt-3 text-center borber border-top primary" >
+    <div id="videoContainer" class="container mt-3 text-center borber border-top primary">
         <h1 class="mt-2">Best Of Paris 2024</h1>
         <iframe width="1000" height="600" src="https://www.youtube.com/embed/vy6FivZHRjQ?autoplay=1&mute=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div>
 
-    <div id="videoContainer" class="container mt-3 text-center borber border-top primary">
-        <h1 class="mt-2">The Olympic Games</h1>
-        <p>
-            The Olympic Games are a prestigious international sporting event with ancient origins. They were first held in Olympia, Greece, in 776 BCE as a religious festival honoring Zeus. The ancient games featured events like running, wrestling, and chariot racing, attracting athletes from Greek city-states. These games continued for nearly 12 centuries until their decline under Roman rule in 393 CE.<p/><p>
+    <div id="videoContainer" class="container mt-3 borber border-top primary">
+        <!-- Título alinhado à esquerda -->
+        <h1 class="mt-2" style="text-align: left;">The Olympic Games</h1>
 
-            The modern Olympic Games were revived by Frenchman Pierre de Coubertin in 1896, inspired by the ideals of ancient Greece. The first modern Olympics took place in Athens, featuring 14 nations and 241 athletes competing in 43 events. Since then, the Games have grown into a global phenomenon, including both the Summer and Winter Olympics, with participation from nearly every nation.
-
-            </p><p>Key moments include the introduction of the Olympic flag and motto, the inclusion of women athletes (1900), and milestones such as the Berlin Games (1936), the first televised Olympics (1960), and the Munich tragedy (1972). Today, the Games symbolize unity and peace, showcasing athletic excellence and fostering cultural exchange.
-        </p>
+        <div class="row">
+            <!-- Coluna para o texto -->
+            <div class="col-md-8 text-start">
+                <p>
+                    The Olympic Games are a prestigious international sporting event with ancient origins. They were first held in Olympia, Greece, in 776 BCE as a religious festival honoring Zeus. The ancient games featured events like running, wrestling, and chariot racing, attracting athletes from Greek city-states. These games continued for nearly 12 centuries until their decline under Roman rule in 393 CE.
+                </p>
+                <p>
+                    The modern Olympic Games were revived by Frenchman Pierre de Coubertin in 1896, inspired by the ideals of ancient Greece. The first modern Olympics took place in Athens, featuring 14 nations and 241 athletes competing in 43 events. Since then, the Games have grown into a global phenomenon, including both the Summer and Winter Olympics, with participation from nearly every nation.
+                </p>
+                <p>
+                    Key moments include the introduction of the Olympic flag and motto, the inclusion of women athletes (1900), and milestones such as the Berlin Games (1936), the first televised Olympics (1960), and the Munich tragedy (1972). Today, the Games symbolize unity and peace, showcasing athletic excellence and fostering cultural exchange.
+                </p>
+            </div>
+            <!-- Coluna para a imagem com o tooltip -->
+            <div class="col-md-4 text-end" style="margin-top: -50px;">
+                <!-- Link para outro HTML -->
+                <a href="../store/store.html">
+                    <img src="../1images/aaaaaaaaa.png" alt="Imagem sobre os Jogos Olímpicos"
+                         style="max-width: 100%; height: auto;"
+                         data-bs-toggle="tooltip" data-bs-placement="top" title="Click to go to the olympic store!" />
+                </a>
+            </div>
+        </div>
     </div>
 
-        <!-- End of Working Area -->
-        <div class="bottom-bar">
-            <div class="container small">
-                <div class="row align-items-center">
-                    <div class="col text-start">
-                        <a href="https://www.ua.pt/pt/uc/12289" class="link">&copy; ITW - 2024/25</a>
-                    </div>
-                    <div class="col text-center">
-                        Made by Margarida Cardoso and Tiago Costa
-                    </div>
-                    <div class="col text-end">
-                        <a href="https://www.ua.pt" class="link"><img src="../1images/ua.png" style="height:125px;" alt="Universidade de Aveiro" /></a>
+    <!-- Estilos CSS para garantir que a imagem tenha o tooltip -->
+    <style>
+        /* Você pode adicionar estilos personalizados aqui, mas não são necessários para o funcionamento do tooltip */
+    </style>
 
-                    </div>
+    <!-- Scripts para habilitar o Tooltip -->
+    <script>
+        // Inicializa todos os tooltips na página
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl)
+        })
+    </script>
+
+
+
+
+
+    <!-- End of Working Area -->
+    <div class="bottom-bar">
+        <div class="container small">
+            <div class="row align-items-center">
+                <div class="col text-start">
+                    <a href="https://www.ua.pt/pt/uc/12289" class="link">&copy; ITW - 2024/25</a>
+                </div>
+                <div class="col text-center">
+                    Made by Margarida Cardoso and Tiago Costa
+                </div>
+                <div class="col text-end">
+                    <a href="https://www.ua.pt" class="link"><img src="../1images/ua.png" style="height:125px;" alt="Universidade de Aveiro" /></a>
+
                 </div>
             </div>
         </div>
+    </div>
 
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.3/js/bootstrap.bundle.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.5.1/knockout-latest.min.js"></script>
-        <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
-        <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
-                integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
-                crossorigin=""></script>
-        <script src="myScript.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.3/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.5.1/knockout-latest.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
+            integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
+            crossorigin=""></script>
+    <script src="myScript.js"></script>
 </body>
 </html>
