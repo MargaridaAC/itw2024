@@ -11,7 +11,7 @@ fetch(apiUrl)
         const sportsListContainer = document.getElementById('sports-list');
 
         data.forEach(sport => {
-            const { Name, Pictogram, Sport_url, Athletes, Coaches, Competitions, Teams, Technical_officials, Venues } = sport;
+            const { Id, Name, Pictogram, Sport_url, Athletes, Coaches, Competitions, Teams, Technical_officials, Venues } = sport;
 
             // Criar o item de desporto
             const sportItem = document.createElement('div');
@@ -27,16 +27,18 @@ fetch(apiUrl)
             sportInfo.classList.add('sport-info');
 
             // Adicionar as informações
-            sportInfo.innerHTML = `
-                            <strong>Name:</strong> ${Name}<br>
-                            <strong>More Info:</strong> <a href="${Sport_url}" target="_blank">Official site</a><br>
-                            <strong>Athletes:</strong> ${Athletes}<br>
-                            <strong>Coaches:</strong> ${Coaches}<br>
-                            <strong>Competitions:</strong> ${Competitions}<br>
-                            <strong>Teams:</strong> ${Teams}<br>
-                            <strong>Technical Officials:</strong> ${Technical_officials}<br>
-                            <strong>Venues:</strong> ${Venues}
-                        `;
+                        sportInfo.innerHTML = `
+                <strong>Name:</strong> ${Name}<br>
+                <strong>More Info:</strong> <a href="sportsinfo.html?id=${Id}">Official site</a><br>
+                <strong>Athletes:</strong> ${Athletes}<br>
+                <strong>Coaches:</strong> ${Coaches}<br>
+                <strong>Competitions:</strong> ${Competitions}<br>
+                <strong>Teams:</strong> ${Teams}<br>
+                <strong>Technical Officials:</strong> ${Technical_officials}<br>
+                <strong>Venues:</strong> ${Venues}
+            `;
+
+
 
             // Adicionar a imagem e as informações ao item de desporto
             sportItem.appendChild(sportImage);
