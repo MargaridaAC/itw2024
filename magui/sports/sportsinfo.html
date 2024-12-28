@@ -18,6 +18,7 @@
             margin: 0;
             padding: 0;
             color: #333;
+            padding-top: 60px;
         }
 
         .header {
@@ -39,6 +40,14 @@
         .sport-info {
             text-align: center;
         }
+
+        img.sport-pictogram {
+            width: 200px;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
         h1, h2 {
             color: #333;
             margin-bottom: 10px;
@@ -89,13 +98,14 @@
             }
 
 
+
     </style>
 </head>
 <body>
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
         <div class="container">
-            <a class="navbar-brand" href="../homepage/index.html" tabindex="Olympics"><img src="../1images/Paris2024.png" height="60"/></a>
+            <a class="navbar-brand" href="../homepage/index.html" tabindex="Olympics"><img src="../1images/Paris2024.png" height="60" /></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -217,9 +227,9 @@
                 const sportInfo = document.createElement('div');
                 sportInfo.classList.add('sport-info');
                 sportInfo.innerHTML = `
-                            <h2>${Name}</h2>
-                            <p><strong>Official Site:</strong> <a href="${Sport_url}" target="_blank">${Sport_url}</a></p>
-                        `;
+                                <h2>${Name}</h2>
+                                <p><strong>Official Site:</strong> <a href="${Sport_url}" target="_blank">${Sport_url}</a></p>
+                            `;
 
                 const athletesList = document.createElement('div');
                 athletesList.classList.add('list');
@@ -296,6 +306,11 @@
                 alert('Não foi possível carregar os detalhes do esporte.');
             });
     </script>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.3/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.5.1/knockout-latest.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
+            integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
+            crossorigin=""></script>
 </body>
 </html>
