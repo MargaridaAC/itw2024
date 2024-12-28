@@ -222,7 +222,7 @@
 
 
 
-    <!-- End of Working Area -->
+    <!-- Footer -->
     <div class="bottom-bar">
         <div class="container small">
             <div class="row align-items-center">
@@ -230,15 +230,43 @@
                     <a href="https://www.ua.pt/pt/uc/12289" class="link">&copy; ITW - 2024/25</a>
                 </div>
                 <div class="col text-center">
-                    Made by Margarida Cardoso and Tiago Costa
+                    <a href="#" id="openOffcanvas" class="link">Made by Margarida Cardoso and Tiago Costa</a>
                 </div>
                 <div class="col text-end">
                     <a href="https://www.ua.pt" class="link"><img src="../1images/ua.png" style="height:125px;" alt="Universidade de Aveiro" /></a>
-
                 </div>
             </div>
         </div>
     </div>
+
+    <!-- Offcanvas (Será mostrado quando clicar no link) -->
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+        <div class="offcanvas-header">
+            <h5 id="offcanvasRightLabel">About Us</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Fechar"></button>
+        </div>
+        <div class="offcanvas-body">
+            <p>
+                Margarida Cardoso and Tiago Costa are responsible for this project.
+
+            <p>If you would like to know more about this website, please contact us via email.</p>
+            <p>Margarida Cardoso: cardoso.margarida@ua.pt</p> 
+            <p>Tiago Costa: tiagofccosta@ua.pt</p>
+           
+        </div>
+    </div>
+
+    <!-- Script do Bootstrap 5 -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // Abrir o offcanvas ao clicar no link
+        document.getElementById('openOffcanvas').addEventListener('click', function () {
+            var offcanvas = new bootstrap.Offcanvas(document.getElementById('offcanvasRight'));
+            offcanvas.show();
+        });
+    </script>
+    <!-- Fim do Footer -->
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.3/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.5.1/knockout-latest.min.js"></script>
