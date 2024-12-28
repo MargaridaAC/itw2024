@@ -8,29 +8,49 @@ var vm = function () {
     self.displayName = 'Paris2024 NOCs List';
     self.error = ko.observable('');
     self.comites = ko.observableArray([]);
-    self.currentPage = ko.observable(1);
+    self.currentPage = ko.observable(20);
     self.pagesize = ko.observable(20);
     self.totalRecords = ko.observable(50);
     self.hasPrevious = ko.observable(false);
     self.hasNext = ko.observable(false);
     self.totalPages = ko.observable(0);
 
-    // Computed observables
-    self.previousPage = ko.computed(() => Math.max(1, self.currentPage() - 1));
-    self.nextPage = ko.computed(() => Math.min(self.totalPages(), self.currentPage() + 1));
+    // Computed observables baseados no primeiro código
+    self.previousPage = ko.computed(function () {
+        return self.currentPage() * 1 - 1;
+    }, self);
 
-    self.fromRecord = ko.computed(() => (self.currentPage() - 1) * self.pagesize() + 1);
-    self.toRecord = ko.computed(() => Math.min(self.currentPage() * self.pagesize(), self.totalRecords()));
+    self.nextPage = ko.computed(function () {
+        return self.currentPage() * 1 + 1;
+    }, self);
+
+    self.fromRecord = ko.computed(function () {
+        return self.previousPage() * self.pagesize() + 1;
+    }, self);
+
+    self.toRecord = ko.computed(function () {
+        return Math.min(self.currentPage() * self.pagesize(), self.totalRecords());
+    }, self);
 
     self.pageArray = function () {
-        const size = Math.min(self.totalPages(), 9);
-        const step = Math.max(0, Math.min(self.currentPage() - 5, self.totalPages() - 9));
-        return Array.from({ length: size }, (_, i) => i + 1 + step);
+        var list = [];
+        var size = Math.min(self.totalPages(), 9);
+        var step;
+        if (size < 9 || self.currentPage() === 1)
+            step = 0;
+        else if (self.currentPage() >= self.totalPages() - 4)
+            step = self.totalPages() - 9;
+        else
+            step = Math.max(self.currentPage() - 5, 0);
+
+        for (var i = 1; i <= size; i++)
+            list.push(i + step);
+        return list;
     };
 
     // Função para ativar a página
     self.activate = function (id) {
-        console.log('CALL: getCoaches...');
+        console.log('CALL: getNOCs...');
         const composedUri = `${self.baseUri()}?page=${id}&pageSize=${self.pagesize()}`;
         showLoading();
         ajaxHelper(composedUri, 'GET').done(function (data) {
@@ -70,7 +90,7 @@ var vm = function () {
     function hideLoading() {
         $('#myModal').on('shown.bs.modal', function (e) {
             $("#myModal").modal('hide');
-        })
+        });
     }
 
     // Função para obter parâmetros da URL
@@ -91,8 +111,6 @@ $(document).ready(function () {
     ko.applyBindings(new vm());
 });
 
-$(document).ready(function () {
-    $('.card').each(function (i) {
-        $(this).delay(i * 100).fadeIn(300);
-    });
+$(document).ajaxComplete(function (event, xhr, options) {
+    $("#myModal").modal('hide');
 });
