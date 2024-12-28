@@ -1,4 +1,5 @@
-﻿const map = L.map('map').setView([46.603354, 1.888334], 6); // Coordenadas iniciais (França)
+﻿// Inicializando o mapa
+const map = L.map('map').setView([46.603354, 1.888334], 6); // Coordenadas iniciais (França)
 
 // Adicionando camada de mapa base (OpenStreetMap)
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -17,7 +18,10 @@ const customIcon = L.icon({
     popupAnchor: [0, -40]
 });
 
-// Fetch dos dados da nova API e adição de marcadores ao mapa
+// Array para armazenar as coordenadas da tocha
+let routeCoordinates = [];
+
+// Fetch dos dados da nova API e adição de marcadores e linha ao mapa
 fetch(apiUrl)
     .then(response => {
         if (!response.ok) {
@@ -33,8 +37,12 @@ fetch(apiUrl)
             const lat = parseFloat(Lat);
             const lon = parseFloat(Lon);
 
-            // Criar um marcador apenas se Lat e Lon forem válidos
+            // Verificar se as coordenadas são válidas
             if (!isNaN(lat) && !isNaN(lon)) {
+                // Adicionar coordenadas à lista
+                routeCoordinates.push([lat, lon]);
+
+                // Criar marcador para cada localização
                 const marker = L.marker([lat, lon], { icon: customIcon }).addTo(map);
 
                 // Formatar datas
@@ -51,18 +59,24 @@ fetch(apiUrl)
                     <strong>End Date:</strong> ${formattedEndDate}<br>
                     <a href="${Url}" target="_blank">Official Site</a>
                 `;
-
-                // Adicionar evento de click com popup
+                // Adicionar popup ao marcador
                 marker.bindPopup(popupContent);
             }
         });
+
+        // Adicionar uma linha (polyline) ligando todos os pontos
+        if (routeCoordinates.length > 1) {
+            L.polyline(routeCoordinates, { color: 'grey', weight: 4 }).addTo(map);
+        }
+
+        // Ajustar o mapa para a área coberta pela linha
+        map.fitBounds(L.latLngBounds(routeCoordinates));
     })
     .catch(error => {
         console.error('Erro ao carregar dados:', error);
         alert('Não foi possível carregar as localizações.');
     });
 
-//table
 // Função para formatar as datas de forma legível
 function formatDate(dateString) {
     const date = new Date(dateString);
@@ -103,10 +117,7 @@ fetch(apiUrl)
         alert('Não foi possível carregar a ordem cronológica da tocha.');
     });
 
-
-
-
-// dark mode
+// Dark mode
 $(document).ready(function () {
     console.log("ready!");
     ko.applyBindings(new vm());
@@ -114,12 +125,9 @@ $(document).ready(function () {
 
 $(document).ajaxComplete(function (event, xhr, options) {
     $("#myModal").modal('hide');
-})
+});
 
-
-
-
-
+// Tema
 const themeToggle = document.getElementById('themeToggle');
 const body = document.body;
 const navbar = document.querySelector('.navbar');
