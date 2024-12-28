@@ -13,44 +13,89 @@
     <link rel="stylesheet" href="sports.css" />
     <style>
         body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-        }
-
-        .sport-info-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .sport-info {
-            margin-top: 20px;
-        }
-
-        img {
-            width: 150px;
-            height: auto;
-        }
-
-        h1 {
-            font-size: 24px;
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
             color: #333;
         }
 
+        .header {
+            background-color: #3e8e41;
+            color: white;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .sport-info-container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .sport-info {
+            text-align: center;
+        }
+        h1, h2 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        p, .list-item {
+            font-size: 16px;
+            color: #555;
+            line-height: 1.6;
+        }
+
         .list {
-            margin-top: 10px;
+            margin-top: 20px;
+            text-align: left;
         }
 
         .list-item {
-            margin-bottom: 5px;
+            padding: 8px 0;
+            border-bottom: 1px solid #ddd;
         }
+
+        /* Estilos específicos para os links dentro de sport-info-container */
+        .sport-info-container a {
+            color: #3e8e41;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+            .sport-info-container a:hover {
+                text-decoration: underline;
+            }
+
+        /* Botão de voltar */
+        .sport-info-container .back-button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #3e8e41;
+            color: white;
+            text-align: center;
+            border-radius: 5px;
+            font-size: 16px;
+            text-decoration: none;
+        }
+
+            .sport-info-container .back-button:hover {
+                background-color: #2f7034;
+            }
+
+
     </style>
 </head>
 <body>
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
         <div class="container">
-            <a class="navbar-brand" href="../homepage/index.html" tabindex="Olympics"><img src="../1images/Paris2024.png" height="60" /></a>
+            <a class="navbar-brand" href="../homepage/index.html" tabindex="Olympics"><img src="../1images/Paris2024.png" height="60"/></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -127,11 +172,15 @@
     </nav>
 
 
-    <div class="sport-info-container">
+    <div class="header">
         <h1>Sport Details</h1>
+    </div>
+
+    <div class="sport-info-container">
         <div id="sport-details">
             <!-- Info will be populated by JS -->
         </div>
+        <a href="index.html" class="back-button">Back to Sports List</a>
     </div>
 
     <script>
@@ -168,9 +217,9 @@
                 const sportInfo = document.createElement('div');
                 sportInfo.classList.add('sport-info');
                 sportInfo.innerHTML = `
-                        <h2>${Name}</h2>
-                        <p><strong>Official Site:</strong> <a href="${Sport_url}" target="_blank">${Sport_url}</a></p>
-                    `;
+                            <h2>${Name}</h2>
+                            <p><strong>Official Site:</strong> <a href="${Sport_url}" target="_blank">${Sport_url}</a></p>
+                        `;
 
                 const athletesList = document.createElement('div');
                 athletesList.classList.add('list');
