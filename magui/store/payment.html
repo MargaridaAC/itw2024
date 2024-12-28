@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="en">
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -73,7 +73,7 @@
                         </a>
                         <ul class="dropdown-menu dropdown-menu-dark">
                             <li><a class="dropdown-item" href="../store/store.html">Store</a></li>
-                            <li><a class="dropdown-item" href="../formulario.html">Quizz</a></li>
+                            <li><a class="dropdown-item" href="../formulario.html">Quiz</a></li>
                         </ul>
                     </li>
                     <li class="nav-item"><a class="nav-link " aria-current="page" href="../countdown/contagem.html"><i class="fa fa-hourglass-half" aria-hidden="true"></i> LA2028</a></li>
@@ -91,15 +91,16 @@
             </div>
         </div>
     </nav>
+
     <div class="container">
         <h2 class="mb-2 mt-3">Payment</h2>
         <div class="mt-4 mb-4 border-top">
             <div class="container bg-light mt-4 border rounded" style="padding:20px">
-                <form>
+                <form id="payment-form">
                     <div class="row">
-                        <h3 class="mt-4">Shipping address</h3>
+                        <h3 class="mt-4">Shipping Address</h3>
                         <div class="col-12 col-sm-6">
-                            <label for="mor"> Address</label>
+                            <label for="mor">Address</label>
                             <input type="text" id="mor" name="morada">
                         </div>
                         <div class="col-12 col-sm-2">
@@ -107,40 +108,38 @@
                             <input type="text" id="dist" name="distrito">
                         </div>
                         <div class="col-12 col-sm-2">
-                            <label for="cid"> City</label>
+                            <label for="cid">City</label>
                             <input type="text" id="cid" name="cidade">
                         </div>
                         <div class="col-12 col-sm-2">
-                            <label for="cod"> Zip code</label>
+                            <label for="cod">Zip Code</label>
                             <input type="text" id="cod" name="código postal">
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-12 col-sm-6" style="padding-right: 100px;">
-                            <h3>Invoice data</h3>
+                            <h3>Invoice Data</h3>
                             <div class="row">
                                 <div class="col-6">
-                                    <label for="fname"> First Name</label>
+                                    <label for="fname">First Name</label>
                                     <input type="text" id="fname" name="firstname">
                                 </div>
                                 <div class="col-6">
-                                    <label for="fname"> Surname</label>
+                                    <label for="fname">Surname</label>
                                     <input type="text" id="sname" name="surname">
                                 </div>
                             </div>
-                            
+
                             <div class="row">
                                 <div class="col-6">
-                                    <label for="tlm"> Phone Number</label>
+                                    <label for="tlm">Phone Number</label>
                                     <input type="text" id="tlm" name="telemovel">
                                 </div>
-                                <div class="col-6"></div>
                             </div>
                             <div class="col-12">
                                 <label for="email">Email</label>
                                 <input type="text" id="email" name="email">
                             </div>
-                            
                         </div>
 
                         <div class="col-12 col-sm-6">
@@ -156,41 +155,31 @@
                                 </div>
                             </div>
 
-
                             <div class="row">
                                 <div class="col-8">
                                     <label for="cname">Card Name</label>
                                     <input type="text" id="cname" name="cardname">
                                 </div>
-                                <div class="col-4"></div>
                             </div>
                             <div class="row">
                                 <div class="col-8">
                                     <label for="ccnum">Card Number</label>
                                     <input type="text" id="ccnum" name="cardnumber">
                                 </div>
-                                <div class="col-4"></div>
-                            </div>
-                            <div class="row">
-                                <div class="col-8">
-                              
-                                </div>
-                                <div class="col-4"></div>
                             </div>
                             <div class="col-12">
                                 <div class="container">
                                     <hr>
- 
                                 </div>
                             </div>
-                            <a href="store.html" class="btn btn-primary col-12">Finish</a>
+                            <button type="submit" class="btn btn-primary col-12">Finish</button>
                         </div>
                     </div>
                 </form>
             </div>
         </div>
-
     </div>
+
     <div class="bottom-bar">
         <div class="container small">
             <div class="row align-items-center">
@@ -202,16 +191,61 @@
                 </div>
                 <div class="col text-end">
                     <a href="https://www.ua.pt" class="link"><img src="../1images/ua.png" style="height:125px;" alt="Universidade de Aveiro" /></a>
-
                 </div>
             </div>
         </div>
     </div>
+    <!-- Toast container -->
+    <div id="toast-container" class="position-fixed bottom-0 end-0 p-3">
+        <div id="toast-message" class="toast align-items-center text-white bg-danger border-0" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="d-flex w-100 position-relative">
+                <div class="toast-body" id="toast-text">Error message</div>
+                <button type="button" class="btn-close btn-close-white position-absolute top-0 end-0" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+        </div>
+    </div>
+
+
+
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.3/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.5.1/knockout-latest.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
-    <script src="store.js"></script>
+
+    <script>
+        document.getElementById("payment-form").addEventListener("submit", function (event) {
+            event.preventDefault();
+            let valid = true;
+            let messages = [];
+
+            // Validate required fields
+            if (!document.getElementById("fname").value) messages.push("First Name is required.");
+            if (!document.getElementById("sname").value) messages.push("Surname is required.");
+            if (!document.getElementById("email").value) messages.push("Email is required.");
+            if (!document.getElementById("mor").value) messages.push("Address is required.");
+            if (!document.getElementById("dist").value) messages.push("District is required.");
+            if (!document.getElementById("cid").value) messages.push("City is required.");
+            if (!document.getElementById("cod").value) messages.push("Zip Code is required.");
+            if (!document.getElementById("ccnum").value) messages.push("Card Number is required.");
+            if (!document.getElementById("cname").value) messages.push("Card Name is required.");
+
+            if (messages.length > 0) {
+                valid = false;
+                showToast(messages.join("<br>"));
+            }
+
+            if (valid) {
+                // Proceed with the form submission if valid
+                alert("Form submitted successfully!");
+            }
+        });
+
+        function showToast(message) {
+            const toastBody = document.getElementById("toast-text");
+            toastBody.innerHTML = message;
+            const toastElement = new bootstrap.Toast(document.getElementById('toast-message'));
+            toastElement.show();
+        }
+    </script>
 </body>
 
 </html>

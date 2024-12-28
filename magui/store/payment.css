@@ -1,4 +1,13 @@
-﻿input[type=text] {
+﻿body {
+    padding-top: 120px; /* Add space below the navbar */
+}
+#toast-container {
+    bottom: 0;
+    top: auto; /* Remove top positioning */
+}
+
+
+input[type=text] {
     width: 100%;
     margin-bottom: 20px;
     padding: 12px;

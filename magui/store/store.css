@@ -178,3 +178,12 @@ body.dark-mode #themeToggle:hover {
     background-color: #fff;
     color: #f39c12;
 }
+
+
+
+
+
+
+.toast {
+    background-color: #28a745; /* Verde para notificação de sucesso */
+}

@@ -73,13 +73,19 @@ function calculate() {
 }
 
 function valid() {
-    if (precoTotal <= 0 && qtdTotal <= 0) {
-        alert("Erro! O carrinho está vazio");
-        return false;
-    } else {
-        return true
+    // Verifica a quantidade total de itens no carrinho
+    var totalQuantity = parseInt(document.getElementById('quantidades').innerText);
+
+    // Se não houver itens, mostra um alerta e bloqueia o envio do formulário
+    if (totalQuantity === 0) {
+        alert("O carrinho está vazio. Adicione itens antes de continuar.");
+        return false;  // Impede o redirecionamento para a página de pagamento
     }
+
+    // Se houver itens, permite o envio para o pagamento
+    return true;
 }
+
 
 function clean() {
     for (let i = 1; i <= 6; i++) {
@@ -95,3 +101,33 @@ document.addEventListener("DOMContentLoaded", function () {
     const body = document.body;
     body.style.paddingTop = navbar.offsetHeight + 'px';
 });
+
+function addProduct(productId) {
+    // Atualiza a quantidade do produto
+    var qtyField = document.getElementById('qty' + productId);
+    var quantity = parseInt(qtyField.value) + 1;  // Incrementa a quantidade
+    qtyField.value = quantity;
+
+    // Atualiza o preço total
+    var price = parseFloat(document.getElementById('price' + productId).value);
+    var totalField = document.getElementById('total');
+    var currentTotal = parseFloat(totalField.innerText);  // Total atual do carrinho
+    currentTotal += price;  // Adiciona o preço do novo item
+    totalField.innerText = currentTotal.toFixed(2);  // Atualiza o total com duas casas decimais
+
+    // Atualiza a quantidade total de itens no carrinho
+    var quantityField = document.getElementById('quantidades');
+    var totalQuantity = 0;
+
+    // Soma as quantidades de todos os produtos no carrinho
+    for (var i = 1; i <= 6; i++) {
+        totalQuantity += parseInt(document.getElementById('qty' + i).value);
+    }
+
+    quantityField.innerText = totalQuantity;  // Atualiza a quantidade total no carrinho
+
+    // Exibe o toast de "Item adicionado ao carrinho"
+    var toast = new bootstrap.Toast(document.getElementById('cartToast'));
+    toast.show();
+}
+
