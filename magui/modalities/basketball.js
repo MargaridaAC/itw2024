@@ -1,5 +1,4 @@
-﻿
-const apiURL = "http://192.168.160.58/Paris2024/api/Basketballs/Events"; // Insira aqui o link da sua API
+﻿const apiURL = "http://192.168.160.58/Paris2024/api/Basketballs/Events"; // Insira aqui o link da sua API
 
 $(document).ready(function () {
     const $dropdown = $('#eventDropdown');
@@ -14,11 +13,6 @@ $(document).ready(function () {
             dataType: "json",
             success: function (data) {
                 populateDropdown(data);
-                if (data.length > 0) {
-                    // Carregar os stages do primeiro evento por padrão
-                    $dropdown.val(data[0].EventId);
-                    loadStages(data[0].EventId, data);
-                }
             },
             error: function () {
                 alert("Erro ao carregar os dados da API.");
@@ -30,6 +24,9 @@ $(document).ready(function () {
     // Preencher o dropdown com eventos
     function populateDropdown(events) {
         $dropdown.empty(); // Limpar dropdown
+        // Adicionar a opção "Select Event"
+        $dropdown.append('<option value="" selected>Select Event</option>');
+
         events.forEach(event => {
             $dropdown.append(`<option value="${event.EventId}">${event.EventName}</option>`);
         });
@@ -67,17 +64,24 @@ $(document).ready(function () {
     // Evento para mudança de dropdown
     $dropdown.on('change', function () {
         const selectedEventId = $(this).val();
-        $.ajax({
-            url: apiURL,
-            method: "GET",
-            dataType: "json",
-            success: function (data) {
-                loadStages(selectedEventId, data);
-            },
-            error: function () {
-                alert("Erro ao carregar os stages.");
-            }
-        });
+
+        // Verificar se uma opção válida foi selecionada
+        if (selectedEventId) {
+            $.ajax({
+                url: apiURL,
+                method: "GET",
+                dataType: "json",
+                success: function (data) {
+                    loadStages(selectedEventId, data);
+                },
+                error: function () {
+                    alert("Erro ao carregar os stages.");
+                }
+            });
+        } else {
+            $tableBody.empty(); // Limpar tabela quando 'Select Event' estiver selecionado
+            $selectedEventName.text('Select Event');
+        }
     });
 
     // Inicializar
