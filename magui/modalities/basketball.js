@@ -50,10 +50,6 @@ $(document).ready(function () {
                                 <a class="btn btn-light btn-xs" href="basketballs-details.html?EventId=${eventId}&StageId=${stage.StageId}">
                                     <i class="fa fa-eye text-primary" title="View Details"></i>
                                 </a>
-
-                                <button class="btn btn-light btn-xs">
-                                    <i class="fa fa-heart-o" id="favourite_${stage.StageId}" title="Add to favorites"></i>
-                                </button>
                             </td>
                         </tr>
                     `;
