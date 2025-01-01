@@ -10,6 +10,23 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin="" />
     <link rel="stylesheet" href="technical-officials.css" />
+    <style>
+        body, html {
+            height: 100%; /* Garantir que a altura da página ocupe 100% da tela */
+            margin: 0;
+        }
+
+        .container.my-xs-4m {
+            min-height: calc(100vh - 100px); /* Ajuste para o footer não sobrepor o conteúdo */
+            padding-bottom: 0; /* Remover o padding inferior */
+        }
+
+        .bottom-bar {
+            position: relative;
+            margin-top: auto; /* Garantir que o footer fique no final */
+            padding: 10px 0;
+        }
+    </style>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
@@ -93,7 +110,7 @@
     <!-- Working Area -->
     <div class="container">
         <div class="border-bottom py-2 mb-2">
-            <h2 data-bind="text:displayName">Technical Officials List</h2>
+            <h2>Paris2024 Technical Officials List</h2>
         </div>
         <!-- ko if: officials().length > 0 -->
         <div class="row small">

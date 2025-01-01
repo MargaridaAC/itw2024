@@ -29,13 +29,13 @@ fetch(apiUrl)
             // Adicionar as informações
                         sportInfo.innerHTML = `
                 <strong>Name:</strong> ${Name}<br>
-                <strong>More Info:</strong> <a href="sportsinfo.html?id=${Id}">Official site</a><br>
                 <strong>Athletes:</strong> ${Athletes}<br>
                 <strong>Coaches:</strong> ${Coaches}<br>
                 <strong>Competitions:</strong> ${Competitions}<br>
                 <strong>Teams:</strong> ${Teams}<br>
                 <strong>Technical Officials:</strong> ${Technical_officials}<br>
-                <strong>Venues:</strong> ${Venues}
+                <strong>Venues:</strong> ${Venues}<br>
+                <a href="sportsinfo.html?id=${Id}">More Details</a>
             `;
 
 

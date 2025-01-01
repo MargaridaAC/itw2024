@@ -1,17 +1,16 @@
-﻿<!doctype html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Paris 2024</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Details</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin="" />
-    <link rel="stylesheet" href="basketball.css" />
+    <link rel="stylesheet" href="swimming-details.css" />
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
@@ -91,50 +90,42 @@
             </div>
         </div>
     </nav>
-    <!-- Working Area -->
-    <div class="container mt-4">
-        <h1>Canoe Sprints - Paris 2024</h1>
-        <!-- Dropdown to select Event -->
-        <div class="d-flex justify-content-between align-items-center mb-3">
-            <h2 id="selectedEventName">Select Event</h2>
-            <div>
-                <select class="form-select" id="eventDropdown">
-                    <option value="">Loading events...</option>
-                </select>
-            </div>
-        </div>
 
-        <!-- Table to display Stages -->
-        <table class="table table-sm small">
-            <thead class="table-secondary">
+
+    <div class="container mt-4">
+        <h2 id="eventTitle" class="mb-4">Event Details</h2>
+
+        <!-- Informações gerais do evento -->
+        <ul id="eventDetailsList" class="list-group">
+            <!-- Detalhes serão preenchidos dinamicamente -->
+        </ul>
+
+        <h3 class="mt-4">Participants</h3>
+        <table class="table-bordered table-striped mt-2" id="participantsTable" style="width:100%">
+            <thead class="thead-dark">
                 <tr>
-                    <th scope="col">Tag</th>
-                    <th scope="col">Stage Name</th>
-                    <th scope="col" class="text-right"></th>
+                    <th>Name</th>
+                    <th>Country</th>
+                    <th>Sex</th>
+                    <th>Participant Type</th>
+                    <th>Participant Code</th>
+                    <th>Rank</th>
+                    <th>Result</th>
                 </tr>
             </thead>
-            <tbody id="stagesTableBody">
-                <!-- Rows will be dynamically generated -->
+            <tbody>
+                <!-- Os participantes serão preenchidos dinamicamente aqui -->
             </tbody>
         </table>
-    </div>
 
-
-    <!-- Modal -->
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">
-                        <img src="../1images/Paris2024.png" height="30" /> Loading data...
-                    </h5>
-                </div>
-                <div class="modal-body text-center">
-                    <i class="fa fa-spin fa-3x fa-refresh"></i>
-                </div>
-            </div>
+        <!-- Botão de Voltar -->
+        <div class="mt-4">
+            <button id="backButton" class="btn btn-secondary">
+                <i class="fa fa-arrow-left"></i> Back to Stage Details
+            </button>
         </div>
     </div>
+
     <div class="bottom-bar">
         <div class="container small">
             <div class="row align-items-center">
@@ -151,7 +142,6 @@
             </div>
         </div>
     </div>
-    </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.3/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.5.1/knockout-latest.min.js"></script>
@@ -159,7 +149,6 @@
     <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
             integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
             crossorigin=""></script>
-    <script src="canoesprtins.js"></script>
+    <script src="canoesdetails.js"></script>
 </body>
 </html>
-

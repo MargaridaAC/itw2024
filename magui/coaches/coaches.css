@@ -130,7 +130,7 @@ nav ul li {
     width: 100%;
     z-index: 1000;
     padding: 0px;
-    position: fixed;
+    position:relative;
 }
 
     .bottom-bar .link {
@@ -251,4 +251,8 @@ body.dark-mode .pagination .active a {
 body.dark-mode .tabela-dados {
     color: white; /* Texto branco */
     background-color: #333; /* Fundo escuro */
+}
+
+.text-danger {
+    color: red !important;
 }

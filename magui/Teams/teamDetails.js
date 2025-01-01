@@ -39,7 +39,11 @@
                     <div class="section-content">
                         <ul class="coaches-list">
                             ${team.Coaches.map(coach => `
-                                <li><strong>${coach.Name}</strong> (ID: ${coach.Id})</li>
+                                <li>
+                                    <a href="../coaches/coachDetails.html?id=${coach.Id}">
+                                        <strong>${coach.Name}</strong>
+                                    </a> (ID: ${coach.Id})
+                                </li>
                             `).join('')}
                         </ul>
                     </div>

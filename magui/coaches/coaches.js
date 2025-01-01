@@ -1,37 +1,97 @@
-﻿var vm = function () {
+﻿// ViewModel KnockOut
+var vm = function () {
     console.log('ViewModel initiated...');
+    //---Variáveis locais
     var self = this;
-
-    // Observáveis
-    self.baseUri = ko.observable('http://192.168.160.58/Paris2024/API/coaches');
+    self.baseUri = ko.observable('http://192.168.160.58/Paris2024/api/Coaches');  // Certificando que é para Coaches e não Athletes
     self.displayName = 'Paris2024 Coaches List';
     self.error = ko.observable('');
+    self.passingMessage = ko.observable('');
     self.coaches = ko.observableArray([]);
     self.currentPage = ko.observable(1);
-    self.pagesize = ko.observable(20);
-    self.totalRecords = ko.observable(50);
+    self.pagesize = ko.observable(10);
+    self.totalRecords = ko.observable(1);
     self.hasPrevious = ko.observable(false);
     self.hasNext = ko.observable(false);
+    self.previousPage = ko.computed(function () {
+        return self.currentPage() * 1 - 1;
+    }, self);
+    self.nextPage = ko.computed(function () {
+        return self.currentPage() * 1 + 1;
+    }, self);
+    self.fromRecord = ko.computed(function () {
+        return self.previousPage() * self.pagesize() + 1;
+    }, self);
+    self.toRecord = ko.computed(function () {
+        return Math.min(self.currentPage() * self.pagesize(), self.totalRecords());
+    }, self);
     self.totalPages = ko.observable(0);
-
-    // Computed observables
-    self.previousPage = ko.computed(() => Math.max(1, self.currentPage() - 1));
-    self.nextPage = ko.computed(() => Math.min(self.totalPages(), self.currentPage() + 1));
-
-    self.fromRecord = ko.computed(() => (self.currentPage() - 1) * self.pagesize() + 1);
-    self.toRecord = ko.computed(() => Math.min(self.currentPage() * self.pagesize(), self.totalRecords()));
-
     self.pageArray = function () {
-        const size = Math.min(self.totalPages(), 9);
-        const step = Math.max(0, Math.min(self.currentPage() - 5, self.totalPages() - 9));
-        return Array.from({ length: size }, (_, i) => i + 1 + step);
+        var list = [];
+        var size = Math.min(self.totalPages(), 9);
+        var step;
+        if (size < 9 || self.currentPage() === 1)
+            step = 0;
+        else if (self.currentPage() >= self.totalPages() - 4)
+            step = self.totalPages() - 9;
+        else
+            step = Math.max(self.currentPage() - 5, 0);
+
+        for (var i = 1; i <= size; i++)
+            list.push(i + step);
+        return list;
+    };
+    self.favorites = ko.observableArray(JSON.parse(localStorage.getItem('favorites')) || []);
+    self.filterOption = ko.observable('all');
+
+    self.filteredCoaches = ko.computed(function () {
+        if (self.filterOption() === 'favorites') {
+            return self.coaches().filter(function (coach) {
+                return self.isFavorite(coach);
+            });
+        }
+        return self.coaches();
+    });
+
+    self.isFavorite = function (coach) {
+        return self.favorites().some(function (fav) {
+            return fav.Id === coach.Id;
+        });
     };
 
-    self.activate = function (id) {
+    self.toggleFavorite = function (coach) {
+        var favorites = self.favorites();
+        var coachIndex = favorites.findIndex(function (fav) {
+            return fav.Id === coach.Id;
+        });
+
+        if (coachIndex === -1) {
+            favorites.push(coach);
+        } else {
+            favorites.splice(coachIndex, 1);
+        }
+
+        self.favorites(favorites);
+        localStorage.setItem('favorites', JSON.stringify(favorites));
+    };
+
+    //--- Page Events
+    self.activate = function (id, search, order) {
         console.log('CALL: getCoaches...');
-        const composedUri = `${self.baseUri()}?page=${id}&pageSize=${self.pagesize()}`;
-        showLoading();
+        var composedUri = self.baseUri();
+
+        if (search == undefined) {
+            search = "";
+        }
+        if (order == undefined) {
+            order = 1;
+        }
+
+        composedUri = self.baseUri() + "?page=" + id + "&pageSize=" + self.pagesize() + "&order=" + order + "&search=" + search;
+        console.log(composedUri);
+
         ajaxHelper(composedUri, 'GET').done(function (data) {
+            console.log(data);
             hideLoading();
             self.coaches(data.Coaches);
             self.currentPage(data.CurrentPage);
@@ -43,8 +103,9 @@
         });
     };
 
+    //--- Internal functions
     function ajaxHelper(uri, method, data) {
-        self.error('');
+        self.error(''); // Clear error message
         return $.ajax({
             type: method,
             url: uri,
@@ -52,7 +113,7 @@
             contentType: 'application/json',
             data: data ? JSON.stringify(data) : null,
             error: function (jqXHR, textStatus, errorThrown) {
-                console.error(`AJAX Call [${uri}] Fail:`, errorThrown);
+                console.log("AJAX Call[" + uri + "] Fail...");
                 hideLoading();
                 self.error(errorThrown);
             }
@@ -60,9 +121,11 @@
     }
 
     function showLoading() {
-        $("#myModal").modal('show', { backdrop: 'static', keyboard: false });
+        $("#myModal").modal('show', {
+            backdrop: 'static',
+            keyboard: false
+        });
     }
-
     function hideLoading() {
         $('#myModal').on('shown.bs.modal', function (e) {
             $("#myModal").modal('hide');
@@ -70,18 +133,95 @@
     }
 
     function getUrlParameter(sParam) {
-        const params = new URLSearchParams(window.location.search);
-        return params.get(sParam);
-    }
+        var sPageURL = window.location.search.substring(1),
+            sURLVariables = sPageURL.split('&'),
+            sParameterName,
+            i;
+        for (i = 0; i < sURLVariables.length; i++) {
+            sParameterName = sURLVariables[i].split('=');
 
-    // Inicialização
+            if (sParameterName[0] === sParam) {
+                return sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
+            }
+        }
+    };
+
+    //--- start .... 
     showLoading();
-    const page = getUrlParameter('page') || 1;
-    self.activate(page);
+    var pg = getUrlParameter('page');
+    var search = getUrlParameter('search');
+    var order = getUrlParameter('order');
+    if (pg == undefined)
+        self.activate(1, search, order);
+    else {
+        self.activate(pg, search, order);
+    }
     console.log("VM initialized!");
 };
 
 $(document).ready(function () {
-    console.log("Document ready!");
+    console.log("ready!");
     ko.applyBindings(new vm());
+});
+
+$(document).ajaxComplete(function (event, xhr, options) {
+    $("#myModal").modal('hide');
+})
+
+
+
+
+
+const themeToggle = document.getElementById('themeToggle');
+const body = document.body;
+const navbar = document.querySelector('.navbar');
+
+// Ao carregar a página, verificar o tema salvo no localStorage
+window.addEventListener('DOMContentLoaded', () => {
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+        body.classList.add('dark-mode');
+        navbar.classList.remove('navbar-light-mode');
+        navbar.classList.add('navbar-dark-mode');
+        themeToggle.innerHTML = '<i class="fa fa-sun-o" aria-hidden="true"></i>';
+    } else {
+        body.classList.remove('dark-mode');
+        navbar.classList.remove('navbar-dark-mode');
+        navbar.classList.add('navbar-light-mode');
+        themeToggle.innerHTML = '<i class="fa fa-moon-o" aria-hidden="true"></i>';
+    }
+
+    // Aplica o estilo do modo escuro para a tabela ao carregar
+    updateTableStyle();
+});
+
+// Função para atualizar o estilo das tabelas dependendo do modo
+function updateTableStyle() {
+    const tables = document.querySelectorAll('table');
+    tables.forEach(table => {
+        if (body.classList.contains('dark-mode')) {
+            table.classList.add('tabela-dados');  // Certifica-se de que a tabela tenha a classe "tabela-dados" no modo escuro
+        } else {
+            table.classList.remove('tabela-dados');  // Remove a classe para voltar ao tema claro
+        }
+    });
+}
+
+// Salvar o tema ao alterná-lo
+themeToggle.addEventListener('click', () => {
+    body.classList.toggle('dark-mode');
+    if (body.classList.contains('dark-mode')) {
+        localStorage.setItem('theme', 'dark'); // Salvar tema escuro
+        navbar.classList.remove('navbar-light-mode');
+        navbar.classList.add('navbar-dark-mode');
+        themeToggle.innerHTML = '<i class="fa fa-sun-o" aria-hidden="true"></i>';
+    } else {
+        localStorage.setItem('theme', 'light'); // Salvar tema claro
+        navbar.classList.remove('navbar-dark-mode');
+        navbar.classList.add('navbar-light-mode');
+        themeToggle.innerHTML = '<i class="fa fa-moon-o" aria-hidden="true"></i>';
+    }
+
+    // Atualiza o estilo da tabela ao alternar o tema
+    updateTableStyle();
 });

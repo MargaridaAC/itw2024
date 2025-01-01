@@ -1,53 +1,59 @@
-﻿// Função para buscar parâmetros da URL
-function getUrlParameter(name) {
+﻿async function fetchCompetitionDetails() {
+    try {
+        // Get the SportId from the URL
         const urlParams = new URLSearchParams(window.location.search);
-return urlParams.get(name);
-    }
+        const sportId = urlParams.get('id');
 
-// Função para voltar à página anterior
-function goBack() {
-    window.history.back();
-    }
-
-$(document).ready(function () {
-        const sportId = getUrlParameter('id'); // Obtém o SportId da URL
-
-if (!sportId) {
-    $("#competition-details").html("<p class='text-danger'>Sport ID not provided.</p>");
-return;
+        // Check if sportId is provided in the URL
+        if (!sportId) {
+            throw new Error('SportId not found in the URL');
         }
 
-// Requisição à API (exemplo de endpoint, altere para a URL real)
-    const apiUrl = `http://192.168.160.58/Paris2024/api/Competitions?sportId={sportId}&name={name}`;
-$.ajax({
-    url: apiUrl,
-method: "GET",
-success: function (data) {
-    // Preenche o nome, tag e imagem da competição
-    $("#competition-name").text(data.Name);
-$("#competition-tag").text(data.Tag);
-$("#competition-photo").attr("src", data.Photo);
+        // Build the API URL, replacing {sportId} and {name} with the correct values
+        const apiUrl = `http://192.168.160.58/Paris2024/api/Competitions?sportId=${sportId}&name=`;
 
-// Preenche a informação do esporte
-$("#sport-name").text(data.SportInfo.Name);
+        // Make the API request
+        const response = await fetch(apiUrl);
 
-                // Preenche a tabela de atletas
-                const athletesHtml = data.Athletes.map((athlete, index) => {
-                    return `
-<tr>
-    <td>${index + 1}</td>
-    <td>${athlete.Name}</td>
-</tr>
-`;
-                }).join('');
-$("#athletes-table").html(athletesHtml);
-            },
-error: function () {
-    $("#competition-details").html("<p class='text-danger'>Failed to load data. Please try again.</p>");
-            }
+        // Check if the response is successful
+        if (!response.ok) {
+            throw new Error('Error loading competition data');
+        }
+
+        // Convert the response to JSON
+        const competition = await response.json();
+
+        // Check if the returned data is in the expected format
+        if (!competition || !competition.Name || !competition.Tag) {
+            throw new Error('Invalid data received');
+        }
+
+        // Display the competition details
+        document.getElementById('competition-name').innerText = competition.Name;
+        document.getElementById('competition-tag').innerText = competition.Tag;
+        document.getElementById('competition-photo').src = competition.Photo;
+        document.getElementById('sport-info').innerText = `${competition.SportInfo.Name} (ID: ${competition.SportInfo.Id})`;
+
+        // Display the list of athletes
+        const athletesList = document.getElementById('athletes-list');
+        athletesList.innerHTML = '';
+        competition.Athletes.forEach(athlete => {
+            const athleteItem = document.createElement('div');
+            athleteItem.className = 'athlete-item';
+            athleteItem.innerHTML = `<strong>${athlete.Name}</strong> (ID: ${athlete.Id})`;
+            athletesList.appendChild(athleteItem);
         });
-});
 
+    } catch (error) {
+        console.error(error);
+        // Display an error message on the page
+        document.getElementById('competition-name').innerText = 'Error loading data';
+        document.getElementById('athletes-list').innerHTML = 'Unable to load competition data.';
+    }
+}
+
+// Load the data as soon as the page is loaded
+window.onload = fetchCompetitionDetails;
 
 
 

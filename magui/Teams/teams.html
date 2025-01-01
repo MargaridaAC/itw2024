@@ -10,6 +10,37 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin="" />
     <link rel="stylesheet" href="teams.css" />
+    <style>
+        /* Garantir que a altura da página ocupe 100% da tela */
+        html, body {
+            height: 100%;
+            margin: 0;
+        }
+
+        /* Adiciona o espaçamento correto para o conteúdo não ser coberto pela navbar */
+        body {
+            padding-top: 80px; /* Ajuste para a altura da navbar, que é aproximadamente 80px (considerando a altura da navbar + margem) */
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Container para o conteúdo, garantindo que ocupe o espaço restante */
+        .container {
+            flex: 1; /* Isso faz com que o container ocupe o espaço restante */
+        }
+
+        /* Garantir que o footer fique no final */
+        .bottom-bar {
+            margin-top: auto; /* Coloca o footer sempre no final */
+            padding: 10px 0;
+        }
+
+        /* Estilo para a navbar fixa no topo */
+        .navbar.fixed-top {
+            z-index: 1030; /* Garante que a navbar fique acima do conteúdo */
+        }
+
+    </style>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
@@ -92,7 +123,7 @@
     <!-- Working Area -->
     <div class="container">
         <div class="border-bottom py-2 mb-2">
-            <h2 data-bind="text:displayName"></h2>
+            <h2>Paris2024 Teams List</h2>
         </div>
         <!-- ko if: teams().length > 0 -->
         <div class="row small">
