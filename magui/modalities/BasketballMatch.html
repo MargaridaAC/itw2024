@@ -7,6 +7,83 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
 </head>
 <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="../homepage/index.html" tabindex="Olympics"><img src="../1images/Paris2024.png" height="60" /></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fa fa-calendar text-warning"></i> Events
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-dark">
+                            <li><a class="dropdown-item" href="../competitions/competitions.html">Competitions</a></li>
+                            <li><a class="dropdown-item" href="../sports/sports.html">Sports</a></li>
+                            <li><a class="dropdown-item" href="../venues/venues.html">Venues</a></li>
+                            <li><a class="dropdown-item" href="../torch-route/torch-route.html">Torch Route</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fa fa-users"></i> Participants
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-dark">
+                            <li><a class="dropdown-item" href="../athletes/athletes.html">Athletes</a></li>
+                            <li><a class="dropdown-item" href="../teams/teams.html">Teams</a></li>
+                            <li><a class="dropdown-item" href="../coaches/coaches.html">Coaches</a></li>
+                            <li><a class="dropdown-item" href="../officials/technical-officials.html">Technical Officials</a></li>
+                            <li><a class="dropdown-item" href="../nocs/nocs.html">NOCs</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fa fa-trophy text-danger"></i> Medals
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-dark">
+                            <li><a class="dropdown-item" href="../medals/games.html">Country Medals</a></li>
+                            <li><a class="dropdown-item" href="../medals/medals.html">Medals</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fa fa-soccer-ball-o text-primary"></i> Modalities
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-dark">
+                            <li><a class="dropdown-item" href="../modalities/basketball.html">Basketball</a></li>
+                            <li><a class="dropdown-item" href="../modalities/canoesprints.html">Canoe Sprints</a></li>
+                            <li><a class="dropdown-item" href="../modalities/cyclingtracks.html">Cycling Tracks</a></li>
+                            <li><a class="dropdown-item" href="../modalities/football.html">Football</a></li>
+                            <li><a class="dropdown-item" href="../modalities/swimming.html">Swimming</a></li>
+                            <li><a class="dropdown-item" href="../modalities/athletics.html">Athletics</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fa fa-chevron-circle-down" "></i> More
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-dark">
+                            <li><a class="dropdown-item" href="../store/store.html">Store</a></li>
+                            <li><a class="dropdown-item" href="../formulario.html">Quizz</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link " aria-current="page" href="../countdown/contagem.html"><i class="fa fa-hourglass-half" aria-hidden="true"></i> LA2028</a></li>
+                </ul>
+                <ul class="navbar-nav mb-2 mb-lg-0 right-side">
+                    <li class="nav-item"> <a class="nav-link" href="https://olympics.com/pt/paris-2024" target="_blank"> <i class="fa fa-external-link text-primary"></i> Official Site</a></li>
+                </ul>
+                <ul class="navbar-nav mb-2 mb-lg-0 right-side">
+                    <li class="nav-item">
+                        <button id="themeToggle" class="btn btn-outline-secondary">
+                            <i class="fa fa-moon-o" aria-hidden="true"></i>
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
     <div class="container mt-4">
         <h2 id="detailsTitle">Details</h2>
         <table class="table table-bordered mt-4">
@@ -22,7 +99,22 @@
         </table>
         <button id="backButton" class="btn btn-secondary mt-4">Back</button>
     </div>
+    <div class="bottom-bar">
+        <div class="container small">
+            <div class="row align-items-center">
+                <div class="col text-start">
+                    <a href="https://www.ua.pt/pt/uc/12289" class="link">&copy; ITW - 2024/25</a>
+                </div>
+                <div class="col text-center">
+                    Made by Margarida Cardoso and Tiago Costa
+                </div>
+                <div class="col text-end">
+                    <a href="https://www.ua.pt" class="link"><img src="../1images/ua.png" style="height:125px;" alt="Universidade de Aveiro" /></a>
 
+                </div>
+            </div>
+        </div>
+    </div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         const apiBaseURL = "http://192.168.160.58/Paris2024/api/Basketballs/%7Bid%7D";
@@ -69,35 +161,35 @@
                         if (Array.isArray(value)) {
                             // Exibe itens de arrays como lista
                             $detailsBody.append(`
-                                    <tr>
-                                        <td>${key}</td>
-                                        <td>
-                                            <ul>
-                                                ${value.map(subItem => `<li>${JSON.stringify(subItem)}</li>`).join("")}
-                                            </ul>
-                                        </td>
-                                    </tr>
-                                `);
+                                            <tr>
+                                                <td>${key}</td>
+                                                <td>
+                                                    <ul>
+                                                        ${value.map(subItem => `<li>${JSON.stringify(subItem)}</li>`).join("")}
+                                                    </ul>
+                                                </td>
+                                            </tr>
+                                        `);
                         } else if (typeof value === "object" && value !== null) {
                             // Exibe subcampos de objetos aninhados
                             $detailsBody.append(`
-                                    <tr>
-                                        <td>${key}</td>
-                                        <td>
-                                            <ul>
-                                                ${Object.entries(value).map(([subKey, subValue]) => `<li>${subKey}: ${subValue}</li>`).join("")}
-                                            </ul>
-                                        </td>
-                                    </tr>
-                                `);
+                                            <tr>
+                                                <td>${key}</td>
+                                                <td>
+                                                    <ul>
+                                                        ${Object.entries(value).map(([subKey, subValue]) => `<li>${subKey}: ${subValue}</li>`).join("")}
+                                                    </ul>
+                                                </td>
+                                            </tr>
+                                        `);
                         } else {
                             // Exibe valores simples (string, número, etc.)
                             $detailsBody.append(`
-                                    <tr>
-                                        <td>${key}</td>
-                                        <td>${value}</td>
-                                    </tr>
-                                `);
+                                            <tr>
+                                                <td>${key}</td>
+                                                <td>${value}</td>
+                                            </tr>
+                                        `);
                         }
                     });
                 });
