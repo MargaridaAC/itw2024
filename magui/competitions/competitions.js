@@ -1,15 +1,4 @@
 ﻿
-const translations = {
-    en: {
-        name: "Name",
-        sport_id: "Sport Id",
-    },
-    pt: {
-        name: "Nome",
-        sport_id: "Id do desporto",
-    }
-};
-
 // ViewModel KnockOut
 var vm = function () {
     console.log('ViewModel initiated...');
