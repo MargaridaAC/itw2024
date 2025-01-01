@@ -12,7 +12,6 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin="" />
     <link rel="stylesheet" href="swimming-details.css" />
     <style>
-        /* Garantir que o body ocupe toda a altura da janela */
         html, body {
             height: 100%;
             margin: 0;
@@ -20,20 +19,14 @@
             flex-direction: column;
         }
 
-        /* O container principal da página ocupa todo o espaço disponível */
-        .container {
+        .container.mt-4 {
             flex: 1;
         }
 
-        /* Fixar o footer no final da página */
         .bottom-bar {
             background-color: black;
             color: white;
-            padding: 10px 0;
-            bottom: 0;
-            width: 100%;
-            position: relative;
-            text-align: center;
+            position: fixed;
         }
     </style>
 </head>
