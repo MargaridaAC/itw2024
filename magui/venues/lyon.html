@@ -113,12 +113,6 @@
                         <td class="align-middle" data-bind="text: DateEnd ? (new Date(DateEnd).toLocaleString('pt-BR')) : ''"></td>
                         <td class="align-middle" data-bind="text:NumSports"></td>
                         <td class="text-end">
-                            <a class="btn btn-default btn-light btn-xs" data-bind="attr: { href:'./countrymedalsDetails.html?id=' + Id }">
-                                <i class="fa fa-eye" title="Show details"></i>
-                            </a>
-                            <button class="btn btn-default btn-xs">
-                                <i class="fa fa-heart-o" data-bind="attr : { 'id': 'favourite_' + Id }" title="Add to favorites"></i>
-                            </button>
                         </td>
                     </tr>
                 </tbody>
@@ -128,7 +122,7 @@
         <!-- Ajuste o botão para que ele fique centralizado -->
         <div class="container text-center mb-3">
             <button class="btn btn-primary" onclick="window.location.href='venues.html';">
-                Volte para a Página Principal
+                Back to Venues
             </button>
         </div>
 
