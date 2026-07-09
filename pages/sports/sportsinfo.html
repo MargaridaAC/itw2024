@@ -1,0 +1,317 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sport Info</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin="" />
+    <link rel="stylesheet" href="sports.css" />
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 10px;
+            color: #333;
+            padding-top: 60px;
+        }
+
+        .header {
+            color: black;
+            padding: 15px;
+            text-align: center;
+            margin-top: 60px; /* Adiciona um espaçamento superior */
+        }
+
+
+        .sport-info-container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .sport-info {
+            text-align: center;
+        }
+
+        img.sport-pictogram {
+            width: 200px;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        h1, h2 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        p, .list-item {
+            font-size: 16px;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .list {
+            margin-top: 20px;
+            text-align: left;
+        }
+
+        .list-item {
+            padding: 8px 0;
+            border-bottom: 1px solid #ddd;
+        }
+
+        /* Estilos específicos para os links dentro de sport-info-container */
+        .sport-info-container a {
+            color: #3e8e41;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+            .sport-info-container a:hover {
+                text-decoration: underline;
+            }
+
+        /* Botão de voltar */
+        .sport-info-container .back-button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #3e8e41;
+            color: white;
+            text-align: center;
+            border-radius: 5px;
+            font-size: 16px;
+            text-decoration: none;
+        }
+
+            .sport-info-container .back-button:hover {
+                background-color: #2f7034;
+            }
+
+
+
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="../../index.html" tabindex="Olympics"><img src="../../assets/images/Paris2024.png" height="60" /></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fa fa-calendar text-warning"></i> Events
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-dark">
+                            <li><a class="dropdown-item" href="../competitions/competitions.html">Competitions</a></li>
+                            <li><a class="dropdown-item" href="../sports/sports.html">Sports</a></li>
+                            <li><a class="dropdown-item" href="../venues/venues.html">Venues</a></li>
+                            <li><a class="dropdown-item" href="../torch-route/torch-route.html">Torch Route</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fa fa-users"></i> Participants
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-dark">
+                            <li><a class="dropdown-item" href="../athletes/athletes.html">Athletes</a></li>
+                            <li><a class="dropdown-item" href="../teams/teams.html">Teams</a></li>
+                            <li><a class="dropdown-item" href="../coaches/coaches.html">Coaches</a></li>
+                            <li><a class="dropdown-item" href="../officials/technical-officials.html">Technical Officials</a></li>
+                            <li><a class="dropdown-item" href="../nocs/nocs.html">NOCs</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fa fa-trophy text-danger"></i> Medals
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-dark">
+                            <li><a class="dropdown-item" href="../medals/games.html">Country Medals</a></li>
+                            <li><a class="dropdown-item" href="../medals/medals.html">Medals</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fa fa-soccer-ball-o text-primary"></i> Modalities
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-dark">
+                            <li><a class="dropdown-item" href="../modalities/basketball.html">Basketball</a></li>
+                            <li><a class="dropdown-item" href="../modalities/canoesprints.html">Canoe Sprints</a></li>
+                            <li><a class="dropdown-item" href="../modalities/cyclingtracks.html">Cycling Tracks</a></li>
+                            <li><a class="dropdown-item" href="../modalities/football.html">Football</a></li>
+                            <li><a class="dropdown-item" href="../modalities/swimming.html">Swimming</a></li>
+                            <li><a class="dropdown-item" href="../modalities/athletics.html">Athletics</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fa fa-chevron-circle-down" "></i> More
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-dark">
+                            <li><a class="dropdown-item" href="../store/store.html">Store</a></li>
+                            <li><a class="dropdown-item" href="../quiz/quiz.html">Quizz</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link " aria-current="page" href="../countdown/contagem.html"><i class="fa fa-hourglass-half" aria-hidden="true"></i> LA2028</a></li>
+                </ul>
+                <ul class="navbar-nav mb-2 mb-lg-0 right-side">
+                    <li class="nav-item"> <a class="nav-link" href="https://olympics.com/pt/paris-2024" target="_blank"> <i class="fa fa-external-link text-primary"></i> Official Site</a></li>
+                </ul>
+                <ul class="navbar-nav mb-2 mb-lg-0 right-side">
+                    <li class="nav-item">
+                        <button id="themeToggle" class="btn btn-outline-secondary">
+                            <i class="fa fa-moon-o" aria-hidden="true"></i>
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    <div class="header">
+        <h1>Sport Details</h1>
+    </div>
+
+    <div class="sport-info-container">
+        <div id="sport-details">
+            <!-- Info will be populated by JS -->
+        </div>
+        <a href="./sports.html" class="back-button">Back to Sports List</a>
+    </div>
+
+    <script>
+        // Get the 'id' from the query string
+        const urlParams = new URLSearchParams(window.location.search);
+        const sportId = urlParams.get('id');
+
+        if (!sportId) {
+            alert("Sport ID is missing.");
+            window.location.href = 'index.html'; // Redireciona de volta se não encontrar o ID
+        }
+
+        // URL da API com o ID do esporte
+        const apiUrl = `http://192.168.160.58/Paris2024/api/Sports/${sportId}`;
+
+        // Buscar os dados do esporte
+        fetch(apiUrl)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Erro ao buscar dados da API');
+                }
+                return response.json();
+            })
+            .then(data => {
+                const { Name, Pictogram, Sport_url, Athletes, Coaches, Competitions, Teams, Technical_officials, Venues } = data;
+
+                // Criar os elementos de exibição
+                const sportDetailsContainer = document.getElementById('sport-details');
+
+                const sportImage = document.createElement('img');
+                sportImage.src = Pictogram;
+                sportImage.alt = Name;
+
+                const sportInfo = document.createElement('div');
+                sportInfo.classList.add('sport-info');
+                sportInfo.innerHTML = `
+                                <h2>${Name}</h2>
+                                <p><strong>Official Site:</strong> <a href="${Sport_url}" target="_blank">${Sport_url}</a></p>
+                            `;
+
+                const athletesList = document.createElement('div');
+                athletesList.classList.add('list');
+                athletesList.innerHTML = '<strong>Athletes:</strong>';
+                Athletes.forEach(athlete => {
+                    const athleteItem = document.createElement('div');
+                    athleteItem.classList.add('list-item');
+                    athleteItem.textContent = athlete.Name;
+                    athletesList.appendChild(athleteItem);
+                });
+
+                const coachesList = document.createElement('div');
+                coachesList.classList.add('list');
+                coachesList.innerHTML = '<strong>Coaches:</strong>';
+                Coaches.forEach(coach => {
+                    const coachItem = document.createElement('div');
+                    coachItem.classList.add('list-item');
+                    coachItem.textContent = coach.Name;
+                    coachesList.appendChild(coachItem);
+                });
+
+                const competitionsList = document.createElement('div');
+                competitionsList.classList.add('list');
+                competitionsList.innerHTML = '<strong>Competitions:</strong>';
+                Competitions.forEach(competition => {
+                    const competitionItem = document.createElement('div');
+                    competitionItem.classList.add('list-item');
+                    competitionItem.textContent = `${competition.Name} (${competition.Tag})`;
+                    competitionsList.appendChild(competitionItem);
+                });
+
+                const teamsList = document.createElement('div');
+                teamsList.classList.add('list');
+                teamsList.innerHTML = '<strong>Teams:</strong>';
+                Teams.forEach(team => {
+                    const teamItem = document.createElement('div');
+                    teamItem.classList.add('list-item');
+                    teamItem.textContent = team.Name;
+                    teamsList.appendChild(teamItem);
+                });
+
+                const technicalOfficialsList = document.createElement('div');
+                technicalOfficialsList.classList.add('list');
+                technicalOfficialsList.innerHTML = '<strong>Technical Officials:</strong>';
+                Technical_officials.forEach(official => {
+                    const officialItem = document.createElement('div');
+                    officialItem.classList.add('list-item');
+                    officialItem.textContent = official.Name;
+                    technicalOfficialsList.appendChild(officialItem);
+                });
+
+                const venuesList = document.createElement('div');
+                venuesList.classList.add('list');
+                venuesList.innerHTML = '<strong>Venues:</strong>';
+                Venues.forEach(venue => {
+                    const venueItem = document.createElement('div');
+                    venueItem.classList.add('list-item');
+                    venueItem.textContent = venue.Name;
+                    venuesList.appendChild(venueItem);
+                });
+
+                // Adicionar todos os elementos ao container principal
+                sportDetailsContainer.appendChild(sportImage);
+                sportDetailsContainer.appendChild(sportInfo);
+                sportDetailsContainer.appendChild(athletesList);
+                sportDetailsContainer.appendChild(coachesList);
+                sportDetailsContainer.appendChild(competitionsList);
+                sportDetailsContainer.appendChild(teamsList);
+                sportDetailsContainer.appendChild(technicalOfficialsList);
+                sportDetailsContainer.appendChild(venuesList);
+            })
+            .catch(error => {
+                console.error('Erro ao carregar os dados:', error);
+                alert('Não foi possível carregar os detalhes do esporte.');
+            });
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.3/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.5.1/knockout-latest.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
+            integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
+            crossorigin=""></script>
+</body>
+</html>

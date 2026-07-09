@@ -1,0 +1,318 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Paris 2024</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin="" />
+    <link rel="stylesheet" href="assets/css/myCSS.css" />
+    <style>
+        .carousel {
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .carousel-item {
+            z-index: -100;
+            height: 600px;
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+            .carousel-item:nth-child(1) {
+                background-image: url('assets/images/banner1.png');
+            }
+
+            .carousel-item:nth-child(2) {
+                background-image: url('assets/images/banner2.png');
+            }
+
+            .carousel-item:nth-child(3) {
+                background-image: url('assets/images/banner3.png');
+            }
+
+            .carousel-item:nth-child(4) {
+                background-image: url('assets/images/banner4.png');
+            }
+
+
+        .carousel-item {
+            height: 500px;
+            background-size: cover;
+            background-position: center;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html" tabindex="Olympics"><img src="assets/images/Paris2024.png" height="60" /></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fa fa-calendar text-warning"></i> Events
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-dark">
+                            <li><a class="dropdown-item" href="pages/competitions/competitions.html">Competitions</a></li>
+                            <li><a class="dropdown-item" href="pages/sports/sports.html">Sports</a></li>
+                            <li><a class="dropdown-item" href="pages/venues/venues.html">Venues</a></li>
+                            <li><a class="dropdown-item" href="pages/torch-route/torch-route.html">Torch Route</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fa fa-users"></i> Participants
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-dark">
+                            <li><a class="dropdown-item" href="pages/athletes/athletes.html">Athletes</a></li>
+                            <li><a class="dropdown-item" href="pages/teams/teams.html">Teams</a></li>
+                            <li><a class="dropdown-item" href="pages/coaches/coaches.html">Coaches</a></li>
+                            <li><a class="dropdown-item" href="pages/officials/technical-officials.html">Technical Officials</a></li>
+                            <li><a class="dropdown-item" href="pages/nocs/nocs.html">NOCs</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fa fa-trophy text-danger"></i> Medals
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-dark">
+                            <li><a class="dropdown-item" href="pages/medals/games.html">Country Medals</a></li>
+                            <li><a class="dropdown-item" href="pages/medals/medals.html">Medals</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fa fa-soccer-ball-o text-primary"></i> Modalities
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-dark">
+                            <li><a class="dropdown-item" href="pages/modalities/basketball.html">Basketball</a></li>
+                            <li><a class="dropdown-item" href="pages/modalities/canoesprints.html">Canoe Sprints</a></li>
+                            <li><a class="dropdown-item" href="pages/modalities/cyclingtracks.html">Cycling Tracks</a></li>
+                            <li><a class="dropdown-item" href="pages/modalities/football.html">Football</a></li>
+                            <li><a class="dropdown-item" href="pages/modalities/swimming.html">Swimming</a></li>
+                            <li><a class="dropdown-item" href="pages/modalities/athletics.html">Athletics</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fa fa-chevron-circle-down" "></i> More
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-dark">
+                            <li><a class="dropdown-item" href="pages/store/store.html">Store</a></li>
+                            <li><a class="dropdown-item" href="pages/quiz/quiz.html">Quizz</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link " aria-current="page" href="pages/countdown/contagem.html"><i class="fa fa-hourglass-half" aria-hidden="true"></i> LA2028</a></li>
+                </ul>
+                <ul class="navbar-nav mb-2 mb-lg-0 right-side">
+                    <li class="nav-item"> <a class="nav-link" href="https://olympics.com/pt/paris-2024" target="_blank"> <i class="fa fa-external-link text-primary"></i> Official Site</a></li>
+                </ul>
+                <ul class="navbar-nav mb-2 mb-lg-0 right-side">
+                    <li class="nav-item">
+                        <button id="themeToggle" class="btn btn-outline-secondary">
+                            <i class="fa fa-moon-o" aria-hidden="true"></i>
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- Working Area -->
+    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 4"></button>
+        </div>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <div class="carousel-caption d-none d-md-block">
+                    <div class="display-1">Eiffel Tower</div>
+                    <p>The Eiffel Tower is central to Paris 2024, hosting events like beach volleyball and framing the Seine River opening ceremony, symbolizing unity and Parisian heritage.</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="carousel-caption d-none d-md-block">
+                    <div class="display-1">The Phryge</div>
+                    <p>The Phryge, inspired by the Phrygian cap, is a historic French symbol of liberty and revolution, dating back to the French Revolution. Chosen as the Paris 2024 mascot, it embodies freedom, resilience, and the Olympic spirit, connecting France's rich history with the global celebration of sports.</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="carousel-caption d-none d-md-block">
+                    <div class="display-1">Spectators</div>
+                    <p>Paris 2024 will welcome global spectators with affordable tickets and public events, ensuring everyone can experience the Olympic spirit in iconic Parisian venues.</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="carousel-caption d-none d-md-block">
+                    <div class="display-1">Triumph at the Finish Line</div>
+                    <p>Ethiopian marathon runner Tola crosses the finish line with determination and pride, symbolizing resilience and excellence at the Tokyo 2020 Olympics. A moment of victory celebrated on the road to Paris 2024.</p>
+                </div>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+    <div id="videoContainer" class="container mt-3 text-center borber border-top primary">
+        <h1 class="mt-2">Best Of Paris 2024</h1>
+        <iframe width="1000" height="600" src="https://www.youtube.com/embed/iVc61V4xhlw?autoplay=1&mute=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+
+    <div id="videoContainer" class="container mt-3 borber border-top primary">
+        <!-- Título alinhado à esquerda -->
+        <h1 class="mt-2" style="text-align: left;">The Olympic Games</h1>
+
+        <div class="row">
+            <!-- Coluna para o texto -->
+            <div class="col-md-8 text-start">
+                <p>
+                    The Olympic Games are a prestigious international sporting event with ancient origins. They were first held in Olympia, Greece, in 776 BCE as a religious festival honoring Zeus. The ancient games featured events like running, wrestling, and chariot racing, attracting athletes from Greek city-states. These games continued for nearly 12 centuries until their decline under Roman rule in 393 CE.
+                </p>
+                <p>
+                    The modern Olympic Games were revived by Frenchman Pierre de Coubertin in 1896, inspired by the ideals of ancient Greece. The first modern Olympics took place in Athens, featuring 14 nations and 241 athletes competing in 43 events. Since then, the Games have grown into a global phenomenon, including both the Summer and Winter Olympics, with participation from nearly every nation.
+                </p>
+                <p>
+                    Key moments include the introduction of the Olympic flag and motto, the inclusion of women athletes (1900), and milestones such as the Berlin Games (1936), the first televised Olympics (1960), and the Munich tragedy (1972). Today, the Games symbolize unity and peace, showcasing athletic excellence and fostering cultural exchange.
+                </p>
+            </div>
+            <!-- Coluna para a imagem com o tooltip -->
+            <div class="col-md-4 text-end" style="margin-top: -50px;">
+                <!-- Link para outro HTML -->
+                <a href="pages/store/store.html">
+                    <img src="assets/images/aaaaaaaaa.png" alt="Imagem sobre os Jogos Olímpicos"
+                         style="max-width: 100%; height: auto;"
+                         data-bs-toggle="tooltip" data-bs-placement="top" title="Click to go to the olympic store!" />
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Estilos CSS para garantir que a imagem tenha o tooltip -->
+    <style>
+        /* Você pode adicionar estilos personalizados aqui, mas não são necessários para o funcionamento do tooltip */
+    </style>
+
+    <!-- Scripts para habilitar o Tooltip -->
+    <script>
+        // Inicializa todos os tooltips na página
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl)
+        })
+    </script>
+
+
+    <div class="accordion accordion-flush" id="accordionFlushExample">
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="flush-headingOne">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                    How can I contact customer care for inquiries regarding my souvenir ticket order for the Olympic and Paralympic Games Paris 2024?
+                </button>
+            </h2>
+            <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                <div class="accordion-body">For any questions regarding your souvenir ticket order for the Olympic and Paralympic Games Paris 2024, please contact the service provider at support_souvenirtickets@tickets.paris2024.org.</div>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="flush-headingTwo">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                    How can I contact customer care for ticketing inquiries for the Olympic and Paralympic Games Paris 2024?
+                </button>
+            </h2>
+            <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+                <div class="accordion-body">For any questions regarding ticketing for the Olympic and Paralympic Games Paris 2024, please contact the Paris 2024 ticketing customer care team at support@tickets.paris2024.org.</div>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="flush-headingThree">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+                    What was the official mascot of the Olympic Games Paris 2024?
+                </button>
+            </h2>
+            <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
+                <div class="accordion-body">
+                    The Olympic Games Paris 2024 mascot was the Olympic Phryge. The mascot was based on the traditional small Phrygian hats for which they are shaped after.
+
+                    The name and design were chosen as symbols of freedom and to represent allegorical figures of the French republic.
+
+                    The Olympic Phryge is decked out in blue, white and red - the colours of France’s famed tricolour flag - with the golden Paris 2024 logo emblazoned across its chest.
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <!-- Footer -->
+    <div class="bottom-bar">
+        <div class="container small">
+            <div class="row align-items-center">
+                <div class="col text-start">
+                    <a href="https://www.ua.pt/pt/uc/12289" class="link">&copy; ITW - 2024/25</a>
+                </div>
+                <div class="col text-center">
+                    <a href="#" id="openOffcanvas" class="link">Made by Margarida Cardoso and Tiago Costa</a>
+                </div>
+                <div class="col text-end">
+                    <a href="https://www.ua.pt" class="link"><img src="assets/images/ua.png" style="height:125px;" alt="Universidade de Aveiro" /></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Offcanvas (Será mostrado quando clicar no link) -->
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+        <div class="offcanvas-header">
+            <h5 id="offcanvasRightLabel">About Us</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Fechar"></button>
+        </div>
+        <div class="offcanvas-body">
+            <p>
+                Margarida Cardoso and Tiago Costa are responsible for this project.
+
+            <p>If you would like to know more about this website, please contact us via email.</p>
+            <p>Margarida Cardoso: cardoso.margarida@ua.pt</p> 
+            <p>Tiago Costa: tiagofccosta@ua.pt</p>
+           
+        </div>
+    </div>
+
+    <!-- Script do Bootstrap 5 -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // Abrir o offcanvas ao clicar no link
+        document.getElementById('openOffcanvas').addEventListener('click', function () {
+            var offcanvas = new bootstrap.Offcanvas(document.getElementById('offcanvasRight'));
+            offcanvas.show();
+        });
+    </script>
+    <!-- Fim do Footer -->
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pzjw8f+ua7Kw1TIq0v8FqM+OK6nB+3zFAmOVzIAY5TX4jFZGdTDDwpoLDkb2dzfX" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.5.1/knockout-latest.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
+            integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
+            crossorigin=""></script>
+    <script src="assets/js/myScript.js"></script>
+</body>
+</html>

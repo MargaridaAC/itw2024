@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz - Paris 2024 Olympic Games</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin="" />
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('../../assets/images/torre.png');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: flex-start; /* Aligned items at the top */
+            flex-direction: column; /* Stacked elements */
+            min-height: 100vh; /* Minimum height */
+            overflow: auto; /* Allow scrolling */
+        }
+
+        .bottom-bar {
+            background-color: black;
+            color: white;
+            padding: 10px 0;
+            bottom: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 0px;
+        }
+
+            .bottom-bar .link {
+                color: white;
+                text-decoration: none;
+            }
+
+                .bottom-bar .link:hover {
+                    color: #f0f0f0;
+                    text-decoration: underline;
+                }
+
+
+        .quiz-container {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            max-width: 500px; /* Ajuste o valor conforme o tamanho desejado */
+            width: 100%; /* Garante que o conte�do n�o ultrapasse 100% da largura dispon�vel */
+            margin: 0 auto; /* Isso vai centralizar o quiz */
+            padding-top: 150px; /* Mant�m o espa�o acima para n�o colar no topo */
+        }
+
+       
+
+        .quiz-container h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .quiz-container .question {
+            margin-bottom: 15px;
+            color: #555;
+        }
+
+        .quiz-container input[type="radio"] {
+            margin-right: 10px;
+        }
+
+        .quiz-container button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+            .quiz-container button:hover {
+                background-color: #0056b3;
+            }
+
+        .quiz-container .result {
+            margin-top: 20px;
+            padding: 10px;
+            background: #e9f6ff;
+            border: 1px solid #b6e3ff;
+            border-radius: 5px;
+            color: #007BFF;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="../../index.html" tabindex="Olympics"><img src="../../assets/images/Paris2024.png" height="60" /></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fa fa-calendar text-warning"></i> Events
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-dark">
+                            <li><a class="dropdown-item" href="../competitions/competitions.html">Competitions</a></li>
+                            <li><a class="dropdown-item" href="../sports/sports.html">Sports</a></li>
+                            <li><a class="dropdown-item" href="../venues/venues.html">Venues</a></li>
+                            <li><a class="dropdown-item" href="../torch-route/torch-route.html">Torch Route</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fa fa-users"></i> Participants
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-dark">
+                            <li><a class="dropdown-item" href="../athletes/athletes.html">Athletes</a></li>
+                            <li><a class="dropdown-item" href="../teams/teams.html">Teams</a></li>
+                            <li><a class="dropdown-item" href="../coaches/coaches.html">Coaches</a></li>
+                            <li><a class="dropdown-item" href="../officials/technical-officials.html">Technical Officials</a></li>
+                            <li><a class="dropdown-item" href="../nocs/nocs.html">NOCs</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fa fa-trophy text-danger"></i> Medals
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-dark">
+                            <li><a class="dropdown-item" href="../medals/games.html">Country Medals</a></li>
+                            <li><a class="dropdown-item" href="../medals/medals.html">Medals</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fa fa-soccer-ball-o text-primary"></i> Modalities
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-dark">
+                            <li><a class="dropdown-item" href="../modalities/basketball.html">Basketball</a></li>
+                            <li><a class="dropdown-item" href="../modalities/canoesprints.html">Canoe Sprints</a></li>
+                            <li><a class="dropdown-item" href="../modalities/cyclingtracks.html">Cycling Tracks</a></li>
+                            <li><a class="dropdown-item" href="../modalities/football.html">Football</a></li>
+                            <li><a class="dropdown-item" href="../modalities/swimming.html">Swimming</a></li>
+                            <li><a class="dropdown-item" href="../modalities/athletics.html">Athletics</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fa fa-chevron-circle-down" "></i> More
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-dark">
+                            <li><a class="dropdown-item" href="../store/store.html">Store</a></li>
+                            <li><a class="dropdown-item" href="../quiz/quiz.html">Quizz</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link " aria-current="page" href="../countdown/contagem.html"><i class="fa fa-hourglass-half" aria-hidden="true"></i> LA2028</a></li>
+                </ul>
+                <ul class="navbar-nav mb-2 mb-lg-0 right-side">
+                    <li class="nav-item"> <a class="nav-link" href="https://olympics.com/pt/paris-2024" target="_blank"> <i class="fa fa-external-link text-primary"></i> Official Site</a></li>
+                </ul>
+                <ul class="navbar-nav mb-2 mb-lg-0 right-side">
+                    <li class="nav-item">
+                        <button id="themeToggle" class="btn btn-outline-secondary">
+                            <i class="fa fa-moon-o" aria-hidden="true"></i>
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="quiz-container">
+        <h1>Quiz</h1>
+        <form id="quizForm">
+            <div class="question">
+                <p>1. In what year did the modern Olympic Games begin?</p>
+                <label><input type="radio" name="q1" value="1896"> 1896</label><br>
+                <label><input type="radio" name="q1" value="1900"> 1900</label><br>
+                <label><input type="radio" name="q1" value="1924"> 1924</label>
+            </div>
+            <div class="question">
+                <p>2. What is the symbol of the Olympic Games?</p>
+                <label><input type="radio" name="q2" value="five rings"> Five rings</label><br>
+                <label><input type="radio" name="q2" value="Olympic torch"> Olympic torch</label><br>
+                <label><input type="radio" name="q2" value="medals"> Medals</label>
+            </div>
+            <div class="question">
+                <p>3. Where will the Paris 2024 Olympic Games be held?</p>
+                <label><input type="radio" name="q3" value="France"> France</label><br>
+                <label><input type="radio" name="q3" value="Spain"> Spain</label><br>
+                <label><input type="radio" name="q3" value="Italy"> Italy</label>
+            </div>
+            <div class="question">
+                <p>4. What is the new sport for the 2024 Olympics?</p>
+                <label><input type="radio" name="q4" value="Breakdance"> Breakdance</label><br>
+                <label><input type="radio" name="q4" value="Karate"> Karate</label><br>
+                <label><input type="radio" name="q4" value="Baseball"> Baseball</label>
+            </div>
+            <div class="question">
+                <p>5. Who is the official mascot of the Paris 2024 Olympic Games?</p>
+                <label><input type="radio" name="q5" value="Phryge"> Phryge</label><br>
+                <label><input type="radio" name="q5" value="Rings"> The Olympic Rings</label><br>
+                <label><input type="radio" name="q5" value="Flame"> The Flame</label>
+            </div>
+            <div class="question">
+                <p>6. What iconic landmark will host the Paris 2024 marathon finish line?</p>
+                <label><input type="radio" name="q6" value="Eiffel Tower"> Eiffel Tower</label><br>
+                <label><input type="radio" name="q6" value="Louvre"> Louvre Museum</label><br>
+                <label><input type="radio" name="q6" value="Notre Dame"> Notre Dame</label>
+            </div>
+            <div class="question">
+                <p>7. In which month will the Paris 2024 Olympics officially begin?</p>
+                <label><input type="radio" name="q7" value="July"> July</label><br>
+                <label><input type="radio" name="q7" value="August"> August</label><br>
+                <label><input type="radio" name="q7" value="June"> June</label>
+            </div>
+            <div class="question">
+                <p>8. Which country is the most successful in Olympic history?</p>
+                <label><input type="radio" name="q8" value="USA"> USA</label><br>
+                <label><input type="radio" name="q8" value="Russia"> Russia</label><br>
+                <label><input type="radio" name="q8" value="Germany"> Germany</label>
+            </div>
+            <div class="question">
+                <p>9. What was the venue of the 2020 Summer Olympics?</p>
+                <label><input type="radio" name="q9" value="Tokyo"> Tokyo</label><br>
+                <label><input type="radio" name="q9" value="London"> London</label><br>
+                <label><input type="radio" name="q9" value="Beijing"> Beijing</label>
+            </div>
+            <div class="question">
+                <p>10. Who won the most gold medals in the 2020 Olympics?</p>
+                <label><input type="radio" name="q10" value="Caeleb Dressel"> Caeleb Dressel</label><br>
+                <label><input type="radio" name="q10" value="Simone Biles"> Simone Biles</label><br>
+                <label><input type="radio" name="q10" value="Michael Phelps"> Michael Phelps</label>
+            </div>
+            <button type="submit">Submit</button>
+        </form>
+        <div class="result" id="result"></div>
+    </div>
+    <div class="bottom-bar">
+        <div class="container small">
+            <div class="row align-items-center">
+                <div class="col text-start">
+                    <a href="https://www.ua.pt/pt/uc/12289" class="link">&copy; ITW - 2024/25</a>
+                </div>
+                <div class="col text-center">
+                    Made by Margarida Cardoso and Tiago Costa
+                </div>
+                <div class="col text-end">
+                    <a href="https://www.ua.pt" class="link"><img src="../../assets/images/ua.png" style="height:125px;" alt="Universidade de Aveiro" /></a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        const quizForm = document.getElementById('quizForm');
+        const result = document.getElementById('result');
+
+        quizForm.addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            let score = 0;
+
+            const q1 = document.querySelector('input[name="q1"]:checked');
+            const q2 = document.querySelector('input[name="q2"]:checked');
+            const q3 = document.querySelector('input[name="q3"]:checked');
+            const q4 = document.querySelector('input[name="q4"]:checked');
+            const q5 = document.querySelector('input[name="q5"]:checked');
+            const q6 = document.querySelector('input[name="q6"]:checked');
+            const q7 = document.querySelector('input[name="q7"]:checked');
+            const q8 = document.querySelector('input[name="q8"]:checked');
+            const q9 = document.querySelector('input[name="q9"]:checked');
+            const q10 = document.querySelector('input[name="q10"]:checked');
+
+            if (q1 && q1.value === '1896') score++;
+            if (q2 && q2.value === 'five rings') score++;
+            if (q3 && q3.value === 'France') score++;
+            if (q4 && q4.value === 'Breakdance') score++;
+            if (q5 && q5.value === 'Phryge') score++;
+            if (q6 && q6.value === 'Eiffel Tower') score++;
+            if (q7 && q7.value === 'July') score++;
+            if (q8 && q8.value === 'USA') score++;
+            if (q9 && q9.value === 'Tokyo') score++;
+            if (q10 && q10.value === 'Caeleb Dressel') score++;
+
+            result.textContent = `You scored ${score} out of 10.`;
+            result.style.display = 'block';
+        });
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.3/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.5.1/knockout-latest.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="quiz.js"></script>
+
+</body>
+</html>
