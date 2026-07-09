@@ -2,7 +2,7 @@
     console.log('ViewModel initiated...');
     var self = this;
 
-    self.baseUri = ko.observable('http://192.168.160.58/Paris2024/api/CountryMedals');
+    self.baseUri = ko.observable(API_URL + 'CountryMedals');
     self.displayName = 'Paris2024 CountryMedals List';
     self.error = ko.observable('');
     self.countrymedal = ko.observableArray('');

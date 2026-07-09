@@ -4,7 +4,7 @@ var vm = function () {
     var self = this;
 
     // Observáveis
-    self.baseUri = ko.observable('http://192.168.160.58/Paris2024/API/medals');
+    self.baseUri = ko.observable(API_URL + 'medals');
     self.displayName = 'Paris2024 Medals List';
     self.error = ko.observable('');
     self.medals = ko.observableArray([]);
